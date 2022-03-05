@@ -12,14 +12,15 @@
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.es.js",
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"exports": {
 		".": {
 			"import": "./dist/index.es.js",
 			"require": "./dist/index.js"
 		}
+	},
+	"engines": {
+		"node": ">=14.17"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.17.6",
@@ -52,17 +53,13 @@
 		}
 	},
 	"jest": {
-		"setupFilesAfterEnv": [
-			"<rootDir>/jest-setup.js"
-		],
+		"setupFilesAfterEnv": ["<rootDir>/jest-setup.js"],
 		"testEnvironment": "jsdom",
 		"coverageDirectory": "./coverage/",
 		"collectCoverage": true
 	},
 	"release": {
-		"branches": [
-			"main"
-		],
+		"branches": ["main"],
 		"plugins": [
 			[
 				"@semantic-release/commit-analyzer",
