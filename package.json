@@ -1,6 +1,6 @@
 {
 	"name": "@untemps/utils",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "",
 	"repository": "git@github.com:untemps/utils.git",
 	"keywords": [],
@@ -12,7 +12,9 @@
 	},
 	"main": "dist/index.js",
 	"module": "dist/index.es.js",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"exports": {
 		".": {
 			"import": "./dist/index.es.js",
@@ -53,13 +55,17 @@
 		}
 	},
 	"jest": {
-		"setupFilesAfterEnv": ["<rootDir>/jest-setup.js"],
+		"setupFilesAfterEnv": [
+			"<rootDir>/jest-setup.js"
+		],
 		"testEnvironment": "jsdom",
 		"coverageDirectory": "./coverage/",
 		"collectCoverage": true
 	},
 	"release": {
-		"branches": ["main"],
+		"branches": [
+			"main"
+		],
 		"plugins": [
 			[
 				"@semantic-release/commit-analyzer",
