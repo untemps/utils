@@ -10,15 +10,13 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"main": "dist/index.js",
-	"module": "dist/index.es.js",
 	"files": [
 		"dist"
 	],
 	"exports": {
-		".": {
-			"import": "./dist/index.es.js",
-			"require": "./dist/index.js"
+		"./*": {
+			"import": "./dist/esm/*.mjs",
+			"require": "./dist/cjs/*.cjs"
 		}
 	},
 	"engines": {
@@ -29,9 +27,10 @@
 		"@babel/core": "^7.17.5",
 		"@babel/plugin-transform-runtime": "^7.17.0",
 		"@babel/preset-env": "^7.16.11",
+		"@betit/rollup-plugin-rename-extensions": "^0.1.0",
 		"@rollup/plugin-babel": "^5.3.1",
-		"@rollup/plugin-commonjs": "^21.0.2",
 		"@rollup/plugin-node-resolve": "^13.1.3",
+		"@rollup/plugin-strip": "^2.1.0",
 		"@semantic-release/changelog": "^6.0.1",
 		"@semantic-release/git": "^10.0.1",
 		"@semantic-release/github": "^8.0.2",
@@ -39,15 +38,16 @@
 		"@testing-library/jest-dom": "^5.16.2",
 		"babel-jest": "^27.5.1",
 		"cross-env": "^7.0.2",
-		"fast-check": "^2.23.0",
+		"fast-check": "^2.22.0",
 		"husky": "^7.0.4",
 		"jest": "^27.5.1",
 		"prettier": "^2.5.1",
 		"rimraf": "^3.0.2",
 		"rollup": "^2.68.0",
 		"rollup-plugin-filesize": "^9.1.2",
+		"rollup-plugin-multi-input": "^1.3.1",
+		"rollup-plugin-progress": "^1.1.2",
 		"rollup-plugin-terser": "^7.0.2",
-		"rollup-plugin-visualizer": "^5.6.0",
 		"semantic-release": "^19.0.2"
 	},
 	"husky": {
@@ -90,9 +90,9 @@
 	"scripts": {
 		"test": "jest -u --watchAll",
 		"test:ci": "jest -u -b --ci --coverage",
-		"build": "rimraf dist && yarn build:cjs && yarn build:es",
+		"build": "rimraf dist && yarn build:cjs && yarn build:esm",
 		"build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs rollup -c",
-		"build:es": "cross-env NODE_ENV=production BABEL_ENV=es rollup -c",
+		"build:esm": "cross-env NODE_ENV=production BABEL_ENV=esm rollup -c",
 		"prettier": "prettier \"*/**/*.js\" --ignore-path ./.prettierignore --write && git add . && git status"
 	}
 }

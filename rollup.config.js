@@ -1,36 +1,43 @@
 import babel from '@rollup/plugin-babel'
-import commonjs from '@rollup/plugin-commonjs'
+import strip from '@rollup/plugin-strip'
 import resolve from '@rollup/plugin-node-resolve'
-import filesize from "rollup-plugin-filesize"
+import filesize from 'rollup-plugin-filesize'
+import multiInput from 'rollup-plugin-multi-input'
+import progress from 'rollup-plugin-progress'
 import { terser } from 'rollup-plugin-terser'
-import visualizer from 'rollup-plugin-visualizer'
+import renameExtensions from '@betit/rollup-plugin-rename-extensions'
 
 const production = process.env.NODE_ENV === 'production'
 const target = process.env.BABEL_ENV
+const extensions = {
+	esm: '.mjs',
+	cjs: '.cjs',
+}
 
 export default {
-	input: 'src/index.js',
+	input: 'src/**[!__tests__]/*.js',
 	output: {
 		name: '@untemps/utils',
-		file: {
-			cjs: 'dist/index.js',
-			es: 'dist/index.es.js',
-		}[target],
+		dir: `dist/${target}`,
 		format: target,
-		sourcemap: 'inline'
+		exports: 'auto',
 	},
 	plugins: [
+		progress(),
+		multiInput(),
+		strip(),
 		babel({
 			exclude: 'node_modules/**',
-			babelHelpers: 'bundled'
+			babelHelpers: 'bundled',
 		}),
 		resolve(),
-		commonjs(),
+		renameExtensions({
+			include: ['**/*.js'],
+			mappings: {
+				'.js': extensions[target],
+			},
+		}),
 		filesize(),
 		production && terser(),
-		visualizer({
-			sourcemap: true,
-			open: true
-		})
 	],
 }
