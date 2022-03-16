@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/untemps/utils/compare/v1.1.0...v1.1.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* Update generateText function and add property-based tests ([58d754c](https://github.com/untemps/utils/commit/58d754cee09f3d625d5c5b71e664dbe284e0737f))
+
 # [1.1.0](https://github.com/untemps/utils/compare/v1.0.0...v1.1.0) (2022-03-15)
 
 
