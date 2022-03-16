@@ -1,3 +1,6 @@
+import normalizeMinMax from '../number/normalizeMinMax'
+import getRandomInteger from '../number/getRandomInteger'
+
 const WORDS = [
 	'year',
 	'learn',
@@ -50,13 +53,21 @@ const WORDS = [
 	'damage',
 	'responsible',
 ]
+
+const getMinMax = (min, max) => {
+	const { min: nMin, max: nMax } = normalizeMinMax(Math.abs(min), Math.abs(max))
+	const tMin = Math.max(nMin, 1)
+	const tMax = Math.max(nMax, tMin)
+	return {
+		min: tMin,
+		max: tMax,
+	}
+}
+
 export default ({ minWords = 10, maxWords = 50, dictionary = WORDS } = {}) => {
 	let result = ''
-	const minAbs = Math.abs(minWords)
-	const maxAbs = Math.abs(maxWords)
-	const min = Math.min(minAbs, maxAbs)
-	const max = Math.max(minAbs, maxAbs)
-	const length = Math.ceil(Math.random() * (max - min)) + min
+	const { min, max } = getMinMax(minWords, maxWords)
+	const length = getRandomInteger(min, max)
 	for (let i = 0; i < length; i++) {
 		const word = dictionary[Math.floor(Math.random() * dictionary.length)]
 		result += `${i > 0 ? ' ' : ''}${word}`
