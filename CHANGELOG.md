@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/untemps/utils/compare/v1.1.1...v1.1.2) (2022-03-16)
+
+
+### Bug Fixes
+
+* Update generateTokenizedText function and add property-based tests ([a3573fa](https://github.com/untemps/utils/commit/a3573fac1baad37cb301bfab6d72b4de9452a04c))
+
 ## [1.1.1](https://github.com/untemps/utils/compare/v1.1.0...v1.1.1) (2022-03-16)
 
 
