@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/untemps/utils/compare/v1.1.2...v1.2.0) (2022-03-17)
+
+
+### Features
+
+* Add isElement function ([082ea28](https://github.com/untemps/utils/commit/082ea28e213036fc62707872b405987d670436a7))
+
 ## [1.1.2](https://github.com/untemps/utils/compare/v1.1.1...v1.1.2) (2022-03-16)
 
 
