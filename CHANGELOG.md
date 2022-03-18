@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/untemps/utils/compare/v1.2.0...v1.3.0) (2022-03-18)
+
+
+### Features
+
+* Add resolveClassName function ([f06a67c](https://github.com/untemps/utils/commit/f06a67ce54098f2e1a1c4ebfb9a08d39044c81b8))
+
 # [1.2.0](https://github.com/untemps/utils/compare/v1.1.2...v1.2.0) (2022-03-17)
 
 
