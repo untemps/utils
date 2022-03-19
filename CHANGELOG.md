@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/untemps/utils/compare/v1.3.0...v1.4.0) (2022-03-19)
+
+
+### Features
+
+* Add standby function ([b6b8415](https://github.com/untemps/utils/commit/b6b84157a94559c209980e7020527be92ca3bddf))
+
 # [1.3.0](https://github.com/untemps/utils/compare/v1.2.0...v1.3.0) (2022-03-18)
 
 
