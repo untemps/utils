@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/untemps/utils/compare/v1.4.0...v1.5.0) (2022-03-19)
+
+
+### Features
+
+* Add isObject function ([dbaaa59](https://github.com/untemps/utils/commit/dbaaa59e6f726c25759502bef497d6f4cf687178))
+
 # [1.4.0](https://github.com/untemps/utils/compare/v1.3.0...v1.4.0) (2022-03-19)
 
 
