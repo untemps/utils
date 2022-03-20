@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/untemps/utils/compare/v1.5.0...v1.6.0) (2022-03-20)
+
+
+### Features
+
+* Add deepMerge function ([d31fbb7](https://github.com/untemps/utils/commit/d31fbb7271e1cbb8c978f2488a60f949348fc263))
+
 # [1.5.0](https://github.com/untemps/utils/compare/v1.4.0...v1.5.0) (2022-03-19)
 
 
