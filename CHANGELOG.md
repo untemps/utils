@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/untemps/utils/compare/v1.6.0...v1.7.0) (2022-04-02)
+
+
+### Features
+
+* Add getElement function ([#2](https://github.com/untemps/utils/issues/2)) ([275a193](https://github.com/untemps/utils/commit/275a193f674a06ab932108272b56447c80e97447))
+
 # [1.6.0](https://github.com/untemps/utils/compare/v1.5.0...v1.6.0) (2022-03-20)
 
 
