@@ -15,7 +15,7 @@ describe('getRandomInteger', () => {
 				min: -Number.MAX_SAFE_INTEGER,
 				max: Number.MAX_SAFE_INTEGER,
 			},
-		}
+		},
 	])('$name', ({ expected }) => {
 		const int = getRandomInteger()
 		expect(int).toBeGreaterThanOrEqual(expected.min)
