@@ -42,6 +42,7 @@ describe('createElement', () => {
 		expect(createElement(values)).toContainHTML(expected)
 	})
 
+	// prettier-ignore
 	it.each([
 		{
 			name: 'creates element in explicit parent',
