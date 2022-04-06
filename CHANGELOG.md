@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/untemps/utils/compare/v1.7.0...v1.7.1) (2022-04-06)
+
+
+### Bug Fixes
+
+* Fix babel helpers bundling ([#4](https://github.com/untemps/utils/issues/4)) ([b150308](https://github.com/untemps/utils/commit/b150308d7e4bd9ca54f6823882fa5a6f87c2bdb8))
+
 # [1.7.0](https://github.com/untemps/utils/compare/v1.6.0...v1.7.0) (2022-04-02)
 
 
