@@ -50,6 +50,9 @@
 		"rollup-plugin-terser": "^7.0.2",
 		"semantic-release": "^19.0.2"
 	},
+	"dependencies": {
+		"@babel/runtime": "^7.17.8"
+	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "yarn test:ci && yarn prettier"
