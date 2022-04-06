@@ -1,4 +1,7 @@
-module.exports = (api) => ({
-	presets: ['@babel/preset-env'],
-	plugins: [...(api.env('test') ? ['@babel/plugin-transform-runtime'] : [])],
-})
+module.exports = (api) => {
+	api.cache(true)
+	return {
+		presets: ['@babel/preset-env'],
+		plugins: ['@babel/plugin-transform-runtime'],
+	}
+}

@@ -22,13 +22,14 @@ export default {
 		format: target,
 		exports: 'auto',
 	},
+	external: [/@babel\/runtime/],
 	plugins: [
 		progress(),
 		multiInput(),
 		strip(),
 		babel({
 			exclude: 'node_modules/**',
-			babelHelpers: 'bundled',
+			babelHelpers: 'runtime',
 		}),
 		resolve(),
 		renameExtensions({
