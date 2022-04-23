@@ -10,9 +10,7 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"exports": {
 		"./*": {
 			"import": "./dist/esm/*.js",
@@ -56,16 +54,18 @@
 		"@babel/runtime": "^7.17.8"
 	},
 	"jest": {
-		"setupFilesAfterEnv": [
-			"<rootDir>/jest-setup.js"
-		],
+		"setupFilesAfterEnv": ["<rootDir>/jest-setup.js"],
 		"testEnvironment": "jsdom",
 		"coverageDirectory": "./coverage/",
 		"collectCoverage": true
 	},
 	"release": {
 		"branches": [
-			"main"
+			"main",
+			{
+				"name": "beta",
+				"prerelease": true
+			}
 		],
 		"plugins": [
 			[
