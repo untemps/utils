@@ -1,5 +1,5 @@
-import normalizeMinMax from '../number/normalizeMinMax'
-import getRandomInteger from '../number/getRandomInteger'
+import { getRandomInteger } from '../number/getRandomInteger'
+import { normalizeMinMax } from '../number/normalizeMinMax'
 
 const WORDS = [
 	'year',
@@ -64,7 +64,7 @@ const getMinMax = (min, max) => {
 	}
 }
 
-export default ({ minWords = 10, maxWords = 50, dictionary = WORDS } = {}) => {
+export const generateText = ({ minWords = 10, maxWords = 50, dictionary = WORDS } = {}) => {
 	let result = ''
 	const { min, max } = getMinMax(minWords, maxWords)
 	const length = getRandomInteger(min, max)

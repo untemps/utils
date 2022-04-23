@@ -1,5 +1,5 @@
-import getElement from '../getElement'
-import createElement from '../createElement'
+import { createElement } from '../createElement'
+import { getElement } from '../getElement'
 
 describe('getElement', () => {
 	// prettier-ignore

@@ -1,4 +1,4 @@
-import interpolate from '../interpolate'
+import { interpolate } from '../interpolate'
 
 describe('interpolate', () => {
 	// prettier-ignore

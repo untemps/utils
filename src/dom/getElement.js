@@ -1,3 +1,3 @@
-export default (selector) => {
+export const getElement = (selector) => {
 	return document.querySelector(selector)
 }

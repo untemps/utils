@@ -1,4 +1,4 @@
-import standby from '../standby'
+import { standby } from '../standby'
 
 describe('standby', () => {
 	it('delays operation with default timeout', (done) => {

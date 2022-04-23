@@ -13,7 +13,7 @@ const pipeTokens = (tokens) => {
 	return tokenKeys.reduce((acc, key, i) => `${acc}${i > 0 ? '|' : ''}${key}`, '')
 }
 
-export default (value, tokens = {}, divider = '%') => {
+export const interpolate = (value, tokens = {}, divider = '%') => {
 	const escapedDivider = escapeDivider(divider)
 	const pipedTokens = pipeTokens(tokens)
 	const regex = new RegExp(`${escapedDivider}(${pipedTokens})${escapedDivider}`, 'g')

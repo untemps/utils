@@ -1,4 +1,4 @@
-import deepMerge from '../deepMerge'
+import { deepMerge } from '../deepMerge'
 
 describe('deepMerge', () => {
 	// prettier-ignore

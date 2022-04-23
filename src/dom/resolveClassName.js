@@ -1,4 +1,4 @@
-export default (input) =>
+export const resolveClassName = (input) =>
 	input
 		.reduce((acc, [condition, truthyValue, falsyValue]) => {
 			if (condition && !!truthyValue) {

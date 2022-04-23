@@ -1,4 +1,4 @@
-import getRandomInteger from '../getRandomInteger'
+import { getRandomInteger } from '../getRandomInteger'
 
 describe('getRandomInteger', () => {
 	it.each([
