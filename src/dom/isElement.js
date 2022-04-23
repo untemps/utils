@@ -1,1 +1,1 @@
-export default (value) => value?.nodeType === 1
+export const isElement = (value) => value?.nodeType === 1

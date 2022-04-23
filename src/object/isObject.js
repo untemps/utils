@@ -1,1 +1,1 @@
-export default (value) => Object.getPrototypeOf(value) === Object.prototype
+export const isObject = (value) => Object.getPrototypeOf(value) === Object.prototype

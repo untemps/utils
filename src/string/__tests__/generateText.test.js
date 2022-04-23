@@ -1,4 +1,4 @@
-import generateText from '../generateText'
+import { generateText } from '../generateText'
 
 describe('generateText', () => {
 	// prettier-ignore

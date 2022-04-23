@@ -1,7 +1,7 @@
 import * as fc from 'fast-check'
 
-import getRandomInteger from '../getRandomInteger'
-import normalizeMinMax from '../normalizeMinMax'
+import { getRandomInteger } from '../getRandomInteger'
+import { normalizeMinMax } from '../normalizeMinMax'
 
 describe('getRandomInteger', () => {
 	it('returns random number between min and max', () =>

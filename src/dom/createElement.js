@@ -1,4 +1,4 @@
-export default ({
+export const createElement = ({
 	tag = 'div',
 	attributes = {},
 	content = null,

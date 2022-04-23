@@ -1,1 +1,1 @@
-export default (timeout = 128) => new Promise((resolve) => setTimeout(resolve, timeout))
+export const standby = (timeout = 128) => new Promise((resolve) => setTimeout(resolve, timeout))

@@ -1,1 +1,1 @@
-export default (value) => typeof value === 'function'
+export const isFunction = (value) => typeof value === 'function'
