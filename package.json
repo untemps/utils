@@ -1,6 +1,6 @@
 {
 	"name": "@untemps/utils",
-	"version": "1.7.1",
+	"version": "2.0.0-beta.1",
 	"description": "",
 	"repository": "git@github.com:untemps/utils.git",
 	"keywords": [],
@@ -10,7 +10,9 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"exports": {
 		"./*": {
 			"import": "./dist/esm/*.js",
@@ -54,7 +56,9 @@
 		"@babel/runtime": "^7.17.8"
 	},
 	"jest": {
-		"setupFilesAfterEnv": ["<rootDir>/jest-setup.js"],
+		"setupFilesAfterEnv": [
+			"<rootDir>/jest-setup.js"
+		],
 		"testEnvironment": "jsdom",
 		"coverageDirectory": "./coverage/",
 		"collectCoverage": true
