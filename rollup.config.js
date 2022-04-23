@@ -5,14 +5,9 @@ import filesize from 'rollup-plugin-filesize'
 import multiInput from 'rollup-plugin-multi-input'
 import progress from 'rollup-plugin-progress'
 import { terser } from 'rollup-plugin-terser'
-import renameExtensions from '@betit/rollup-plugin-rename-extensions'
 
 const production = process.env.NODE_ENV === 'production'
 const target = process.env.BABEL_ENV
-const extensions = {
-	esm: '.mjs',
-	cjs: '.cjs',
-}
 
 export default {
 	input: 'src/**[!__tests__]/*.js',
@@ -32,12 +27,6 @@ export default {
 			babelHelpers: 'runtime',
 		}),
 		resolve(),
-		renameExtensions({
-			include: ['**/*.js'],
-			mappings: {
-				'.js': extensions[target],
-			},
-		}),
 		filesize(),
 		production && terser(),
 	],
