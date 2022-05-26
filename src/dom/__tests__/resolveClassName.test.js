@@ -1,4 +1,4 @@
-import resolveClassName from '../resolveClassName'
+import { resolveClassName } from '../resolveClassName'
 
 describe('resolveClassName', () => {
 	// prettier-ignore

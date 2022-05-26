@@ -1,6 +1,5 @@
-import createElement from '../createElement'
-
-import isElement from '../isElement'
+import { createElement } from '../createElement'
+import { isElement } from '../isElement'
 
 describe('isElement', () => {
 	// prettier-ignore

@@ -1,6 +1,12 @@
-import generateText from './generateText'
+import { generateText } from './generateText'
 
-export default ({ tokens = [], divider = '%', minWords = 10, maxWords = 50, dictionary = undefined } = {}) => {
+export const generateTokenizedText = ({
+	tokens = [],
+	divider = '%',
+	minWords = 10,
+	maxWords = 50,
+	dictionary = undefined,
+} = {}) => {
 	const text = generateText({
 		minWords: Math.max(minWords, tokens.length),
 		maxWords: Math.max(maxWords, tokens.length),

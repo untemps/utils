@@ -1,4 +1,4 @@
-import generateTokenizedText from '../generateTokenizedText'
+import { generateTokenizedText } from '../generateTokenizedText'
 
 describe('generateTokenizedText', () => {
 	// prettier-ignore

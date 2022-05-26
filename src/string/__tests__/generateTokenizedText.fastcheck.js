@@ -1,8 +1,7 @@
 import * as fc from 'fast-check'
 
-import normalizeMinMax from '../../number/normalizeMinMax'
-
-import generateTokenizedText from '../generateTokenizedText'
+import { generateTokenizedText } from '../generateTokenizedText'
+import { normalizeMinMax } from '../../number/normalizeMinMax'
 
 describe('generateTokenizedText', () => {
 	it('returns text length higher than minWords', () =>

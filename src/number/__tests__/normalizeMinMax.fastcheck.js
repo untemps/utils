@@ -1,6 +1,6 @@
 import * as fc from 'fast-check'
 
-import normalizeMinMax from '../normalizeMinMax'
+import { normalizeMinMax } from '../normalizeMinMax'
 
 describe('normalizeMinMax', () => {
 	it('', () => {

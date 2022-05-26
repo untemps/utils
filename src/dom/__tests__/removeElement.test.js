@@ -1,6 +1,5 @@
-import createElement from '../createElement'
-
-import removeElement from '../removeElement'
+import { createElement } from '../createElement'
+import { removeElement } from '../removeElement'
 
 describe('removeElement', () => {
 	let el = null

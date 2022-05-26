@@ -1,6 +1,6 @@
-import isString from '../string/isString'
+import { isString } from '../string/isString'
 
-export default (element, attributes = {}) => {
+export const modifyElement = (element, attributes = {}) => {
 	let el = element
 	if (isString(element)) {
 		el = document.querySelector(element)
