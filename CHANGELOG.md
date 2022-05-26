@@ -1,3 +1,13 @@
+# [2.0.0](https://github.com/untemps/utils/compare/v1.7.1...v2.0.0) (2022-05-26)
+
+
+* Switch default to named exports (#7) ([891e6c2](https://github.com/untemps/utils/commit/891e6c2b5d8b0945bb776d7d205658775488615b)), closes [#7](https://github.com/untemps/utils/issues/7)
+
+
+### BREAKING CHANGES
+
+* Function imports need to be changed
+
 # [2.0.0-beta.1](https://github.com/untemps/utils/compare/v1.7.1...v2.0.0-beta.1) (2022-04-23)
 
 
