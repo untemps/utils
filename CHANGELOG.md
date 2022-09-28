@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/untemps/utils/compare/v2.1.0...v2.2.0) (2022-09-28)
+
+
+### Features
+
+* Add getCSSDeclaration function ([#12](https://github.com/untemps/utils/issues/12)) ([783ab78](https://github.com/untemps/utils/commit/783ab7826f9bb1c6701ae195447a4701561bf887))
+
 # [2.1.0](https://github.com/untemps/utils/compare/v2.0.0...v2.1.0) (2022-09-28)
 
 
