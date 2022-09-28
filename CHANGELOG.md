@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/untemps/utils/compare/v2.0.0...v2.1.0) (2022-09-28)
+
+
+### Features
+
+* Add doElementsOverlap function ([#11](https://github.com/untemps/utils/issues/11)) ([2e4a160](https://github.com/untemps/utils/commit/2e4a1603f3b51602906d37db3c3e1642967261af))
+
 # [2.0.0](https://github.com/untemps/utils/compare/v1.7.1...v2.0.0) (2022-05-26)
 
 
