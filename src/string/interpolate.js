@@ -1,3 +1,5 @@
+import { isNil } from '../lang/isNil'
+
 const escapeDivider = (divider) => {
 	const regex = new RegExp('([\\[\\^\\$\\.|\\?\\*\\+\\(\\)])+', 'g')
 	return divider.replace(regex, (match) =>
@@ -15,7 +17,8 @@ const pipeTokens = (tokens) => {
 
 export const interpolate = (value, tokens = {}, divider = '%') => {
 	const escapedDivider = escapeDivider(divider)
+
 	const pipedTokens = pipeTokens(tokens)
 	const regex = new RegExp(`${escapedDivider}(${pipedTokens})${escapedDivider}`, 'g')
-	return value.replace(regex, (_, r) => (!!tokens[r] ? tokens[r] : r))
+	return value.replace(regex, (_, r) => (!isNil(tokens[r]) ? tokens[r] : r))
 }
