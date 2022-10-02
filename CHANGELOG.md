@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/untemps/utils/compare/v2.2.0...v2.3.0) (2022-10-02)
+
+
+### Features
+
+* Add isNil function and fix interpolate function ([#14](https://github.com/untemps/utils/issues/14)) ([b7ff547](https://github.com/untemps/utils/commit/b7ff547ff45456953bd146f3547ae368fcc2df6b))
+
 # [2.2.0](https://github.com/untemps/utils/compare/v2.1.0...v2.2.0) (2022-09-28)
 
 
