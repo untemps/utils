@@ -1,0 +1,40 @@
+{
+	"tags": {
+		"allowUnknownTags": false
+	},
+	"source": {
+		"include": "src",
+		"includePattern": "\\.js$",
+		"excludePattern": "(node_modules/|docs|__tests__)"
+	},
+	"opts": {
+		"template": "node_modules/clean-jsdoc-theme",
+		"encoding": "utf8",
+		"destination": "docs/",
+		"recurse": true,
+		"verbose": true
+	},
+	"templates": {
+		"cleverLinks": false,
+		"monospaceLinks": false,
+		"default": {
+			"outputSourceFiles": true,
+			"includeDate": false,
+			"useLongnameInNav": true
+		}
+	},
+	"markdown": {
+		"idInHeadings": true
+	},
+	"theme_opts": {
+		"title": "@untemps/utils",
+		"homepageTitle": "@untemps/utils",
+		"codepen": {
+			"enable_for": ["*"],
+			"options": {
+				"js_pre_processor": "babel"
+			}
+		},
+		"footer": "This is footer"
+	}
+}

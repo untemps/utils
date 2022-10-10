@@ -1,6 +1,13 @@
+/**
+ * @module string/generateText
+ */
+
 import { getRandomInteger } from '../number/getRandomInteger'
 import { normalizeMinMax } from '../number/normalizeMinMax'
 
+/**
+ * @private
+ */
 const WORDS = [
 	'year',
 	'learn',
@@ -54,6 +61,9 @@ const WORDS = [
 	'responsible',
 ]
 
+/**
+ * @private
+ */
 const getMinMax = (min, max) => {
 	const { min: nMin, max: nMax } = normalizeMinMax(Math.abs(min), Math.abs(max))
 	const tMin = Math.max(nMin, 1)
@@ -64,6 +74,23 @@ const getMinMax = (min, max) => {
 	}
 }
 
+/**
+ * Generates a string with a minimum and a maximum number of random words picking from a dictionary.
+ *
+ * @function
+ * @example
+ * import { generateText } from '@untemps/utils/string/generateText'
+ *
+ * const minWords = 5
+ * const maxWords = 10
+ * const dictionary = ['foo', 'bar', 'gag']
+ * console.log(generateTokenizedText(minWords, maxWords, dictionary)) // 'bar foo foo gag bar foo gag bar'
+ *
+ * @param {number} [minWords=10] - Minimum number of words to pick.
+ * @param {number} [maxWords=50] - Maximum number of words to pick.
+ * @param {string[]} [dictionary=[...]] - List of words to constitute the text.
+ * @returns {string}  The generated text.
+ */
 export const generateText = ({ minWords = 10, maxWords = 50, dictionary = WORDS } = {}) => {
 	let result = ''
 	const { min, max } = getMinMax(minWords, maxWords)
