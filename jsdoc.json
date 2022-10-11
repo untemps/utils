@@ -12,7 +12,48 @@
 		"encoding": "utf8",
 		"destination": "docs/",
 		"recurse": true,
-		"verbose": true
+		"verbose": true,
+		"theme_opts": {
+			"search": true,
+			"homepageTitle": "@untemps/utils",
+			"default_theme": "dark",
+			"title": "@untemps/utils",
+			"footer": "@untemps @ 2022",
+			"meta": [
+				{
+					"name": "Author",
+					"content": "Vincent Le Badezet"
+				},
+				{
+					"name": "Description",
+					"content": "Utils for @untemps packages"
+				}
+			],
+			"menu": [
+				{
+					"title": "Github",
+					"id": "github",
+					"link": "https://github.com/untemps/utils"
+				},
+				{
+					"title": "npm",
+					"id": "npm",
+					"link": "https://www.npmjs.com/package/@untemps/utils"
+				}
+			],
+			"resizeable": {
+				"navbar": {
+					"min": "300",
+					"max": "600"
+				}
+			},
+			"codepen": {
+				"enable_for": ["examples"],
+				"options": {
+					"js_pre_processor": "babel"
+				}
+			}
+		}
 	},
 	"templates": {
 		"cleverLinks": false,
@@ -24,17 +65,7 @@
 		}
 	},
 	"markdown": {
+		"hardwrap": false,
 		"idInHeadings": true
-	},
-	"theme_opts": {
-		"title": "@untemps/utils",
-		"homepageTitle": "@untemps/utils",
-		"codepen": {
-			"enable_for": ["*"],
-			"options": {
-				"js_pre_processor": "babel"
-			}
-		},
-		"footer": "This is footer"
 	}
 }
