@@ -8,52 +8,11 @@
 		"excludePattern": "(node_modules/|docs|__tests__)"
 	},
 	"opts": {
-		"template": "node_modules/clean-jsdoc-theme",
+		"template": "node_modules/docdash",
 		"encoding": "utf8",
 		"destination": "docs/",
 		"recurse": true,
-		"verbose": true,
-		"theme_opts": {
-			"search": true,
-			"homepageTitle": "@untemps/utils",
-			"default_theme": "dark",
-			"title": "@untemps/utils",
-			"footer": "@untemps @ 2022",
-			"meta": [
-				{
-					"name": "Author",
-					"content": "Vincent Le Badezet"
-				},
-				{
-					"name": "Description",
-					"content": "Utils for @untemps packages"
-				}
-			],
-			"menu": [
-				{
-					"title": "Github",
-					"id": "github",
-					"link": "https://github.com/untemps/utils"
-				},
-				{
-					"title": "npm",
-					"id": "npm",
-					"link": "https://www.npmjs.com/package/@untemps/utils"
-				}
-			],
-			"resizeable": {
-				"navbar": {
-					"min": "300",
-					"max": "600"
-				}
-			},
-			"codepen": {
-				"enable_for": ["examples"],
-				"options": {
-					"js_pre_processor": "babel"
-				}
-			}
-		}
+		"verbose": true
 	},
 	"templates": {
 		"cleverLinks": false,
@@ -67,5 +26,35 @@
 	"markdown": {
 		"hardwrap": false,
 		"idInHeadings": true
-	}
+	},
+  "docdash": {
+    "static": true,
+    "sort": true,
+    "disqus": "",
+    "openGraph": {
+      "title": "Docdash",
+      "type": "website",
+      "image": "https://cloud.githubusercontent.com/assets/447956/13398144/4dde7f36-defd-11e5-8909-1a9013302cb9.png",
+      "site_name": "Docdash",
+      "url": "http://clenemt.github.io/docdash/"
+    },
+    "meta": {
+      "title": "Docdash",
+      "description": "A clean, responsive documentation template theme for JSDoc 3.",
+      "keyword": "jsdoc, docdash"
+    },
+    "search": true,
+    "collapse": true,
+    "typedefs": true,
+    "removeQuotes": "none",
+    "scripts": [],
+    "menu":{
+      "Github repo":{
+        "href":"https://github.com/clenemt/docdash",
+        "target":"_blank",
+        "class":"menu-item",
+        "id":"repository"
+      }
+    }
+  }
 }

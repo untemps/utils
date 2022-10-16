@@ -1,4 +1,5 @@
 /**
+ * @fileOverview Generates a string with a minimum and a maximum number of random words picking from a dictionary.
  * @module string/generateText
  */
 
@@ -75,21 +76,20 @@ const getMinMax = (min, max) => {
 }
 
 /**
- * Generates a string with a minimum and a maximum number of random words picking from a dictionary.
- *
  * @function
  * @example
  * import { generateText } from '@untemps/utils/string/generateText'
  *
- * const minWords = 5
- * const maxWords = 10
- * const dictionary = ['foo', 'bar', 'gag']
- * console.log(generateTokenizedText(minWords, maxWords, dictionary)) // 'bar foo foo gag bar foo gag bar'
+ * const minWords = 5;
+ * const maxWords = 10;
+ * const dictionary = ['foo', 'bar', 'gag'];
+ * generateText({minWords, maxWords, dictionary}) // bar foo foo gag gag bar gag gag
  *
- * @param {number} [minWords=10] - Minimum number of words to pick.
- * @param {number} [maxWords=50] - Maximum number of words to pick.
- * @param {string[]} [dictionary=[...]] - List of words to constitute the text.
- * @returns {string}  The generated text.
+ * @param {object} object                       - The configuration object for the text generation.
+ * @param {number} [object.minWords=10]         - The minimum number of words to pick.
+ * @param {number} [object.maxWords=50]         - The maximum number of words to pick.
+ * @param {string[]} [object.dictionary=[...]]  - A list of words from which picking the words.
+ * @returns {string}                            The generated string.
  */
 export const generateText = ({ minWords = 10, maxWords = 50, dictionary = WORDS } = {}) => {
 	let result = ''
