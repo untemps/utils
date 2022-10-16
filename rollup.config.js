@@ -10,7 +10,7 @@ const production = process.env.NODE_ENV === 'production'
 const target = process.env.BABEL_ENV
 
 export default {
-	input: 'src/**[!__tests__]/*.js',
+	input: 'src/[!__tests__]**/*.js',
 	output: {
 		name: '@untemps/utils',
 		dir: `dist/${target}`,

@@ -15,7 +15,6 @@ describe('isNil', () => {
 		expect(isNil({})).toBeFalsy()
 		expect(isNil('foo')).toBeFalsy()
 		expect(isNil(Array.from)).toBeFalsy()
-		expect(isNil(Array.from)).toBeFalsy()
 		expect(isNil(new Date())).toBeFalsy()
 	})
 })

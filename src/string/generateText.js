@@ -1,6 +1,14 @@
+/**
+ * @fileOverview Generates a string with a minimum and a maximum number of random words picking from a dictionary.
+ * @module string/generateText
+ */
+
 import { getRandomInteger } from '../number/getRandomInteger'
 import { normalizeMinMax } from '../number/normalizeMinMax'
 
+/**
+ * @private
+ */
 const WORDS = [
 	'year',
 	'learn',
@@ -54,6 +62,9 @@ const WORDS = [
 	'responsible',
 ]
 
+/**
+ * @private
+ */
 const getMinMax = (min, max) => {
 	const { min: nMin, max: nMax } = normalizeMinMax(Math.abs(min), Math.abs(max))
 	const tMin = Math.max(nMin, 1)
@@ -64,6 +75,22 @@ const getMinMax = (min, max) => {
 	}
 }
 
+/**
+ * @function
+ * @example
+ * import { generateText } from '@untemps/utils/string/generateText'
+ *
+ * const minWords = 5;
+ * const maxWords = 10;
+ * const dictionary = ['foo', 'bar', 'gag'];
+ * generateText({minWords, maxWords, dictionary}) // bar foo foo gag gag bar gag gag
+ *
+ * @param {object} object                       - The configuration object for the text generation.
+ * @param {number} [object.minWords=10]         - The minimum number of words to pick.
+ * @param {number} [object.maxWords=50]         - The maximum number of words to pick.
+ * @param {string[]} [object.dictionary=[...]]  - A list of words from which picking the words.
+ * @returns {string}                            The generated string.
+ */
 export const generateText = ({ minWords = 10, maxWords = 50, dictionary = WORDS } = {}) => {
 	let result = ''
 	const { min, max } = getMinMax(minWords, maxWords)
