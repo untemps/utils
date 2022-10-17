@@ -14,11 +14,11 @@ import { normalizeMinMax } from './normalizeMinMax'
  * const max = 100
  * getRandomInteger(min, max) // 42
  *
- * @param {number} [minValue=-Number.MAX_SAFE_INTEGER]  - The minimum value to pick.
- * @param {number} [maxValue=Number.MAX_SAFE_INTEGER]   - The maximum value to pick.
- * @returns {number}                                    A random integer between minValue and maxValue.
+ * @param {number} [min=-Number.MAX_SAFE_INTEGER]  - The minimum value to pick.
+ * @param {number} [max=Number.MAX_SAFE_INTEGER]   - The maximum value to pick.
+ * @returns {number}                               A random integer between min and max.
  */
-export const getRandomInteger = (minValue = -Number.MAX_SAFE_INTEGER, maxValue = Number.MAX_SAFE_INTEGER) => {
-	const { min, max } = normalizeMinMax(minValue, maxValue)
-	return min + Math.random() * (max - min)
+export const getRandomInteger = (min = -Number.MAX_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER) => {
+	const { min: mn, max: mx } = normalizeMinMax(min, max)
+	return Math.round(mn + Math.random() * (mx - mn))
 }
