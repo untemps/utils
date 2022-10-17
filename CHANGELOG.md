@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/untemps/utils/compare/v2.3.0...v2.3.1) (2022-10-17)
+
+
+### Bug Fixes
+
+* **number:** Ensure number/getRandomInteger returns an integer ([#18](https://github.com/untemps/utils/issues/18)) ([833cfac](https://github.com/untemps/utils/commit/833cfaccdb7b310ec6bc2031b29321a55b51a6e9))
+
 # [2.3.0](https://github.com/untemps/utils/compare/v2.2.0...v2.3.0) (2022-10-02)
 
 
