@@ -20,5 +20,6 @@ describe('getRandomInteger', () => {
 		const int = getRandomInteger()
 		expect(int).toBeGreaterThanOrEqual(expected.min)
 		expect(int).toBeLessThanOrEqual(expected.max)
+		expect(Number.isInteger(int)).toBeTruthy()
 	})
 })
