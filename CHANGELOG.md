@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/untemps/utils/compare/v2.3.2...v2.4.0) (2022-10-20)
+
+
+### Features
+
+* **dom:** Add boundingClientRect prop in createElement function ([#19](https://github.com/untemps/utils/issues/19)) ([86a1d19](https://github.com/untemps/utils/commit/86a1d19b8fed7a672276c12add62feb94943da2c))
+
 ## [2.3.2](https://github.com/untemps/utils/compare/v2.3.1...v2.3.2) (2022-10-17)
 
 ## [2.3.1](https://github.com/untemps/utils/compare/v2.3.0...v2.3.1) (2022-10-17)
