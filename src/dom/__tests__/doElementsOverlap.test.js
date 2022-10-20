@@ -10,14 +10,7 @@ const create = (
 			style: `width: ${width}px; height: ${height}px; position: absolute; left: ${left}px; top: ${top}px;`,
 		},
 		parent: document.body,
-	})
-	el.getBoundingClientRect = () => ({
-		width,
-		height,
-		top,
-		left,
-		right: left + width,
-		bottom: top + height,
+		boundingClientRect: { width, height, top, left, right: left + width, bottom: top + height },
 	})
 	return el
 }

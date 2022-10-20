@@ -82,4 +82,20 @@ describe('createElement', () => {
 	])('$name', ({ values }) => {
 		expect(() => createElement(values)).toThrow()
 	})
+
+	// prettier-ignore
+	it.each([
+    {
+      name: 'returns new element getBoundingClientRect() default value',
+      values: {},
+      expected: { x: 0, y: 0, left: 0, right: 0, top: 0, bottom: 0, width: 0, height: 0 },
+    },
+    {
+      name: 'returns new element getBoundingClientRect() specified value',
+      values: { boundingClientRect: { x: 0, y: 0, left: 30, right: 70, top: 10, bottom: 20, width: 110, height: 240 } },
+      expected: { x: 0, y: 0, left: 30, right: 70, top: 10, bottom: 20, width: 110, height: 240 },
+    }
+  ])('$name', ({ values, expected }) => {
+    expect(createElement(values).getBoundingClientRect()).toEqual(expected)
+  })
 })
