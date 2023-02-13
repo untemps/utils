@@ -1,3 +1,10 @@
+# [2.5.0](https://github.com/untemps/utils/compare/v2.4.0...v2.5.0) (2023-02-13)
+
+
+### Features
+
+* **array:** Add extractByIndices function ([#21](https://github.com/untemps/utils/issues/21)) ([35c3665](https://github.com/untemps/utils/commit/35c3665c1384d67292e2c13f029325e4ba1670f7))
+
 # [2.4.0](https://github.com/untemps/utils/compare/v2.3.2...v2.4.0) (2022-10-20)
 
 
