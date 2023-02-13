@@ -10,7 +10,7 @@
  *
  * const source = ['foo', 'bar', 'gag', 'pol', 'zux']
  * const indices = [1, 3]
- * console.log(extractByIndices(source, indices)) // ['bar', 'pol']
+ * extractByIndices(source, indices) // ['bar', 'pol']
  *
  * @param {array} [source]    - The source array from which extract the values.
  * @param {array} [indices]   - An array of indices.
