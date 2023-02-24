@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/untemps/utils/compare/v2.5.0...v2.6.0) (2023-02-24)
+
+
+### Features
+
+* **dom:** Allow to mix condition arrays and direct strings ([#24](https://github.com/untemps/utils/issues/24)) ([78b0c38](https://github.com/untemps/utils/commit/78b0c38f151cd831d71278c8b18614d8f8eed099))
+
 # [2.5.0](https://github.com/untemps/utils/compare/v2.4.0...v2.5.0) (2023-02-13)
 
 
