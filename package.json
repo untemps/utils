@@ -1,6 +1,6 @@
 {
 	"name": "@untemps/utils",
-	"version": "2.6.0",
+	"version": "3.0.0",
 	"description": "Utils for @untemps packages",
 	"repository": "git@github.com:untemps/utils.git",
 	"keywords": [],
@@ -11,7 +11,9 @@
 		"access": "public"
 	},
 	"type": "module",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"exports": {
 		"./*": {
 			"import": "./dist/*.js",
@@ -43,7 +45,9 @@
 		"vite": "^4.2.0"
 	},
 	"jest": {
-		"setupFilesAfterEnv": ["<rootDir>/jest-setup.js"],
+		"setupFilesAfterEnv": [
+			"<rootDir>/jest-setup.js"
+		],
 		"testEnvironment": "jsdom",
 		"coverageDirectory": "./coverage/",
 		"collectCoverage": true,

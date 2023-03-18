@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/untemps/utils/compare/v2.6.0...v3.0.0) (2023-03-18)
+
+
+### chore
+
+* Replace Rollup by Vite ([#25](https://github.com/untemps/utils/issues/25)) ([929616f](https://github.com/untemps/utils/commit/929616fa06a32b5464cd5009dcb95c89bc4d5b05))
+
+
+### BREAKING CHANGES
+
+* This kind of change can be quite tricky, so  to be sure not to break something, it will pop a new major version up
+
 # [2.6.0](https://github.com/untemps/utils/compare/v2.5.0...v2.6.0) (2023-02-24)
 
 
