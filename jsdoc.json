@@ -34,7 +34,7 @@
 		"sort": true,
 		"meta": {
 			"title": "@untemps/utils",
-			"description": "Utils for @untemps packages.",
+			"description": "Utils for @untemps packages",
 			"keyword": "utils"
 		},
 		"search": true,
