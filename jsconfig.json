@@ -1,0 +1,6 @@
+{
+	"compilerOptions": {
+		"types": ["vitest/globals"]
+	},
+	"include": ["src/**/*.js", "vitest-setup.js", "vite.config.js"]
+}

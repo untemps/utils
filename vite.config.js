@@ -16,4 +16,15 @@ export default defineConfig({
       )
     },
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./vitest-setup.js'],
+    include: ['src/**/__tests__/**/*.js'],
+    coverage: {
+      provider: 'v8',
+      reportsDirectory: './coverage',
+      include: ['src/**'],
+    },
+  },
 })
