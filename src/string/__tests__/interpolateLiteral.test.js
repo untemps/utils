@@ -51,6 +51,6 @@ describe('interpolateLiteral', () => {
 			error: 'bar is not defined'
 		}
 	])('$name', ({value, tokens, error}) => {
-		expect(() => interpolateLiteral(value, tokens)).toThrow(new Error(error))
+		expect(() => interpolateLiteral(value, tokens)).toThrow(error)
 	})
 })
