@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/untemps/utils/compare/v3.0.0...v3.1.0) (2026-03-28)
+
+
+### Features
+
+* Migrate codebase to TypeScript ([#28](https://github.com/untemps/utils/issues/28)) ([c62b9a6](https://github.com/untemps/utils/commit/c62b9a638640397c686b9c5835188a1c301326dc))
+
 # [3.0.0](https://github.com/untemps/utils/compare/v2.6.0...v3.0.0) (2023-03-18)
 
 
