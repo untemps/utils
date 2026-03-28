@@ -48,5 +48,7 @@ Prettier config: tabs, single quotes, no semicolons, 120 char print width. Appli
 
 Commit messages follow Conventional Commits with sentence-case subject (enforced by commitlint). Example: `feat: Add foo utility`.
 
-## Important rule
+## Important rules
+When I talk about incremental or step-by-step, that means creating commits for all groups of changes with a clear conventional message
 Do not push unless I explicity ask for it.
+When I ask a question, answer it and prompt before moving forward

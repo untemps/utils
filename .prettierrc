@@ -8,9 +8,9 @@
   "bracketSpacing": true,
   "overrides": [
     {
-      "files": "./**/*.js",
+      "files": "./**/*.ts",
       "options": {
-        "parser": "babel"
+        "parser": "typescript"
       }
     },
     {
