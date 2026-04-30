@@ -19,5 +19,5 @@ import { normalizeMinMax } from './normalizeMinMax'
  */
 export const getRandomInteger = (min = -Number.MAX_SAFE_INTEGER, max = Number.MAX_SAFE_INTEGER): number => {
 	const { min: mn, max: mx } = normalizeMinMax(min, max)
-	return Math.round(mn + Math.random() * (mx - mn))
+	return Math.floor(mn + Math.random() * (mx - mn + 1))
 }
