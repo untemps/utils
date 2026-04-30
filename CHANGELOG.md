@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/untemps/utils/compare/v3.1.0...v3.1.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* **number:** Use Math.floor to produce uniform distribution in getRandomInteger ([#48](https://github.com/untemps/utils/issues/48)) ([54b7e79](https://github.com/untemps/utils/commit/54b7e7915f5caa95161d4742c0d474e5115b1e46))
+
 # [3.1.0](https://github.com/untemps/utils/compare/v3.0.0...v3.1.0) (2026-03-28)
 
 
