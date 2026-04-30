@@ -1,6 +1,6 @@
 {
 	"name": "@untemps/utils",
-	"version": "3.1.1",
+	"version": "3.2.0",
 	"description": "Utils for @untemps packages",
 	"repository": "git@github.com:untemps/utils.git",
 	"keywords": [],

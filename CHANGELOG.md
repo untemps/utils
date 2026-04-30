@@ -1,3 +1,10 @@
+# [3.2.0](https://github.com/untemps/utils/compare/v3.1.1...v3.2.0) (2026-04-30)
+
+
+### Features
+
+* **number:** Add clamp utility to number/ ([#49](https://github.com/untemps/utils/issues/49)) ([c5f1b96](https://github.com/untemps/utils/commit/c5f1b96e150d751a7cebb9d7b14b1c0a7369a670))
+
 ## [3.1.1](https://github.com/untemps/utils/compare/v3.1.0...v3.1.1) (2026-04-30)
 
 
