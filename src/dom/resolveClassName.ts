@@ -27,11 +27,11 @@ export const resolveClassName = (input?: ClassEntry[]): string => {
 			let resolved: string | undefined
 			if (Array.isArray(value)) {
 				const [condition, truthyValue, falsyValue] = value
-				resolved = !!condition ? truthyValue : falsyValue
+				resolved = condition ? truthyValue : falsyValue
 			} else {
 				resolved = value
 			}
-			return !!normalize(resolved) ? [...acc, resolved as string] : acc
+			return normalize(resolved) ? [...acc, resolved as string] : acc
 		}, [])
 		.join(' ')
 }

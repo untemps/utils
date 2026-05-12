@@ -20,9 +20,9 @@
  * @returns The CSS declaration or null if the CSS declaration is not found.
  */
 export const getCSSDeclaration = (className: string, returnText = false): CSSStyleDeclaration | string | null => {
-	if (!!className) {
+	if (className) {
 		className = className.startsWith('.') ? className : `.${className}`
-		if (!!document.styleSheets?.length) {
+		if (document.styleSheets?.length) {
 			for (const sheet of document.styleSheets) {
 				for (const rule of sheet.cssRules) {
 					const styleRule = rule as CSSStyleRule
