@@ -61,8 +61,10 @@ export const createElement = ({
 	boundingClientRect = null,
 }: CreateElementConfig = {}): HTMLElement => {
 	const el = document.createElement(tag)
-	for (const [key, value] of Object.entries(attributes ?? {})) {
-		el.setAttribute(key, value)
+	if (attributes) {
+		for (const [key, value] of Object.entries(attributes)) {
+			el.setAttribute(key, value)
+		}
 	}
 	if (content) {
 		el.appendChild(content)
