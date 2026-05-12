@@ -1,1 +1,1 @@
-vitest run && yarn prettier && yarn lint
+vitest run && yarn prettier && yarn lint && yarn typecheck
