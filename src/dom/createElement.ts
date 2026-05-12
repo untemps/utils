@@ -61,20 +61,20 @@ export const createElement = ({
 	boundingClientRect = null,
 }: CreateElementConfig = {}): HTMLElement => {
 	const el = document.createElement(tag)
-	for (const z in attributes) {
-		el.setAttribute(z, (attributes as Record<string, string>)[z])
+	for (const [key, value] of Object.entries(attributes ?? {})) {
+		el.setAttribute(key, value)
 	}
-	if (!!content) {
+	if (content) {
 		el.appendChild(content)
 	}
-	if (!!textContent && !el.hasChildNodes()) {
+	if (textContent && !el.hasChildNodes()) {
 		el.appendChild(document.createTextNode(textContent))
 	}
 	const parentNode = parent || document.querySelector(parentSelector as string)
-	if (!!parentNode) {
+	if (parentNode) {
 		parentNode.appendChild(el)
 	}
-	if (!!boundingClientRect) {
+	if (boundingClientRect) {
 		el.getBoundingClientRect = () => boundingClientRect as DOMRect
 	}
 	return el
