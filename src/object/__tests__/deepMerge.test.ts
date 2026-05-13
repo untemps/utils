@@ -78,5 +78,14 @@ describe('deepMerge', () => {
 			deepMerge(source, target, true)
 			expect(target).toEqual({ foo: 1, bar: { baz: 2, qux: 3 } })
 		})
+
+		it('does not alias nested source objects into target', () => {
+			const nested = { baz: 1 }
+			const source = { foo: nested }
+			const target: Record<string, unknown> = {}
+			deepMerge(source, target, true)
+			expect(target.foo).not.toBe(nested)
+			expect(target.foo).toEqual(nested)
+		})
 	})
 })
