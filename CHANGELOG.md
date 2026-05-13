@@ -1,3 +1,16 @@
+# [4.0.0-beta.1](https://github.com/untemps/utils/compare/v3.2.1...v4.0.0-beta.1) (2026-05-13)
+
+
+### Code Refactoring
+
+* **string:** Replace new Function with regex in interpolateLiteral ([#59](https://github.com/untemps/utils/issues/59)) ([a900eb1](https://github.com/untemps/utils/commit/a900eb10a461280def1afaa5cf26d470fded53b2))
+
+
+### BREAKING CHANGES
+
+* **string:** Symbol token values no longer throw — they are stringified via String() (e.g. Symbol('x') → "Symbol(x)"). Previously this was a side-effect of the template literal inside new Function; the new behaviour is explicit and consistent.
+Expression placeholders such as ${foo + bar} or ${obj.prop} are no longer evaluated. The \w+ regex only matches simple identifiers. These were never documented or supported, but silently worked via eval. They now pass through unsubstituted.
+
 ## [3.2.1](https://github.com/untemps/utils/compare/v3.2.0...v3.2.1) (2026-05-13)
 
 
