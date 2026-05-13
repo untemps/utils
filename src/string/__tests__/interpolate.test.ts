@@ -54,6 +54,27 @@ describe('interpolate', () => {
 			divider: '<%=',
 			expected: 'A bird with fun "<%=bar<%=" and a lot of dignity',
 		},
+		{
+			name: 'interpolates value with { as divider',
+			value: 'A {foo{ with fun "{bar{" and a lot of {fun{',
+			tokens: { foo: 'bird', bar: 'wings', fun: 'dignity' },
+			divider: '{',
+			expected: 'A bird with fun "wings" and a lot of dignity',
+		},
+		{
+			name: 'interpolates value with } as divider',
+			value: 'A }foo} with fun "}bar}" and a lot of }fun}',
+			tokens: { foo: 'bird', bar: 'wings', fun: 'dignity' },
+			divider: '}',
+			expected: 'A bird with fun "wings" and a lot of dignity',
+		},
+		{
+			name: 'interpolates value with \\ as divider',
+			value: 'A \\foo\\ with fun "\\bar\\" and a lot of \\fun\\',
+			tokens: { foo: 'bird', bar: 'wings', fun: 'dignity' },
+			divider: '\\',
+			expected: 'A bird with fun "wings" and a lot of dignity',
+		},
 	])('$name', ({ value, tokens, divider, expected }) => {
 		expect(interpolate(value, tokens, divider)).toBe(expected)
 	})
