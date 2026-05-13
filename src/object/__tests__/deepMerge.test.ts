@@ -64,6 +64,14 @@ describe('deepMerge', () => {
 		expect(result).not.toBe(target)
 	})
 
+	it('does not alias nested source objects into result', () => {
+		const nested = { baz: 1 }
+		const source = { foo: nested }
+		const result = deepMerge(source, {})
+		expect(result.foo).not.toBe(nested)
+		expect(result.foo).toEqual(nested)
+	})
+
 	describe('mutate: true', () => {
 		it('returns the target object itself', () => {
 			const source = { foo: 1 }
