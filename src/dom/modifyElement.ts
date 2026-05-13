@@ -24,11 +24,11 @@ export const modifyElement = (
 	attributes: Record<string, string | null | undefined> = {}
 ): HTMLElement | null => {
 	const el: HTMLElement | null = isString(element) ? document.querySelector<HTMLElement>(element) : element
-	for (const z in attributes) {
-		if (attributes[z] === undefined || attributes[z] === null) {
-			el?.removeAttribute(z)
+	for (const [key, value] of Object.entries(attributes)) {
+		if (value === undefined || value === null) {
+			el?.removeAttribute(key)
 		} else {
-			el?.setAttribute(z, attributes[z] as string)
+			el?.setAttribute(key, value)
 		}
 	}
 	return el
