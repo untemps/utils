@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/untemps/utils/compare/v3.2.0...v3.2.1) (2026-05-13)
+
+
+### Bug Fixes
+
+* **string:** Correct generateTokenizedText JSDoc example to use config-object form ([#58](https://github.com/untemps/utils/issues/58)) ([611c92e](https://github.com/untemps/utils/commit/611c92e8431d09036e148a9097809c67b02b018c))
+
 # [3.2.0](https://github.com/untemps/utils/compare/v3.1.1...v3.2.0) (2026-04-30)
 
 
