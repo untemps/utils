@@ -30,7 +30,7 @@ export interface GenerateTokenizedTextConfig {
  * const minWords = 5
  * const maxWords = 10
  * const dictionary = ['foo', 'bar', 'gag']
- * generateTokenizedText(tokens, divider, minWords, maxWords, dictionary) // {indices: Array(3), text: "foo $pol$ $biz$ bar gag $kuy$ foo gag foo"}}
+ * generateTokenizedText({ tokens, divider, minWords, maxWords, dictionary }) // {indices: Array(3), text: "foo $pol$ $biz$ bar gag $kuy$ foo gag foo"}
  *
  * @param config - The configuration object for the text generation.
  * @returns An object containing a list of token indices and the generated string.
