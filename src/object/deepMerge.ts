@@ -15,20 +15,19 @@ import { isObject } from './isObject'
  *
  * @param source - The object to merge into the target.
  * @param target - The target object where source will be merged.
- * @returns The target object containing both source and target keys with source precedence.
+ * @returns A new object containing both source and target keys with source precedence.
  */
 export const deepMerge = (
 	source: Record<string, unknown>,
 	target: Record<string, unknown>
 ): Record<string, unknown> => {
+	const result = structuredClone(target)
 	for (const key of Object.keys(source)) {
-		if (isObject(source[key]) && key in target) {
-			Object.assign(
-				source[key] as Record<string, unknown>,
-				deepMerge(source[key] as Record<string, unknown>, target[key] as Record<string, unknown>)
-			)
+		if (isObject(source[key]) && key in result && isObject(result[key])) {
+			result[key] = deepMerge(source[key] as Record<string, unknown>, result[key] as Record<string, unknown>)
+		} else {
+			result[key] = source[key]
 		}
 	}
-	Object.assign(target || {}, source)
-	return target
+	return result
 }

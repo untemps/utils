@@ -45,4 +45,28 @@ describe('deepMerge', () => {
 	])('$name', ({ source, target, expected }) => {
 		expect(deepMerge(source, target)).toEqual(expected)
 	})
+
+	it('does not mutate source', () => {
+		const source = { foo: 1, bar: { baz: 2 } }
+		const target = { foo: 2, bar: { qux: 3 } }
+		const sourceBefore = structuredClone(source)
+		deepMerge(source, target)
+		expect(source).toEqual(sourceBefore)
+	})
+
+	it('does not mutate target', () => {
+		const source = { foo: 1, bar: { baz: 2 } }
+		const target = { foo: 2, bar: { qux: 3 } }
+		const targetBefore = structuredClone(target)
+		deepMerge(source, target)
+		expect(target).toEqual(targetBefore)
+	})
+
+	it('returns a new object distinct from both source and target', () => {
+		const source = { foo: 1 }
+		const target = { bar: 2 }
+		const result = deepMerge(source, target)
+		expect(result).not.toBe(source)
+		expect(result).not.toBe(target)
+	})
 })
