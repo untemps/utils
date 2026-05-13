@@ -1,3 +1,10 @@
+# [4.0.0-beta.3](https://github.com/untemps/utils/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2026-05-13)
+
+
+### Bug Fixes
+
+* **dom:** Replace for...in with Object.entries on attributes in modifyElement ([#61](https://github.com/untemps/utils/issues/61)) ([82fa134](https://github.com/untemps/utils/commit/82fa1341d2429dd95e45d65467eb35858a1fa455))
+
 # [4.0.0-beta.2](https://github.com/untemps/utils/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2026-05-13)
 
 
