@@ -38,7 +38,7 @@ describe('interpolateLiteral', () => {
 				bar: 'wings',
 				fun: 'dignity',
 			},
-			error: 'value.replace is not a function'
+			error: TypeError
 		},
 		{
 			name: 'throws if one token is missing',

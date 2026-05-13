@@ -21,7 +21,7 @@
  */
 export const interpolateLiteral = (value: string, tokens: Record<string, unknown>): string => {
 	return value.replace(/\$\{(\w+)\}/g, (_, key) => {
-		if (!(key in tokens)) throw new ReferenceError(`${key} is not defined`)
+		if (!Object.hasOwn(tokens, key)) throw new ReferenceError(`${key} is not defined`)
 		return String(tokens[key])
 	})
 }
