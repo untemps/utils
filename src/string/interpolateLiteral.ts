@@ -16,10 +16,12 @@
  * interpolateLiteral(value, tokens) // A bird with 3 "wings" and a lot of dignity
  *
  * @param value   - The literal-like string value to interpolate.
- * @param tokens  - An object of key/value pairs to replace the tokens.
+ * @param tokens  - An object of key/value pairs to replace the tokens. Keys must be valid identifiers (`\w+`).
  * @returns The interpolated string.
  */
 export const interpolateLiteral = (value: string, tokens: Record<string, unknown>): string => {
-	const fn = new Function(...Object.keys(tokens), `return \`${value}\``)
-	return fn(...Object.values(tokens)) as string
+	return value.replace(/\$\{(\w+)\}/g, (_, key) => {
+		if (!Object.hasOwn(tokens, key)) throw new ReferenceError(`${key} is not defined`)
+		return String(tokens[key])
+	})
 }
