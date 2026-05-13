@@ -5,15 +5,7 @@
 import { isNil } from '../lang/isNil'
 
 /** @private */
-const escapeDivider = (divider: string): string => {
-	const regex = new RegExp('([\\[\\^\\$\\.|\\?\\*\\+\\(\\)])+', 'g')
-	return divider.replace(regex, (match) =>
-		match
-			.split('')
-			.map((i) => '\\' + i)
-			.join('')
-	)
-}
+const escapeDivider = (divider: string): string => divider.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 /** @private */
 const pipeTokens = (tokens: Record<string, unknown>): string => {
