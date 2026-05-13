@@ -1,3 +1,22 @@
+# [4.0.0-beta.4](https://github.com/untemps/utils/compare/v4.0.0-beta.3...v4.0.0-beta.4) (2026-05-13)
+
+
+### Bug Fixes
+
+* **string:** Throw RangeError in generateText when dictionary is empty ([#62](https://github.com/untemps/utils/issues/62)) ([3453c59](https://github.com/untemps/utils/commit/3453c59ac58f095bbdffed0150da73217721e5cc))
+
+
+### BREAKING CHANGES
+
+* **string:** generateText now throws a RangeError when dictionary is null or empty instead of producing corrupt output or an implicit TypeError.
+Previously, passing dictionary: null caused an unspecified TypeError deep inside the function (null.length). Passing dictionary: [] silently returned a string composed entirely of the literal word "undefined".
+Both cases now throw RangeError('dictionary must not be empty') at the function entry point via a single !dictionary?.length guard.
+Migration:
+    - Replace any reliance on the silent "undefined" output from an empty
+      dictionary with explicit error handling.
+    - Code catching TypeError for the null dictionary case must now catch
+      RangeError instead.
+
 # [4.0.0-beta.3](https://github.com/untemps/utils/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2026-05-13)
 
 
