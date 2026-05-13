@@ -65,6 +65,10 @@ describe('generateText', () => {
 			name: 'throws if dictionary is null',
 			values: { dictionary: null },
 		},
+		{
+			name: 'throws if dictionary is empty',
+			values: { dictionary: [] },
+		},
 	])('$name', ({ values }) => {
 		expect(() => generateText(values as unknown as GenerateTextConfig)).toThrow()
 	})
