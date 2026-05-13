@@ -54,6 +54,15 @@ describe('modifyElement', () => {
 		expect(modifyElement(getElement(), attributes)).toContainHTML(expected)
 	})
 
+	it('does not apply inherited enumerable properties from attributes prototype', () => {
+		const proto = { 'data-inherited': 'bad' }
+		const attributes = Object.create(proto) as Record<string, string>
+		attributes['data-own'] = 'good'
+		modifyElement(el as HTMLElement, attributes)
+		expect(el?.getAttribute('data-own')).toBe('good')
+		expect(el?.hasAttribute('data-inherited')).toBe(false)
+	})
+
 	// prettier-ignore
 	it.each([
 		{
