@@ -13,7 +13,7 @@ import { isString } from '../string/isString'
  * element.className = 'foo'
  * document.body.appendChild(element)
  *
- * removeElement(element) // <div class="foo"></div>
+ * removeElement(element) // returns the detached <div class="foo"></div>
  *
  * @param element  - The DOM element or the selector of the DOM element to remove.
  * @returns The removed DOM element.
