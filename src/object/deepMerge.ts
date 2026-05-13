@@ -23,7 +23,7 @@ export const deepMerge = (
 ): Record<string, unknown> => {
 	const result = structuredClone(target)
 	for (const key of Object.keys(source)) {
-		if (isObject(source[key]) && key in result && isObject(result[key])) {
+		if (key in result && isObject(source[key]) && isObject(result[key])) {
 			result[key] = deepMerge(source[key] as Record<string, unknown>, result[key] as Record<string, unknown>)
 		} else {
 			result[key] = source[key]
