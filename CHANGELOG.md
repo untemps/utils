@@ -1,3 +1,10 @@
+# [4.0.0-beta.5](https://github.com/untemps/utils/compare/v4.0.0-beta.4...v4.0.0-beta.5) (2026-05-13)
+
+
+### Bug Fixes
+
+* **string:** Replace incomplete escapeDivider regex with full metacharacter set ([#63](https://github.com/untemps/utils/issues/63)) ([850f849](https://github.com/untemps/utils/commit/850f849cd65e7333dbf745a80f6f94ef47c2b127))
+
 # [4.0.0-beta.4](https://github.com/untemps/utils/compare/v4.0.0-beta.3...v4.0.0-beta.4) (2026-05-13)
 
 
