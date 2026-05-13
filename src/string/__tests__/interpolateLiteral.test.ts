@@ -21,25 +21,24 @@ describe('interpolateLiteral', () => {
 
 	// prettier-ignore
 	it.each([
+		{ bar: null,           expected: 'null'        },
+		{ bar: undefined,      expected: 'undefined'   },
+		{ bar: Symbol('sym'),  expected: 'Symbol(sym)' },
+	])('coerces token value to string: $expected', ({ bar, expected }) => {
+		expect(interpolateLiteral('A ${foo} and ${bar}', { foo: 'bird', bar } as Record<string, unknown>)).toBe(`A bird and ${expected}`)
+	})
+
+	// prettier-ignore
+	it.each([
 		{
-			name: 'throws if value is not stringifiable',
+			name: 'throws if value is not a string',
 			value: Symbol(),
 			tokens: {
 				foo: 'bird',
 				bar: 'wings',
 				fun: 'dignity',
 			},
-			error: 'Cannot convert a Symbol value to a string'
-		},
-		{
-			name: 'throws if one of tokens is not stringifiable',
-			value: 'A ${foo} with fun "${bar}" and a lot of ${fun}',
-			tokens: {
-				foo: 'bird',
-				bar: Symbol(),
-				fun: 'dignity',
-			},
-			error: 'Cannot convert a Symbol value to a string'
+			error: TypeError
 		},
 		{
 			name: 'throws if one token is missing',
