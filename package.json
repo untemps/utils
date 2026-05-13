@@ -88,7 +88,7 @@
 		"build": "vite build && tsc -p tsconfig.build.json",
 		"lint": "eslint \"src/**/*.ts\"",
 		"typecheck": "tsc --noEmit",
-		"prettier": "prettier \"src/**/*.ts\" --ignore-path ./.prettierignore --write && git add . && git status",
+		"prettier": "prettier \"src/**/*.ts\" --ignore-path ./.prettierignore --write && git add src/**/*.ts && git status",
 		"prepare": "husky"
 	}
 }
