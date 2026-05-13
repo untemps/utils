@@ -1,3 +1,21 @@
+# [4.0.0-beta.2](https://github.com/untemps/utils/compare/v4.0.0-beta.1...v4.0.0-beta.2) (2026-05-13)
+
+
+### Bug Fixes
+
+* **object:** Make deepMerge immutable by default, add mutate flag ([#60](https://github.com/untemps/utils/issues/60)) ([0348da8](https://github.com/untemps/utils/commit/0348da8d4c25bea0560c5c0fbb44a14d31df4f36))
+
+
+### BREAKING CHANGES
+
+* **object:** deepMerge now returns a new object and no longer mutates its inputs.
+Previously, deepMerge merged source into target in place and returned the same target reference. Both source and target could be silently modified as a side effect.
+The new default behaviour (mutate = false) clones target as the result base via structuredClone — neither source nor target is touched, and the return value is always a distinct object. Source-only object values are also deep-cloned, so the result shares no references with source.
+Migration:
+    - Replace any reliance on `deepMerge(s, t) === t` with the return value.
+    - Replace any post-call inspection of t with the return value.
+    - Pass `mutate = true` as the third argument to restore in-place merging.
+
 # [4.0.0-beta.1](https://github.com/untemps/utils/compare/v3.2.1...v4.0.0-beta.1) (2026-05-13)
 
 
