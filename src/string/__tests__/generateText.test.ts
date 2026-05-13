@@ -55,12 +55,12 @@ describe('generateText', () => {
 		expect(generateText(values)).toBe(expected)
 	})
 
+	it('throws if values is null', () => {
+		expect(() => generateText(null as unknown as GenerateTextConfig)).toThrow(TypeError)
+	})
+
 	// prettier-ignore
 	it.each([
-		{
-			name: 'throws if values is null',
-			values: null,
-		},
 		{
 			name: 'throws if dictionary is null',
 			values: { dictionary: null },
@@ -70,6 +70,6 @@ describe('generateText', () => {
 			values: { dictionary: [] },
 		},
 	])('$name', ({ values }) => {
-		expect(() => generateText(values as unknown as GenerateTextConfig)).toThrow()
+		expect(() => generateText(values as unknown as GenerateTextConfig)).toThrow(RangeError)
 	})
 })

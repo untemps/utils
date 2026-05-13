@@ -93,7 +93,7 @@ export interface GenerateTextConfig {
  * @returns The generated string.
  */
 export const generateText = ({ minWords = 10, maxWords = 50, dictionary = WORDS }: GenerateTextConfig = {}): string => {
-	if (dictionary.length === 0) throw new RangeError('dictionary must not be empty')
+	if (!dictionary?.length) throw new RangeError('dictionary must not be empty')
 	let result = ''
 	const { min, max } = getMinMax(minWords, maxWords)
 	const length = getRandomInteger(min, max)
