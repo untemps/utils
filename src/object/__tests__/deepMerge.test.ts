@@ -63,4 +63,20 @@ describe('deepMerge', () => {
 		expect(result).not.toBe(source)
 		expect(result).not.toBe(target)
 	})
+
+	describe('mutate: true', () => {
+		it('returns the target object itself', () => {
+			const source = { foo: 1 }
+			const target = { bar: 2 }
+			const result = deepMerge(source, target, true)
+			expect(result).toBe(target)
+		})
+
+		it('mutates target in place', () => {
+			const source = { foo: 1, bar: { baz: 2 } }
+			const target: Record<string, unknown> = { foo: 2, bar: { qux: 3 } }
+			deepMerge(source, target, true)
+			expect(target).toEqual({ foo: 1, bar: { baz: 2, qux: 3 } })
+		})
+	})
 })
