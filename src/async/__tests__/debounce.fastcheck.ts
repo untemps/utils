@@ -25,20 +25,17 @@ describe('debounce (property-based)', () => {
 
 	it('always passes the last arguments when called multiple times', () => {
 		fc.assert(
-			fc.property(
-				fc.array(fc.integer(), { minLength: 1, maxLength: 20 }),
-				(values) => {
-					const fn = vi.fn()
-					const debounced = debounce(fn, 100)
+			fc.property(fc.array(fc.integer(), { minLength: 1, maxLength: 20 }), (values) => {
+				const fn = vi.fn()
+				const debounced = debounce(fn, 100)
 
-					for (const v of values) {
-						debounced(v)
-					}
-					vi.advanceTimersByTime(100)
-					expect(fn).toHaveBeenCalledOnce()
-					expect(fn).toHaveBeenCalledWith(values[values.length - 1])
+				for (const v of values) {
+					debounced(v)
 				}
-			)
+				vi.advanceTimersByTime(100)
+				expect(fn).toHaveBeenCalledOnce()
+				expect(fn).toHaveBeenCalledWith(values[values.length - 1])
+			})
 		)
 	})
 

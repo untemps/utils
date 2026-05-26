@@ -22,7 +22,7 @@ export interface ThrottledFunction<T extends (...args: never[]) => void> {
  * @returns A throttled version of the function with a `.cancel()` method.
  */
 export const throttle = <T extends (...args: never[]) => void>(fn: T, interval: number): ThrottledFunction<T> => {
-	let lastCallTime = 0
+	let lastCallTime = -Infinity
 	let timeoutId: ReturnType<typeof setTimeout> | null = null
 	let lastArgs: Parameters<T> | null = null
 
@@ -59,7 +59,7 @@ export const throttle = <T extends (...args: never[]) => void>(fn: T, interval: 
 			timeoutId = null
 		}
 		lastArgs = null
-		lastCallTime = 0
+		lastCallTime = -Infinity
 	}
 
 	return throttled

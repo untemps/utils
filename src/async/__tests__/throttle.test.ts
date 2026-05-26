@@ -85,6 +85,27 @@ describe('throttle', () => {
 		expect(fn).toHaveBeenLastCalledWith('b')
 	})
 
+	it('clears a pending trailing timeout when called after the interval without timers firing', () => {
+		const fn = vi.fn()
+		const throttled = throttle(fn, 100)
+
+		const start = Date.now()
+		throttled('a') // leading call
+		throttled('b') // schedules trailing timeout (timeoutId !== null)
+
+		// Advance Date.now() past the interval WITHOUT firing timers
+		vi.setSystemTime(start + 200)
+		throttled('c') // remaining <= 0 while timeoutId is still set → clears it
+
+		expect(fn).toHaveBeenCalledTimes(2)
+		expect(fn).toHaveBeenNthCalledWith(1, 'a')
+		expect(fn).toHaveBeenNthCalledWith(2, 'c')
+
+		// The old trailing timeout should have been cleared, so advancing won't call fn('b')
+		vi.advanceTimersByTime(200)
+		expect(fn).toHaveBeenCalledTimes(2)
+	})
+
 	it('does nothing when cancel is called with no pending invocation', () => {
 		const fn = vi.fn()
 		const throttled = throttle(fn, 100)
