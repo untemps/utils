@@ -1,3 +1,10 @@
+# [4.0.0-beta.7](https://github.com/untemps/utils/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2026-05-27)
+
+
+### Features
+
+* Add deepClone function to object/ ([#65](https://github.com/untemps/utils/issues/65)) ([2d9da5f](https://github.com/untemps/utils/commit/2d9da5f366929ef76308ada59e1b04807db3e046))
+
 # [4.0.0-beta.6](https://github.com/untemps/utils/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2026-05-27)
 
 
