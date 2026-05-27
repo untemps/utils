@@ -1,3 +1,10 @@
+# [4.0.0-beta.6](https://github.com/untemps/utils/compare/v4.0.0-beta.5...v4.0.0-beta.6) (2026-05-27)
+
+
+### Features
+
+* Add debounce and throttle functions to async/ ([#64](https://github.com/untemps/utils/issues/64)) ([faaf690](https://github.com/untemps/utils/commit/faaf690c41b7a4ca9c280382acf57876e2c5d208))
+
 # [4.0.0-beta.5](https://github.com/untemps/utils/compare/v4.0.0-beta.4...v4.0.0-beta.5) (2026-05-13)
 
 
