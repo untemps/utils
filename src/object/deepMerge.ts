@@ -32,7 +32,8 @@ export const deepMerge = (
 				mutate
 			)
 		} else {
-			result[key] = isObject(source[key]) ? structuredClone(source[key]) : source[key]
+			const value = source[key]
+			result[key] = value !== null && typeof value === 'object' ? structuredClone(value) : value
 		}
 	}
 	return result
