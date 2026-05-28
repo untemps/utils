@@ -72,6 +72,50 @@ describe('deepMerge', () => {
 		expect(result.foo).toEqual(nested)
 	})
 
+	describe('non-plain-object source values', () => {
+		it('does not alias arrays from source into result', () => {
+			const items = [1, 2]
+			const source = { items }
+			const result = deepMerge(source, {})
+			expect(result.items).not.toBe(items)
+			;(result.items as number[]).push(3)
+			expect(items).toEqual([1, 2])
+		})
+
+		it('clones Date instances from source', () => {
+			const created = new Date('2025-01-01')
+			const source = { created }
+			const result = deepMerge(source, {})
+			expect(result.created).not.toBe(created)
+			expect(result.created).toEqual(created)
+		})
+
+		it('clones Map instances from source', () => {
+			const map = new Map([['a', 1]])
+			const source = { map }
+			const result = deepMerge(source, {})
+			expect(result.map).not.toBe(map)
+			expect(result.map).toEqual(map)
+		})
+
+		it('clones Set instances from source', () => {
+			const set = new Set([1, 2, 3])
+			const source = { set }
+			const result = deepMerge(source, {})
+			expect(result.set).not.toBe(set)
+			expect(result.set).toEqual(set)
+		})
+
+		it('does not alias arrays when overwriting an existing key', () => {
+			const items = [1, 2]
+			const source = { items }
+			const result = deepMerge(source, { items: 'old' })
+			expect(result.items).not.toBe(items)
+			;(result.items as number[]).push(3)
+			expect(items).toEqual([1, 2])
+		})
+	})
+
 	describe('mutate: true', () => {
 		it('returns the target object itself', () => {
 			const source = { foo: 1 }
