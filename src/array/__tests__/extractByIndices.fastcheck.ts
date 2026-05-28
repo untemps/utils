@@ -19,9 +19,8 @@ describe('extractByIndices', () => {
 					}),
 					([source, indices]) => {
 						const target = extractByIndices(source, indices)
-						const targetSet = new Set(target)
-						expect(indices.every((index) => targetSet.has(source[index]))).toBe(true)
-						expect(target.length).toBeLessThanOrEqual(indices.length)
+						const indexSet = new Set(indices)
+						expect(target).toEqual(source.filter((_, index) => indexSet.has(index)))
 					}
 				)
 			),
