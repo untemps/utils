@@ -1,3 +1,10 @@
+# [4.0.0-beta.8](https://github.com/untemps/utils/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2026-05-28)
+
+
+### Bug Fixes
+
+* **object:** Deep clone non-plain-object source values in deepMerge ([#79](https://github.com/untemps/utils/issues/79)) ([9937707](https://github.com/untemps/utils/commit/99377075a9bb611d4e0f6962871d496a5b3cef23))
+
 # [4.0.0-beta.7](https://github.com/untemps/utils/compare/v4.0.0-beta.6...v4.0.0-beta.7) (2026-05-27)
 
 
