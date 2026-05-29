@@ -1,3 +1,10 @@
+# [4.0.0-beta.13](https://github.com/untemps/utils/compare/v4.0.0-beta.12...v4.0.0-beta.13) (2026-05-29)
+
+
+### Bug Fixes
+
+* **string:** Escape token keys when building the interpolate regex ([#91](https://github.com/untemps/utils/issues/91)) ([013df71](https://github.com/untemps/utils/commit/013df71d29e04ed5191925b23c469cdc822049eb))
+
 # [4.0.0-beta.12](https://github.com/untemps/utils/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-05-29)
 
 
