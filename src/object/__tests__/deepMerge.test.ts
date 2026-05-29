@@ -114,6 +114,12 @@ describe('deepMerge', () => {
 			;(result.items as number[]).push(3)
 			expect(items).toEqual([1, 2])
 		})
+
+		it('handles null values without throwing', () => {
+			expect(deepMerge({ a: null }, { a: null })).toEqual({ a: null })
+			expect(deepMerge({ a: null }, { a: { b: 1 } })).toEqual({ a: null })
+			expect(deepMerge({ a: { b: 1 } }, { a: null })).toEqual({ a: { b: 1 } })
+		})
 	})
 
 	describe('merge semantics', () => {
