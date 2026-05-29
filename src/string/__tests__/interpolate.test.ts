@@ -79,6 +79,28 @@ describe('interpolate', () => {
 		expect(interpolate(value, tokens, divider)).toBe(expected)
 	})
 
+	describe('keys with regex metacharacters', () => {
+		it('matches a key containing "." literally', () => {
+			expect(interpolate('%a.b%', { 'a.b': 'X' })).toBe('X')
+		})
+
+		it('does not over-match a "." key against arbitrary characters', () => {
+			expect(interpolate('%axb%', { 'a.b': 'X' })).toBe('%axb%')
+		})
+
+		it('does not throw and replaces a key containing "("', () => {
+			expect(interpolate('%(%', { '(': 'X' })).toBe('X')
+		})
+
+		it('does not throw and replaces a key containing "["', () => {
+			expect(interpolate('%[%', { '[': 'X' })).toBe('X')
+		})
+
+		it('does not throw and replaces a key containing "\\"', () => {
+			expect(interpolate('%\\%', { '\\': 'X' })).toBe('X')
+		})
+	})
+
 	// prettier-ignore
 	it.each([
 		{
