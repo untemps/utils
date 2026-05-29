@@ -9,7 +9,10 @@ const clone = (value: unknown): unknown => {
 	if (Array.isArray(value)) return value.map(clone)
 	if (isObject(value)) {
 		const out: Record<string, unknown> = {}
-		for (const key of Object.keys(value)) out[key] = clone(value[key])
+		for (const key of Object.keys(value)) {
+			if (key === '__proto__') continue
+			out[key] = clone(value[key])
+		}
 		return out
 	}
 	if (value === null || typeof value !== 'object') return value
@@ -32,7 +35,8 @@ const clone = (value: unknown): unknown => {
  * deepMerge(source, target) // { foo: 1, zaz: { juv: 1 }, bar: { gag: [1, 2, 3], pol: { mur: 'mur' } } }
  *
  * Plain objects and arrays are deep-cloned. Non-cloneable values (functions, DOM nodes,
- * non-serialisable instances) are copied by reference instead of throwing.
+ * non-serialisable instances) are copied by reference instead of throwing. `__proto__` keys
+ * are ignored to prevent prototype pollution.
  *
  * @param source - The object to merge into the target.
  * @param target - The target object where source will be merged.
@@ -46,6 +50,7 @@ export const deepMerge = (
 ): Record<string, unknown> => {
 	const result = mutate ? target : (clone(target) as Record<string, unknown>)
 	for (const key of Object.keys(source)) {
+		if (key === '__proto__') continue
 		if (key in result && isObject(source[key]) && isObject(result[key])) {
 			result[key] = deepMerge(
 				source[key] as Record<string, unknown>,

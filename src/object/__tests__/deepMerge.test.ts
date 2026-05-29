@@ -151,6 +151,36 @@ describe('deepMerge', () => {
 			const result = deepMerge({ b: 1 }, { box })
 			expect(result.box).toBe(box)
 		})
+
+		it('copies a non-cloneable element inside a source array by reference', () => {
+			const fn = () => 1
+			const items = [fn, 2]
+			const result = deepMerge({ a: items }, {})
+			const arr = result.a as [() => number, number]
+			expect(arr).not.toBe(items)
+			expect(arr[0]).toBe(fn)
+			expect(arr[1]).toBe(2)
+		})
+	})
+
+	describe('prototype pollution', () => {
+		afterEach(() => {
+			delete (Object.prototype as Record<string, unknown>).polluted
+		})
+
+		it('ignores top-level __proto__ keys without polluting Object.prototype', () => {
+			const payload = JSON.parse('{"__proto__":{"polluted":true}}')
+			const result = deepMerge(payload, {})
+			expect(({} as Record<string, unknown>).polluted).toBeUndefined()
+			expect(Object.getPrototypeOf(result)).toBe(Object.prototype)
+		})
+
+		it('ignores nested __proto__ keys when cloning', () => {
+			const payload = JSON.parse('{"a":{"__proto__":{"polluted":true}}}')
+			const result = deepMerge(payload, {})
+			expect(({} as Record<string, unknown>).polluted).toBeUndefined()
+			expect(Object.getPrototypeOf(result.a)).toBe(Object.prototype)
+		})
 	})
 
 	describe('merge semantics', () => {
@@ -209,6 +239,13 @@ describe('deepMerge', () => {
 			deepMerge(source, target, true)
 			expect(target.foo).not.toBe(nested)
 			expect(target.foo).toEqual(nested)
+		})
+
+		it('keeps a non-cloneable source value by reference instead of throwing', () => {
+			const fn = () => 1
+			const target: Record<string, unknown> = {}
+			deepMerge({ fn }, target, true)
+			expect(target.fn).toBe(fn)
 		})
 	})
 })
