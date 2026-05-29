@@ -31,7 +31,8 @@ export const resolveClassName = (input?: ClassEntry[]): string => {
 			} else {
 				resolved = value
 			}
-			return normalize(resolved) ? [...acc, resolved as string] : acc
+			if (normalize(resolved)) acc.push(resolved as string)
+			return acc
 		}, [])
 		.join(' ')
 }
