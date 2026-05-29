@@ -1,3 +1,10 @@
+# [4.0.0-beta.10](https://github.com/untemps/utils/compare/v4.0.0-beta.9...v4.0.0-beta.10) (2026-05-29)
+
+
+### Bug Fixes
+
+* **dom:** Avoid unsafe DOMRect cast in createElement ([#81](https://github.com/untemps/utils/issues/81)) ([500c0eb](https://github.com/untemps/utils/commit/500c0eb272fc9da11ac2794f0d225e364476a803))
+
 # [4.0.0-beta.9](https://github.com/untemps/utils/compare/v4.0.0-beta.8...v4.0.0-beta.9) (2026-05-29)
 
 
