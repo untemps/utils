@@ -1,3 +1,10 @@
+# [4.0.0-beta.12](https://github.com/untemps/utils/compare/v4.0.0-beta.11...v4.0.0-beta.12) (2026-05-29)
+
+
+### Performance Improvements
+
+* **dom:** Avoid array spread in resolveClassName reduce ([#90](https://github.com/untemps/utils/issues/90)) ([2e41fdc](https://github.com/untemps/utils/commit/2e41fdc7cf9c112e15581ff24258e3e67abfa132))
+
 # [4.0.0-beta.11](https://github.com/untemps/utils/compare/v4.0.0-beta.10...v4.0.0-beta.11) (2026-05-29)
 
 
