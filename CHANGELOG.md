@@ -1,3 +1,10 @@
+# [4.0.0-beta.15](https://github.com/untemps/utils/compare/v4.0.0-beta.14...v4.0.0-beta.15) (2026-05-29)
+
+
+### Bug Fixes
+
+* **string:** Return value unchanged when interpolate has no tokens ([#100](https://github.com/untemps/utils/issues/100)) ([5a8656c](https://github.com/untemps/utils/commit/5a8656c94663904e517bf6bb1a3222fe70206890))
+
 # [4.0.0-beta.14](https://github.com/untemps/utils/compare/v4.0.0-beta.13...v4.0.0-beta.14) (2026-05-29)
 
 
