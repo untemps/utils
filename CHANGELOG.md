@@ -1,3 +1,10 @@
+# [4.0.0-beta.9](https://github.com/untemps/utils/compare/v4.0.0-beta.8...v4.0.0-beta.9) (2026-05-29)
+
+
+### Bug Fixes
+
+* **string:** Default interpolateLiteral tokens to empty object ([#80](https://github.com/untemps/utils/issues/80)) ([313becf](https://github.com/untemps/utils/commit/313becfa54afc8b16bd170d9cd4f03a9d36099e8))
+
 # [4.0.0-beta.8](https://github.com/untemps/utils/compare/v4.0.0-beta.7...v4.0.0-beta.8) (2026-05-28)
 
 
