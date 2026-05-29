@@ -19,7 +19,9 @@ describe('isObject', function () {
 		/foo/,
 		new Date(),
 		new Error(),
-		Symbol()
+		Symbol(),
+		null,
+		undefined
 	])('returns false', (value) => {
 		expect(isObject(value)).toBeFalsy()
 	})
