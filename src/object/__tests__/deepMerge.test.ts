@@ -122,6 +122,124 @@ describe('deepMerge', () => {
 		})
 	})
 
+	describe('non-cloneable values', () => {
+		it('copies a function from source by reference instead of throwing', () => {
+			const fn = () => 1
+			const result = deepMerge({ a: fn }, { b: 2 })
+			expect(result.a).toBe(fn)
+			expect(result.b).toBe(2)
+		})
+
+		it('copies a function from target by reference instead of throwing', () => {
+			const fn = () => 1
+			const result = deepMerge({ b: 2 }, { a: fn })
+			expect(result.a).toBe(fn)
+			expect(result.b).toBe(2)
+		})
+
+		it('copies a function nested in a source object by reference', () => {
+			const fn = () => 1
+			const result = deepMerge({ a: { fn } }, {})
+			expect((result.a as { fn: () => number }).fn).toBe(fn)
+		})
+
+		it('keeps a non-cloneable class instance by reference instead of throwing', () => {
+			class Box {
+				fn = () => 1
+			}
+			const box = new Box()
+			const result = deepMerge({ b: 1 }, { box })
+			expect(result.box).toBe(box)
+		})
+
+		it('copies a non-cloneable element inside a source array by reference', () => {
+			const fn = () => 1
+			const items = [fn, 2]
+			const result = deepMerge({ a: items }, {})
+			const arr = result.a as [() => number, number]
+			expect(arr).not.toBe(items)
+			expect(arr[0]).toBe(fn)
+			expect(arr[1]).toBe(2)
+		})
+	})
+
+	describe('circular references', () => {
+		it('clones a circular target without throwing', () => {
+			const target: Record<string, unknown> = { a: 1 }
+			target.self = target
+			const result = deepMerge({ b: 2 }, target)
+			expect(result).not.toBe(target)
+			expect(result.a).toBe(1)
+			expect(result.b).toBe(2)
+			expect(result.self).toBe(result)
+		})
+
+		it('clones a circular source value without throwing', () => {
+			const node: Record<string, unknown> = { id: 1 }
+			node.self = node
+			const result = deepMerge({ node }, {})
+			const cloned = result.node as Record<string, unknown>
+			expect(cloned).not.toBe(node)
+			expect(cloned.id).toBe(1)
+			expect(cloned.self).toBe(cloned)
+		})
+
+		it('clones a circular array without throwing', () => {
+			const arr: unknown[] = [1]
+			arr.push(arr)
+			const result = deepMerge({ arr }, {})
+			const cloned = result.arr as unknown[]
+			expect(cloned).not.toBe(arr)
+			expect(cloned[0]).toBe(1)
+			expect(cloned[1]).toBe(cloned)
+		})
+
+		it('merges when both source and target are circular without overflowing', () => {
+			const source: Record<string, unknown> = { a: 1 }
+			source.self = source
+			const target: Record<string, unknown> = { b: 2 }
+			target.self = target
+			const result = deepMerge(source, target)
+			expect(result).not.toBe(source)
+			expect(result).not.toBe(target)
+			expect(result.a).toBe(1)
+			expect(result.b).toBe(2)
+			expect(result.self).toBe(result)
+		})
+
+		it('merges circular source and target in place when mutate is true', () => {
+			const source: Record<string, unknown> = { a: 1 }
+			source.self = source
+			const target: Record<string, unknown> = { b: 2 }
+			target.self = target
+			const result = deepMerge(source, target, true)
+			expect(result).toBe(target)
+			expect(result.a).toBe(1)
+			expect(result.b).toBe(2)
+			expect(result.self).toBe(result)
+		})
+	})
+
+	describe('prototype pollution', () => {
+		afterEach(() => {
+			delete (Object.prototype as Record<string, unknown>).polluted
+		})
+
+		it('ignores top-level __proto__ keys without polluting Object.prototype', () => {
+			const payload = JSON.parse('{"__proto__":{"polluted":true}}')
+			const result = deepMerge(payload, {})
+			expect(({} as Record<string, unknown>).polluted).toBeUndefined()
+			expect(Object.getPrototypeOf(result)).toBe(Object.prototype)
+		})
+
+		it('ignores nested __proto__ keys when cloning', () => {
+			const payload = JSON.parse('{"a":{"__proto__":{"polluted":true}}}')
+			const result = deepMerge(payload, {})
+			expect(({} as Record<string, unknown>).polluted).toBeUndefined()
+			expect(Object.getPrototypeOf(result.a)).toBe(Object.prototype)
+		})
+	})
+
 	describe('merge semantics', () => {
 		it('replaces arrays instead of merging them', () => {
 			const result = deepMerge({ a: [1, 2] }, { a: [3, 4, 5] })
@@ -178,6 +296,13 @@ describe('deepMerge', () => {
 			deepMerge(source, target, true)
 			expect(target.foo).not.toBe(nested)
 			expect(target.foo).toEqual(nested)
+		})
+
+		it('keeps a non-cloneable source value by reference instead of throwing', () => {
+			const fn = () => 1
+			const target: Record<string, unknown> = {}
+			deepMerge({ fn }, target, true)
+			expect(target.fn).toBe(fn)
 		})
 	})
 })
