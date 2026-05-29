@@ -101,6 +101,24 @@ describe('interpolate', () => {
 		})
 	})
 
+	describe('empty tokens', () => {
+		it('returns value unchanged when tokens contain adjacent dividers', () => {
+			expect(interpolate('100%% done', {})).toBe('100%% done')
+		})
+
+		it('returns value unchanged when tokens is omitted', () => {
+			expect(interpolate('100%% done')).toBe('100%% done')
+		})
+
+		it('does not strip a lone divider when tokens is empty', () => {
+			expect(interpolate('a%b%c', {})).toBe('a%b%c')
+		})
+
+		it('returns value unchanged with a non-default divider', () => {
+			expect(interpolate('100$$ done', {}, '$')).toBe('100$$ done')
+		})
+	})
+
 	// prettier-ignore
 	it.each([
 		{
