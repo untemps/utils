@@ -1,3 +1,10 @@
+# [4.0.0-beta.14](https://github.com/untemps/utils/compare/v4.0.0-beta.13...v4.0.0-beta.14) (2026-05-29)
+
+
+### Bug Fixes
+
+* **object:** Copy non-cloneable values by reference in deepMerge ([#99](https://github.com/untemps/utils/issues/99)) ([8b7529c](https://github.com/untemps/utils/commit/8b7529c3cdc6052b698f1b7d8e59acd229167c5e))
+
 # [4.0.0-beta.13](https://github.com/untemps/utils/compare/v4.0.0-beta.12...v4.0.0-beta.13) (2026-05-29)
 
 
