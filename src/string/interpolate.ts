@@ -8,7 +8,7 @@ import { isNil } from '../lang/isNil'
 const escapeDivider = (divider: string): string => divider.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 /** @private */
-const pipeTokens = (tokens: Record<string, unknown>): string => Object.keys(tokens).join('|')
+const pipeTokens = (tokens: Record<string, unknown>): string => Object.keys(tokens).map(escapeDivider).join('|')
 
 /**
  * @function
