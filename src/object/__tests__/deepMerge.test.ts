@@ -116,12 +116,46 @@ describe('deepMerge', () => {
 		})
 	})
 
+	describe('merge semantics', () => {
+		it('replaces arrays instead of merging them', () => {
+			const result = deepMerge({ a: [1, 2] }, { a: [3, 4, 5] })
+			expect(result).toEqual({ a: [1, 2] })
+		})
+
+		it('merges objects nested beyond two levels', () => {
+			const source = { a: { b: { c: { d: 1 } } } }
+			const target = { a: { b: { c: { e: 2 }, x: 3 } } }
+			const result = deepMerge(source, target)
+			expect(result).toEqual({ a: { b: { c: { d: 1, e: 2 }, x: 3 } } })
+		})
+
+		it('replaces a primitive target value with an object from source', () => {
+			const result = deepMerge({ a: { b: 1 } }, { a: 5 })
+			expect(result).toEqual({ a: { b: 1 } })
+		})
+
+		it('replaces an object target value with a primitive from source', () => {
+			const result = deepMerge({ a: 5 }, { a: { b: 1 } })
+			expect(result).toEqual({ a: 5 })
+		})
+	})
+
 	describe('mutate: true', () => {
 		it('returns the target object itself', () => {
 			const source = { foo: 1 }
 			const target = { bar: 2 }
 			const result = deepMerge(source, target, true)
 			expect(result).toBe(target)
+		})
+
+		it('clones non-plain source values instead of aliasing them', () => {
+			const items = [1, 2]
+			const source = { items }
+			const target: Record<string, unknown> = {}
+			deepMerge(source, target, true)
+			expect(target.items).not.toBe(items)
+			;(target.items as number[]).push(3)
+			expect(items).toEqual([1, 2])
 		})
 
 		it('mutates target in place', () => {
