@@ -106,6 +106,13 @@ describe('createElement', () => {
 		expect(rect).toEqual({ x: 10, y: 20, left: 10, top: 20, width: 100, height: 50, right: 110, bottom: 70 })
 	})
 
+	it('derives width and height from the bounds when not provided', () => {
+		const rect = createElement({
+			boundingClientRect: { left: 10, right: 100, top: 20, bottom: 70 },
+		}).getBoundingClientRect()
+		expect(rect).toEqual({ x: 10, y: 20, left: 10, top: 20, right: 100, bottom: 70, width: 90, height: 50 })
+	})
+
 	it('exposes a toJSON method returning the rect values', () => {
 		const rect = createElement({
 			boundingClientRect: { x: 5, y: 15, width: 30, height: 40 },

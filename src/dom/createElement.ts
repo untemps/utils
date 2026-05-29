@@ -77,18 +77,22 @@ export const createElement = ({
 		parentNode.appendChild(el)
 	}
 	if (boundingClientRect) {
-		const { x, y, top, right, bottom, left, width = 0, height = 0 } = boundingClientRect
+		const { x, y, top, right, bottom, left, width, height } = boundingClientRect
 		const resolvedX = x ?? left ?? 0
 		const resolvedY = y ?? top ?? 0
+		const resolvedLeft = left ?? resolvedX
+		const resolvedTop = top ?? resolvedY
+		const resolvedWidth = width ?? (right !== undefined ? right - resolvedLeft : 0)
+		const resolvedHeight = height ?? (bottom !== undefined ? bottom - resolvedTop : 0)
 		const rect = {
 			x: resolvedX,
 			y: resolvedY,
-			width,
-			height,
-			top: top ?? resolvedY,
-			right: right ?? resolvedX + width,
-			bottom: bottom ?? resolvedY + height,
-			left: left ?? resolvedX,
+			width: resolvedWidth,
+			height: resolvedHeight,
+			top: resolvedTop,
+			right: right ?? resolvedX + resolvedWidth,
+			bottom: bottom ?? resolvedY + resolvedHeight,
+			left: resolvedLeft,
 		}
 		const domRect = Object.defineProperty({ ...rect }, 'toJSON', { value: () => ({ ...rect }) }) as DOMRect
 		el.getBoundingClientRect = () => domRect
