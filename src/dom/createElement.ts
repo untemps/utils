@@ -77,7 +77,21 @@ export const createElement = ({
 		parentNode.appendChild(el)
 	}
 	if (boundingClientRect) {
-		el.getBoundingClientRect = () => boundingClientRect as DOMRect
+		const { x, y, top, right, bottom, left, width = 0, height = 0 } = boundingClientRect
+		const resolvedX = x ?? left ?? 0
+		const resolvedY = y ?? top ?? 0
+		const rect = {
+			x: resolvedX,
+			y: resolvedY,
+			width,
+			height,
+			top: top ?? resolvedY,
+			right: right ?? resolvedX + width,
+			bottom: bottom ?? resolvedY + height,
+			left: left ?? resolvedX,
+		}
+		const domRect = Object.defineProperty({ ...rect }, 'toJSON', { value: () => ({ ...rect }) }) as DOMRect
+		el.getBoundingClientRect = () => domRect
 	}
 	return el
 }

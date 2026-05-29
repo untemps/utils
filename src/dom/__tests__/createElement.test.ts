@@ -98,4 +98,19 @@ describe('createElement', () => {
   ])('$name', ({ values, expected }) => {
     expect(createElement(values).getBoundingClientRect()).toEqual(expected)
   })
+
+	it('derives missing rect fields from a partial boundingClientRect', () => {
+		const rect = createElement({
+			boundingClientRect: { left: 10, top: 20, width: 100, height: 50 },
+		}).getBoundingClientRect()
+		expect(rect).toEqual({ x: 10, y: 20, left: 10, top: 20, width: 100, height: 50, right: 110, bottom: 70 })
+	})
+
+	it('exposes a toJSON method returning the rect values', () => {
+		const rect = createElement({
+			boundingClientRect: { x: 5, y: 15, width: 30, height: 40 },
+		}).getBoundingClientRect()
+		expect(typeof rect.toJSON).toBe('function')
+		expect(rect.toJSON()).toEqual({ x: 5, y: 15, left: 5, top: 15, width: 30, height: 40, right: 35, bottom: 55 })
+	})
 })
