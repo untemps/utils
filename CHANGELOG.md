@@ -1,3 +1,10 @@
+# [4.0.0-beta.11](https://github.com/untemps/utils/compare/v4.0.0-beta.10...v4.0.0-beta.11) (2026-05-29)
+
+
+### Bug Fixes
+
+* **object:** Return false instead of throwing for nullish values in isObject ([#86](https://github.com/untemps/utils/issues/86)) ([0ac1de0](https://github.com/untemps/utils/commit/0ac1de011137493f8d19e1f7ec99130b464ae955))
+
 # [4.0.0-beta.10](https://github.com/untemps/utils/compare/v4.0.0-beta.9...v4.0.0-beta.10) (2026-05-29)
 
 
