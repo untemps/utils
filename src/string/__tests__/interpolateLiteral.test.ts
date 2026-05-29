@@ -52,4 +52,13 @@ describe('interpolateLiteral', () => {
 	])('$name', ({value, tokens, error}) => {
 		expect(() => interpolateLiteral(value as unknown as string, tokens as unknown as Record<string, unknown>)).toThrow(error)
 	})
+
+	it('returns the value unchanged when tokens is omitted and no token is present', () => {
+		expect(interpolateLiteral('A plain string with no token')).toBe('A plain string with no token')
+	})
+
+	it('throws a ReferenceError (not a TypeError) when tokens is omitted and a token is present', () => {
+		expect(() => interpolateLiteral('A ${foo}')).toThrow(ReferenceError)
+		expect(() => interpolateLiteral('A ${foo}')).toThrow('foo is not defined')
+	})
 })
