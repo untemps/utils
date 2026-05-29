@@ -193,6 +193,31 @@ describe('deepMerge', () => {
 			expect(cloned[0]).toBe(1)
 			expect(cloned[1]).toBe(cloned)
 		})
+
+		it('merges when both source and target are circular without overflowing', () => {
+			const source: Record<string, unknown> = { a: 1 }
+			source.self = source
+			const target: Record<string, unknown> = { b: 2 }
+			target.self = target
+			const result = deepMerge(source, target)
+			expect(result).not.toBe(source)
+			expect(result).not.toBe(target)
+			expect(result.a).toBe(1)
+			expect(result.b).toBe(2)
+			expect(result.self).toBe(result)
+		})
+
+		it('merges circular source and target in place when mutate is true', () => {
+			const source: Record<string, unknown> = { a: 1 }
+			source.self = source
+			const target: Record<string, unknown> = { b: 2 }
+			target.self = target
+			const result = deepMerge(source, target, true)
+			expect(result).toBe(target)
+			expect(result.a).toBe(1)
+			expect(result.b).toBe(2)
+			expect(result.self).toBe(result)
+		})
 	})
 
 	describe('prototype pollution', () => {

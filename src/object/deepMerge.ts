@@ -33,6 +33,34 @@ const clone = (value: unknown, seen = new WeakMap<object, unknown>()): unknown =
 	}
 }
 
+/** @private */
+const merge = (
+	source: Record<string, unknown>,
+	target: Record<string, unknown>,
+	mutate: boolean,
+	seen: WeakMap<object, Record<string, unknown>>
+): Record<string, unknown> => {
+	const existing = seen.get(source)
+	if (existing) return existing
+	const result = mutate ? target : (clone(target) as Record<string, unknown>)
+	seen.set(source, result)
+	for (const key of Object.keys(source)) {
+		if (key === '__proto__') continue
+		if (key in result && isObject(source[key]) && isObject(result[key])) {
+			result[key] = merge(
+				source[key] as Record<string, unknown>,
+				result[key] as Record<string, unknown>,
+				mutate,
+				seen
+			)
+		} else {
+			result[key] = clone(source[key])
+		}
+	}
+	seen.delete(source)
+	return result
+}
+
 /**
  * @function
  * @example
@@ -55,19 +83,4 @@ export const deepMerge = (
 	source: Record<string, unknown>,
 	target: Record<string, unknown>,
 	mutate = false
-): Record<string, unknown> => {
-	const result = mutate ? target : (clone(target) as Record<string, unknown>)
-	for (const key of Object.keys(source)) {
-		if (key === '__proto__') continue
-		if (key in result && isObject(source[key]) && isObject(result[key])) {
-			result[key] = deepMerge(
-				source[key] as Record<string, unknown>,
-				result[key] as Record<string, unknown>,
-				mutate
-			)
-		} else {
-			result[key] = clone(source[key])
-		}
-	}
-	return result
-}
+): Record<string, unknown> => merge(source, target, mutate, new WeakMap())
