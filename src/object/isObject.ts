@@ -14,4 +14,4 @@
  * @returns `true` whether the value is an object.
  */
 export const isObject = (value: unknown): value is Record<string, unknown> =>
-	Object.getPrototypeOf(value) === Object.prototype
+	value != null && Object.getPrototypeOf(value) === Object.prototype
