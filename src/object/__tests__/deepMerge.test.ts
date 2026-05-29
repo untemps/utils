@@ -122,6 +122,37 @@ describe('deepMerge', () => {
 		})
 	})
 
+	describe('non-cloneable values', () => {
+		it('copies a function from source by reference instead of throwing', () => {
+			const fn = () => 1
+			const result = deepMerge({ a: fn }, { b: 2 })
+			expect(result.a).toBe(fn)
+			expect(result.b).toBe(2)
+		})
+
+		it('copies a function from target by reference instead of throwing', () => {
+			const fn = () => 1
+			const result = deepMerge({ b: 2 }, { a: fn })
+			expect(result.a).toBe(fn)
+			expect(result.b).toBe(2)
+		})
+
+		it('copies a function nested in a source object by reference', () => {
+			const fn = () => 1
+			const result = deepMerge({ a: { fn } }, {})
+			expect((result.a as { fn: () => number }).fn).toBe(fn)
+		})
+
+		it('keeps a non-cloneable class instance by reference instead of throwing', () => {
+			class Box {
+				fn = () => 1
+			}
+			const box = new Box()
+			const result = deepMerge({ b: 1 }, { box })
+			expect(result.box).toBe(box)
+		})
+	})
+
 	describe('merge semantics', () => {
 		it('replaces arrays instead of merging them', () => {
 			const result = deepMerge({ a: [1, 2] }, { a: [3, 4, 5] })
