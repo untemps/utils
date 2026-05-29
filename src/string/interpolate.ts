@@ -32,6 +32,7 @@ const pipeTokens = (tokens: Record<string, unknown>): string => Object.keys(toke
 export const interpolate = (value: string, tokens: Record<string, unknown> = {}, divider = '%'): string => {
 	const escapedDivider = escapeDivider(divider)
 	const pipedTokens = pipeTokens(tokens)
+	// No tokens: use a never-matching regex (not an early return) so value.replace still throws on a non-string value
 	const regex = pipedTokens ? new RegExp(`${escapedDivider}(${pipedTokens})${escapedDivider}`, 'g') : /(?!)/g
 	return value.replace(regex, (_, r) => (!isNil(tokens[r]) ? String(tokens[r]) : r))
 }
