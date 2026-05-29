@@ -5,13 +5,21 @@
 import { isObject } from './isObject'
 
 /** @private */
-const clone = (value: unknown): unknown => {
-	if (Array.isArray(value)) return value.map(clone)
+const clone = (value: unknown, seen = new WeakMap<object, unknown>()): unknown => {
+	if (Array.isArray(value)) {
+		if (seen.has(value)) return seen.get(value)
+		const out: unknown[] = new Array(value.length)
+		seen.set(value, out)
+		for (let i = 0; i < value.length; i++) out[i] = clone(value[i], seen)
+		return out
+	}
 	if (isObject(value)) {
+		if (seen.has(value)) return seen.get(value)
 		const out: Record<string, unknown> = {}
+		seen.set(value, out)
 		for (const key of Object.keys(value)) {
 			if (key === '__proto__') continue
-			out[key] = clone(value[key])
+			out[key] = clone(value[key], seen)
 		}
 		return out
 	}
@@ -34,9 +42,9 @@ const clone = (value: unknown): unknown => {
  * const target = { foo: 2, zaz: { juv: 1 }, bar: { gag: 'gag' } }
  * deepMerge(source, target) // { foo: 1, zaz: { juv: 1 }, bar: { gag: [1, 2, 3], pol: { mur: 'mur' } } }
  *
- * Plain objects and arrays are deep-cloned. Non-cloneable values (functions, DOM nodes,
- * non-serialisable instances) are copied by reference instead of throwing. `__proto__` keys
- * are ignored to prevent prototype pollution.
+ * Plain objects and arrays are deep-cloned, with circular references preserved. Non-cloneable
+ * values (functions, DOM nodes, non-serialisable instances) are copied by reference instead of
+ * throwing. `__proto__` keys are ignored to prevent prototype pollution.
  *
  * @param source - The object to merge into the target.
  * @param target - The target object where source will be merged.

@@ -163,6 +163,38 @@ describe('deepMerge', () => {
 		})
 	})
 
+	describe('circular references', () => {
+		it('clones a circular target without throwing', () => {
+			const target: Record<string, unknown> = { a: 1 }
+			target.self = target
+			const result = deepMerge({ b: 2 }, target)
+			expect(result).not.toBe(target)
+			expect(result.a).toBe(1)
+			expect(result.b).toBe(2)
+			expect(result.self).toBe(result)
+		})
+
+		it('clones a circular source value without throwing', () => {
+			const node: Record<string, unknown> = { id: 1 }
+			node.self = node
+			const result = deepMerge({ node }, {})
+			const cloned = result.node as Record<string, unknown>
+			expect(cloned).not.toBe(node)
+			expect(cloned.id).toBe(1)
+			expect(cloned.self).toBe(cloned)
+		})
+
+		it('clones a circular array without throwing', () => {
+			const arr: unknown[] = [1]
+			arr.push(arr)
+			const result = deepMerge({ arr }, {})
+			const cloned = result.arr as unknown[]
+			expect(cloned).not.toBe(arr)
+			expect(cloned[0]).toBe(1)
+			expect(cloned[1]).toBe(cloned)
+		})
+	})
+
 	describe('prototype pollution', () => {
 		afterEach(() => {
 			delete (Object.prototype as Record<string, unknown>).polluted
