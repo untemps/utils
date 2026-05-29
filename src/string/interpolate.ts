@@ -32,6 +32,6 @@ const pipeTokens = (tokens: Record<string, unknown>): string => Object.keys(toke
 export const interpolate = (value: string, tokens: Record<string, unknown> = {}, divider = '%'): string => {
 	const escapedDivider = escapeDivider(divider)
 	const pipedTokens = pipeTokens(tokens)
-	const regex = new RegExp(`${escapedDivider}(${pipedTokens})${escapedDivider}`, 'g')
+	const regex = pipedTokens ? new RegExp(`${escapedDivider}(${pipedTokens})${escapedDivider}`, 'g') : /(?!)/g
 	return value.replace(regex, (_, r) => (!isNil(tokens[r]) ? String(tokens[r]) : r))
 }
