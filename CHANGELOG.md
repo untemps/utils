@@ -1,3 +1,10 @@
+# [4.0.0-beta.16](https://github.com/untemps/utils/compare/v4.0.0-beta.15...v4.0.0-beta.16) (2026-05-30)
+
+
+### Bug Fixes
+
+* **dom:** Skip cross-origin stylesheets in getCSSDeclaration ([#101](https://github.com/untemps/utils/issues/101)) ([523cf52](https://github.com/untemps/utils/commit/523cf5271b60dc7a50dcd42d955e5d861e18c2f2))
+
 # [4.0.0-beta.15](https://github.com/untemps/utils/compare/v4.0.0-beta.14...v4.0.0-beta.15) (2026-05-29)
 
 

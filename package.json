@@ -1,6 +1,6 @@
 {
 	"name": "@untemps/utils",
-	"version": "4.0.0-beta.15",
+	"version": "4.0.0-beta.16",
 	"description": "Utils for @untemps packages",
 	"repository": "git@github.com:untemps/utils.git",
 	"keywords": [],
