@@ -24,7 +24,14 @@ export const getCSSDeclaration = (className: string, returnText = false): CSSSty
 		className = className.startsWith('.') ? className : `.${className}`
 		if (document.styleSheets?.length) {
 			for (const sheet of document.styleSheets) {
-				for (const rule of sheet.cssRules) {
+				let rules: CSSRuleList
+				try {
+					rules = sheet.cssRules
+				} catch {
+					// Cross-origin stylesheets throw SecurityError on cssRules access
+					continue
+				}
+				for (const rule of rules) {
 					const styleRule = rule as CSSStyleRule
 					if (styleRule.selectorText === className && !!styleRule.style) {
 						return returnText ? styleRule.style.cssText : styleRule.style
