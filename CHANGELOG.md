@@ -1,3 +1,15 @@
+# [4.0.0-beta.17](https://github.com/untemps/utils/compare/v4.0.0-beta.16...v4.0.0-beta.17) (2026-05-30)
+
+
+### Bug Fixes
+
+* **string:** Preserve delimiters in interpolate when token value is nil ([#105](https://github.com/untemps/utils/issues/105)) ([e55a131](https://github.com/untemps/utils/commit/e55a131374d552e730b94094ed52626a01157882))
+
+
+### BREAKING CHANGES
+
+* **string:** interpolate now preserves `%key%` when the token value is null or undefined, instead of returning the bare key.
+
 # [4.0.0-beta.16](https://github.com/untemps/utils/compare/v4.0.0-beta.15...v4.0.0-beta.16) (2026-05-30)
 
 
