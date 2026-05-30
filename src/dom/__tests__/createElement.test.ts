@@ -120,4 +120,18 @@ describe('createElement', () => {
 		expect(typeof rect.toJSON).toBe('function')
 		expect(rect.toJSON()).toEqual({ x: 5, y: 15, left: 5, top: 15, width: 30, height: 40, right: 35, bottom: 55 })
 	})
+
+	it('defaults x and y to 0 when neither origin nor left/top are provided', () => {
+		const rect = createElement({
+			boundingClientRect: { right: 50, bottom: 30 },
+		}).getBoundingClientRect()
+		expect(rect).toEqual({ x: 0, y: 0, left: 0, top: 0, right: 50, bottom: 30, width: 50, height: 30 })
+	})
+
+	it('defaults width and height to 0 when neither size nor end bounds are provided', () => {
+		const rect = createElement({
+			boundingClientRect: { x: 5, y: 10 },
+		}).getBoundingClientRect()
+		expect(rect).toEqual({ x: 5, y: 10, left: 5, top: 10, right: 5, bottom: 10, width: 0, height: 0 })
+	})
 })
