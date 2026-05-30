@@ -48,9 +48,12 @@
 		"prettier": "^3.0.0",
 		"semantic-release": "^25.0.0",
 		"typedoc": "^0.28.18",
+		"typedoc-plugin-markdown": "^4.11.0",
+		"typedoc-vitepress-theme": "^1.1.2",
 		"typescript": "^6.0.2",
 		"typescript-eslint": "^8.59.3",
 		"vite": "^8.0.0",
+		"vitepress": "^1.6.4",
 		"vitest": "^3.0.0"
 	},
 	"release": {
@@ -82,7 +85,9 @@
 		]
 	},
 	"scripts": {
-		"docs": "typedoc && node scripts/open-docs.mjs",
+		"docs:dev": "typedoc && vitepress dev docs",
+		"docs:build": "typedoc && vitepress build docs",
+		"docs:preview": "vitepress preview docs",
 		"test": "vitest",
 		"test:ci": "vitest run --coverage && yarn lint",
 		"build": "vite build && tsc -p tsconfig.build.json",
