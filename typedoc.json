@@ -1,8 +1,12 @@
 {
-	"entryPoints": ["src/index.ts"],
-	"out": "docs",
-	"includeVersion": true,
-	"readme": "README.md",
+	"entryPoints": ["src"],
+	"entryPointStrategy": "expand",
+	"exclude": ["**/__tests__/**", "src/index.ts"],
+	"out": "docs/api",
+	"plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
 	"excludePrivate": true,
-	"excludeInternal": true
+	"excludeInternal": true,
+	"docsRoot": "./docs",
+	"hidePageHeader": true,
+	"hideBreadcrumbs": true
 }
