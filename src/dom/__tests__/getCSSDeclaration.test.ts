@@ -52,7 +52,10 @@ describe('getCSSDeclaration', () => {
 		})
 
 		it('Skips inaccessible sheets and finds the rule in an accessible one', () => {
-			const merged = [makeCrossOriginSheet(), ...Array.from(document.styleSheets)] as unknown as StyleSheetList
+			const accessibleSheet = {
+				cssRules: [{ selectorText: '.drag', style: { cssText: 'background-color: black;' } }],
+			} as unknown as CSSStyleSheet
+			const merged = [makeCrossOriginSheet(), accessibleSheet] as unknown as StyleSheetList
 			vi.spyOn(document, 'styleSheets', 'get').mockReturnValue(merged)
 			expect(getCSSDeclaration('drag', true)).toBe('background-color: black;')
 		})
