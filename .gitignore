@@ -26,4 +26,6 @@ coverage/
 __snapshots__/
 
 # Docs
-docs/
+docs/api/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
