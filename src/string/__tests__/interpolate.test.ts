@@ -119,6 +119,16 @@ describe('interpolate', () => {
 		})
 	})
 
+	describe('nil token values', () => {
+		it('leaves the token untouched when its value is null', () => {
+			expect(interpolate('%foo%', { foo: null })).toBe('%foo%')
+		})
+
+		it('leaves the token untouched when its value is undefined', () => {
+			expect(interpolate('%foo%', { foo: undefined })).toBe('%foo%')
+		})
+	})
+
 	// prettier-ignore
 	it.each([
 		{
