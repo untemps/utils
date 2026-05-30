@@ -86,7 +86,7 @@
 	},
 	"scripts": {
 		"docs:dev": "typedoc && vitepress dev docs",
-		"docs:build": "typedoc && vitepress build docs",
+		"docs": "typedoc && vitepress build docs",
 		"docs:preview": "vitepress preview docs",
 		"test": "vitest",
 		"test:ci": "vitest run --coverage && yarn lint",
