@@ -1,72 +1,78 @@
 import { debounce } from '../debounce'
 
-const delay = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms))
-
 describe('debounce', () => {
-	it('delays invocation until after the delay period', async () => {
+	beforeEach(() => {
+		vi.useFakeTimers()
+	})
+
+	afterEach(() => {
+		vi.useRealTimers()
+	})
+
+	it('delays invocation until after the delay period', () => {
 		const fn = vi.fn()
 		const debounced = debounce(fn, 50)
 
 		debounced()
 		expect(fn).not.toHaveBeenCalled()
 
-		await delay(80)
+		vi.advanceTimersByTime(50)
 		expect(fn).toHaveBeenCalledOnce()
 	})
 
-	it('resets the timer on subsequent calls', async () => {
+	it('resets the timer on subsequent calls', () => {
 		const fn = vi.fn()
 		const debounced = debounce(fn, 50)
 
 		debounced()
-		await delay(30)
+		vi.advanceTimersByTime(30)
 		debounced()
-		await delay(30)
+		vi.advanceTimersByTime(30)
 		expect(fn).not.toHaveBeenCalled()
 
-		await delay(40)
+		vi.advanceTimersByTime(20)
 		expect(fn).toHaveBeenCalledOnce()
 	})
 
-	it('passes arguments to the original function', async () => {
+	it('passes arguments to the original function', () => {
 		const fn = vi.fn()
 		const debounced = debounce(fn, 50)
 
 		debounced('hello', 42)
-		await delay(80)
+		vi.advanceTimersByTime(50)
 		expect(fn).toHaveBeenCalledWith('hello', 42)
 	})
 
-	it('uses the arguments from the last call', async () => {
+	it('uses the arguments from the last call', () => {
 		const fn = vi.fn()
 		const debounced = debounce(fn, 50)
 
 		debounced('a')
 		debounced('b')
 		debounced('c')
-		await delay(80)
+		vi.advanceTimersByTime(50)
 		expect(fn).toHaveBeenCalledOnce()
 		expect(fn).toHaveBeenCalledWith('c')
 	})
 
-	it('cancels a pending invocation', async () => {
+	it('cancels a pending invocation', () => {
 		const fn = vi.fn()
 		const debounced = debounce(fn, 50)
 
 		debounced()
 		debounced.cancel()
-		await delay(80)
+		vi.advanceTimersByTime(50)
 		expect(fn).not.toHaveBeenCalled()
 	})
 
-	it('can be called again after cancel', async () => {
+	it('can be called again after cancel', () => {
 		const fn = vi.fn()
 		const debounced = debounce(fn, 50)
 
 		debounced()
 		debounced.cancel()
 		debounced()
-		await delay(80)
+		vi.advanceTimersByTime(50)
 		expect(fn).toHaveBeenCalledOnce()
 	})
 
