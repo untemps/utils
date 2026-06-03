@@ -1,3 +1,10 @@
+# [4.0.0-beta.18](https://github.com/untemps/utils/compare/v4.0.0-beta.17...v4.0.0-beta.18) (2026-06-03)
+
+
+### Bug Fixes
+
+* **number:** Narrow getRandomInteger defaults to safe integer range ([#117](https://github.com/untemps/utils/issues/117)) ([4c95cf1](https://github.com/untemps/utils/commit/4c95cf125b0ee0dc0fee4ed5aaf8143512cc58c1))
+
 # [4.0.0-beta.17](https://github.com/untemps/utils/compare/v4.0.0-beta.16...v4.0.0-beta.17) (2026-05-30)
 
 
