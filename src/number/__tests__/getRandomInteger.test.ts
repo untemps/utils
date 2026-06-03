@@ -8,7 +8,7 @@ describe('getRandomInteger', () => {
 		expect(result).toBeLessThanOrEqual(Math.floor(Number.MAX_SAFE_INTEGER / 2))
 	})
 
-	it('produces both odd and even integers across the default range', () => {
+	it('default range yields an unbiased distribution (odd and even reachable)', () => {
 		let sawOdd = false
 		let sawEven = false
 		for (let i = 0; i < 200 && !(sawOdd && sawEven); i++) {

@@ -4,6 +4,9 @@
 
 import { normalizeMinMax } from './normalizeMinMax'
 
+const DEFAULT_MIN = Math.ceil(Number.MIN_SAFE_INTEGER / 2)
+const DEFAULT_MAX = Math.floor(Number.MAX_SAFE_INTEGER / 2)
+
 /**
  * @function
  * @example
@@ -19,10 +22,7 @@ import { normalizeMinMax } from './normalizeMinMax'
  *               same reason. Callers passing explicit bounds should ensure `max - min` fits in safe-integer range.
  * @returns A random integer between min and max.
  */
-export const getRandomInteger = (
-	min = Math.ceil(Number.MIN_SAFE_INTEGER / 2),
-	max = Math.floor(Number.MAX_SAFE_INTEGER / 2)
-): number => {
+export const getRandomInteger = (min = DEFAULT_MIN, max = DEFAULT_MAX): number => {
 	const { min: mn, max: mx } = normalizeMinMax(min, max)
 	return Math.floor(mn + Math.random() * (mx - mn + 1))
 }
