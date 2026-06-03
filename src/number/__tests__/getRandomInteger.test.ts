@@ -3,9 +3,21 @@ import { getRandomInteger } from '../getRandomInteger'
 describe('getRandomInteger', () => {
 	it('returns an integer within the default range', () => {
 		const result = getRandomInteger()
-		expect(Number.isInteger(result)).toBe(true)
-		expect(result).toBeGreaterThanOrEqual(-Number.MAX_SAFE_INTEGER)
-		expect(result).toBeLessThanOrEqual(Number.MAX_SAFE_INTEGER)
+		expect(Number.isSafeInteger(result)).toBe(true)
+		expect(result).toBeGreaterThanOrEqual(Math.ceil(Number.MIN_SAFE_INTEGER / 2))
+		expect(result).toBeLessThanOrEqual(Math.floor(Number.MAX_SAFE_INTEGER / 2))
+	})
+
+	it('default range yields an unbiased distribution (odd and even reachable)', () => {
+		let sawOdd = false
+		let sawEven = false
+		for (let i = 0; i < 200 && !(sawOdd && sawEven); i++) {
+			const value = getRandomInteger()
+			if (value % 2 === 0) sawEven = true
+			else sawOdd = true
+		}
+		expect(sawOdd).toBe(true)
+		expect(sawEven).toBe(true)
 	})
 
 	it('returns an integer within an explicit range', () => {
