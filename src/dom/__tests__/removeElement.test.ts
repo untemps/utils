@@ -34,14 +34,15 @@ describe('removeElement', () => {
 			element: null,
 		},
 		{
-			name: 'returns undefined if element does not exist',
-			element: document.createElement('div'),
-		},
-		{
 			name: 'returns undefined if element selector does not match existing element',
 			element: '.bar',
 		},
 	])('$name', ({ element }) => {
 		expect(removeElement(element as unknown as HTMLElement)).toBeUndefined()
+	})
+
+	it('returns the element unchanged when it has no parent', () => {
+		const detached = document.createElement('div')
+		expect(removeElement(detached)).toBe(detached)
 	})
 })
