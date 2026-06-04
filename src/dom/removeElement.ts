@@ -16,9 +16,11 @@ import { isString } from '../string/isString'
  * removeElement(element) // returns the detached <div class="foo"></div>
  *
  * @param element  - The DOM element or the selector of the DOM element to remove.
- * @returns The removed DOM element.
+ * @returns The removed DOM element, or `undefined` when the input is `null`/`undefined` or the
+ *          selector matches nothing. An element with no parent is returned unchanged.
  */
 export const removeElement = (element: HTMLElement | string): HTMLElement | undefined => {
 	const el: HTMLElement | null = isString(element) ? document.querySelector<HTMLElement>(element) : element
-	return el?.parentNode?.removeChild(el) as HTMLElement | undefined
+	el?.remove()
+	return el ?? undefined
 }
