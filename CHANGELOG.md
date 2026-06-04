@@ -1,3 +1,15 @@
+# [4.0.0-beta.21](https://github.com/untemps/utils/compare/v4.0.0-beta.20...v4.0.0-beta.21) (2026-06-04)
+
+
+### chore
+
+* **dom:** Use Element.remove() in removeElement ([#120](https://github.com/untemps/utils/issues/120)) ([7588ea0](https://github.com/untemps/utils/commit/7588ea0aab11428045572fffcc25018d6d21ea9a))
+
+
+### BREAKING CHANGES
+
+* **dom:** removeElement now returns a detached element unchanged instead of undefined. Callers that distinguished 'nothing to remove' from 'element removed' via the undefined return must check the element's parent in advance.
+
 # [4.0.0-beta.20](https://github.com/untemps/utils/compare/v4.0.0-beta.19...v4.0.0-beta.20) (2026-06-04)
 
 
