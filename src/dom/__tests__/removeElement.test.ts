@@ -27,22 +27,17 @@ describe('removeElement', () => {
 		expect(removeElement(getElement())).not.toBeInTheDocument()
 	})
 
-	// prettier-ignore
-	it.each([
-		{
-			name: 'returns undefined if element is null',
-			element: null,
-		},
-		{
-			name: 'returns undefined if element selector does not match existing element',
-			element: '.bar',
-		},
-	])('$name', ({ element }) => {
-		expect(removeElement(element as unknown as HTMLElement)).toBeUndefined()
+	it('returns undefined if element is null', () => {
+		expect(removeElement(null as unknown as HTMLElement)).toBeUndefined()
 	})
 
 	it('returns the element unchanged when it has no parent', () => {
 		const detached = document.createElement('div')
 		expect(removeElement(detached)).toBe(detached)
+	})
+
+	it('throws ReferenceError when string selector does not match any element', () => {
+		expect(() => removeElement('#does-not-exist')).toThrow(ReferenceError)
+		expect(() => removeElement('#does-not-exist')).toThrow("Selector '#does-not-exist' did not match any element")
 	})
 })
