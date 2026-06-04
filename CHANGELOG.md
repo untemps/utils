@@ -1,3 +1,15 @@
+# [4.0.0-beta.23](https://github.com/untemps/utils/compare/v4.0.0-beta.22...v4.0.0-beta.23) (2026-06-04)
+
+
+### Bug Fixes
+
+* **string:** Harmonize nil-value handling between interpolate and interpolateLiteral ([#136](https://github.com/untemps/utils/issues/136)) ([e0aeb05](https://github.com/untemps/utils/commit/e0aeb05a14b474436aeffea013396e6ebd957c7d))
+
+
+### BREAKING CHANGES
+
+* **string:** interpolateLiteral no longer coerces null and undefined token values to the literal strings "null" and "undefined". The placeholder is preserved instead. Non-nil values, including symbols, are still coerced via String(value).
+
 # [4.0.0-beta.22](https://github.com/untemps/utils/compare/v4.0.0-beta.21...v4.0.0-beta.22) (2026-06-04)
 
 
