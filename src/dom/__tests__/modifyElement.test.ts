@@ -65,11 +65,13 @@ describe('modifyElement', () => {
 
 	// prettier-ignore
 	it.each([
-		{
-			name: 'returns undefined if element is null',
-		},
-	])('$name', () => {
-		expect(modifyElement(undefined as unknown as HTMLElement)).toBeUndefined()
+		{ name: 'null',      element: null      },
+		{ name: 'undefined', element: undefined },
+	])('throws TypeError when element is $name', ({ element }) => {
+		expect(() => modifyElement(element as unknown as HTMLElement)).toThrow(TypeError)
+		expect(() => modifyElement(element as unknown as HTMLElement)).toThrow(
+			'element must be a non-null HTMLElement or a string selector'
+		)
 	})
 
 	// prettier-ignore

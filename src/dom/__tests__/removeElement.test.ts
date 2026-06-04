@@ -28,8 +28,15 @@ describe('removeElement', () => {
 		expect(removeElement(getElement())).not.toBeInTheDocument()
 	})
 
-	it('returns undefined if element is null', () => {
-		expect(removeElement(null as unknown as HTMLElement)).toBeUndefined()
+	// prettier-ignore
+	it.each([
+		{ name: 'null',      element: null      },
+		{ name: 'undefined', element: undefined },
+	])('throws TypeError when element is $name', ({ element }) => {
+		expect(() => removeElement(element as unknown as HTMLElement)).toThrow(TypeError)
+		expect(() => removeElement(element as unknown as HTMLElement)).toThrow(
+			'element must be a non-null HTMLElement or a string selector'
+		)
 	})
 
 	it('returns the element unchanged when it has no parent', () => {
@@ -50,6 +57,15 @@ describe('removeElement', () => {
 		])('$name throws ReferenceError with the same message on a missing selector', ({ fn }) => {
 			expect(fn).toThrow(ReferenceError)
 			expect(fn).toThrow("Selector '#does-not-exist' did not match any element")
+		})
+
+		// prettier-ignore
+		it.each([
+			{ name: 'removeElement', fn: () => removeElement(null as unknown as HTMLElement) },
+			{ name: 'modifyElement', fn: () => modifyElement(null as unknown as HTMLElement) },
+		])('$name throws TypeError with the same message on null input', ({ fn }) => {
+			expect(fn).toThrow(TypeError)
+			expect(fn).toThrow('element must be a non-null HTMLElement or a string selector')
 		})
 	})
 })
