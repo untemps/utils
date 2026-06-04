@@ -94,8 +94,8 @@ describe('modifyElement', () => {
 
 	it('treats null attributes as a no-op', () => {
 		const before = (el as HTMLElement).outerHTML
-		expect(() => modifyElement(el as HTMLElement, null)).not.toThrow()
-		expect(modifyElement(el as HTMLElement, null)).toBe(el)
+		const result = modifyElement(el as HTMLElement, null)
+		expect(result).toBe(el)
 		expect((el as HTMLElement).outerHTML).toBe(before)
 	})
 })
