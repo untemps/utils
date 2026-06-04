@@ -21,11 +21,16 @@ describe('interpolateLiteral', () => {
 
 	// prettier-ignore
 	it.each([
-		{ bar: null,           expected: 'null'        },
-		{ bar: undefined,      expected: 'undefined'   },
-		{ bar: Symbol('sym'),  expected: 'Symbol(sym)' },
-	])('coerces token value to string: $expected', ({ bar, expected }) => {
+		{ bar: null,      expected: '${bar}' },
+		{ bar: undefined, expected: '${bar}' },
+	])('preserves the placeholder when the token value is $bar', ({ bar, expected }) => {
 		expect(interpolateLiteral('A ${foo} and ${bar}', { foo: 'bird', bar } as Record<string, unknown>)).toBe(`A bird and ${expected}`)
+	})
+
+	it('coerces non-nil token values to string (including symbols)', () => {
+		expect(interpolateLiteral('A ${foo} and ${bar}', { foo: 'bird', bar: Symbol('sym') })).toBe(
+			'A bird and Symbol(sym)'
+		)
 	})
 
 	// prettier-ignore
@@ -58,7 +63,7 @@ describe('interpolateLiteral', () => {
 		expect(interpolateLiteral('A ${foo}')).toBe('A ${foo}')
 	})
 
-	it('distinguishes missing keys (preserved) from present nil values (coerced)', () => {
-		expect(interpolateLiteral('${foo} ${bar}', { bar: null })).toBe('${foo} null')
+	it('preserves the placeholder for both missing keys and present nil values', () => {
+		expect(interpolateLiteral('${foo} ${bar} ${baz}', { bar: null, baz: undefined })).toBe('${foo} ${bar} ${baz}')
 	})
 })
