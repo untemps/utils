@@ -84,4 +84,11 @@ describe('modifyElement', () => {
 	])('$name', ({ getElement, attributes }) => {
 		expect(() => modifyElement(getElement(), attributes as unknown as Record<string, string>)).toThrow()
 	})
+
+	it('throws ReferenceError when string selector does not match any element', () => {
+		expect(() => modifyElement('#does-not-exist', { class: 'bar' })).toThrow(ReferenceError)
+		expect(() => modifyElement('#does-not-exist', { class: 'bar' })).toThrow(
+			"Selector '#does-not-exist' did not match any element"
+		)
+	})
 })
