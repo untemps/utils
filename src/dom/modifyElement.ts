@@ -14,16 +14,24 @@ import { isString } from '../string/isString'
  * document.body.appendChild(element)
  *
  * modifyElement(element, { className: 'bar' }) // <div class="bar"></div>
+ * modifyElement('#missing', { className: 'bar' }) // throws ReferenceError
  *
  * @param element    - The DOM element or selector of the DOM element to modify.
  * @param attributes - The new attributes to set to the DOM element.
+ * @throws {ReferenceError} When `element` is a string selector that does not match any element in the document.
  * @returns The modified DOM element.
  */
 export const modifyElement = (
 	element: HTMLElement | string,
 	attributes: Record<string, string | null | undefined> = {}
 ): HTMLElement | null => {
-	const el: HTMLElement | null = isString(element) ? document.querySelector<HTMLElement>(element) : element
+	let el: HTMLElement | null
+	if (isString(element)) {
+		el = document.querySelector<HTMLElement>(element)
+		if (el === null) throw new ReferenceError(`Selector '${element}' did not match any element`)
+	} else {
+		el = element
+	}
 	for (const [key, value] of Object.entries(attributes)) {
 		if (value === undefined || value === null) {
 			el?.removeAttribute(key)
