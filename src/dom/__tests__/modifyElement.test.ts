@@ -91,4 +91,11 @@ describe('modifyElement', () => {
 			"Selector '#does-not-exist' did not match any element"
 		)
 	})
+
+	it('treats null attributes as a no-op', () => {
+		const before = (el as HTMLElement).outerHTML
+		const result = modifyElement(el as HTMLElement, null)
+		expect(result).toBe(el)
+		expect((el as HTMLElement).outerHTML).toBe(before)
+	})
 })
