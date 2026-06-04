@@ -40,15 +40,6 @@ describe('interpolateLiteral', () => {
 			},
 			error: TypeError
 		},
-		{
-			name: 'throws if one token is missing',
-			value: 'A ${foo} with fun "${bar}" and a lot of ${fun}',
-			tokens: {
-				foo: 'bird',
-				fun: 'dignity',
-			},
-			error: 'bar is not defined'
-		}
 	])('$name', ({value, tokens, error}) => {
 		expect(() => interpolateLiteral(value as unknown as string, tokens as unknown as Record<string, unknown>)).toThrow(error)
 	})
@@ -57,8 +48,17 @@ describe('interpolateLiteral', () => {
 		expect(interpolateLiteral('A plain string with no token')).toBe('A plain string with no token')
 	})
 
-	it('throws a ReferenceError (not a TypeError) when tokens is omitted and a token is present', () => {
-		expect(() => interpolateLiteral('A ${foo}')).toThrow(ReferenceError)
-		expect(() => interpolateLiteral('A ${foo}')).toThrow('foo is not defined')
+	it('preserves the placeholder when a key is missing', () => {
+		expect(
+			interpolateLiteral('A ${foo} with fun "${bar}" and a lot of ${fun}', { foo: 'bird', fun: 'dignity' })
+		).toBe('A bird with fun "${bar}" and a lot of dignity')
+	})
+
+	it('preserves the placeholder when tokens is omitted and a token is present', () => {
+		expect(interpolateLiteral('A ${foo}')).toBe('A ${foo}')
+	})
+
+	it('distinguishes missing keys (preserved) from present nil values (coerced)', () => {
+		expect(interpolateLiteral('${foo} ${bar}', { bar: null })).toBe('${foo} null')
 	})
 })

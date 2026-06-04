@@ -20,10 +20,10 @@ describe('interpolateLiteral (property-based)', () => {
 		)
 	})
 
-	it('throws a ReferenceError for a placeholder whose key is absent', () => {
+	it('preserves the placeholder when a key is absent', () => {
 		fc.assert(
 			fc.property(identifier, (key) => {
-				expect(() => interpolateLiteral(`\${${key}}`, {})).toThrow(ReferenceError)
+				expect(interpolateLiteral(`\${${key}}`, {})).toBe(`\${${key}}`)
 			})
 		)
 	})
