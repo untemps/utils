@@ -1,3 +1,10 @@
+# [4.0.0-beta.25](https://github.com/untemps/utils/compare/v4.0.0-beta.24...v4.0.0-beta.25) (2026-06-04)
+
+
+### Bug Fixes
+
+* **dom:** Tolerate null attributes in modifyElement ([#138](https://github.com/untemps/utils/issues/138)) ([ecdd52f](https://github.com/untemps/utils/commit/ecdd52fbf5eee9323ab181f6051ff04fb1bcf004))
+
 # [4.0.0-beta.24](https://github.com/untemps/utils/compare/v4.0.0-beta.23...v4.0.0-beta.24) (2026-06-04)
 
 
