@@ -49,9 +49,9 @@ describe('interpolateLiteral', () => {
 	})
 
 	it('preserves the placeholder when a key is missing', () => {
-		expect(interpolateLiteral('A ${foo} with fun "${bar}" and a lot of ${fun}', { foo: 'bird', fun: 'dignity' })).toBe(
-			'A bird with fun "${bar}" and a lot of dignity'
-		)
+		expect(
+			interpolateLiteral('A ${foo} with fun "${bar}" and a lot of ${fun}', { foo: 'bird', fun: 'dignity' })
+		).toBe('A bird with fun "${bar}" and a lot of dignity')
 	})
 
 	it('preserves the placeholder when tokens is omitted and a token is present', () => {
