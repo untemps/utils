@@ -1,3 +1,15 @@
+# [4.0.0-beta.24](https://github.com/untemps/utils/compare/v4.0.0-beta.23...v4.0.0-beta.24) (2026-06-04)
+
+
+### Bug Fixes
+
+* **dom:** Harmonize missing-target behaviour between removeElement and modifyElement ([#137](https://github.com/untemps/utils/issues/137)) ([b0a590c](https://github.com/untemps/utils/commit/b0a590c2790c3c4ffa40682316146cc0efaa658b))
+
+
+### BREAKING CHANGES
+
+* **dom:** removeElement no longer silently returns undefined when the string selector matches no element. It now throws a ReferenceError with the same message format as modifyElement. The null/undefined input path and the detached-element path are unchanged.
+
 # [4.0.0-beta.23](https://github.com/untemps/utils/compare/v4.0.0-beta.22...v4.0.0-beta.23) (2026-06-04)
 
 
