@@ -1,3 +1,15 @@
+# [4.0.0-beta.26](https://github.com/untemps/utils/compare/v4.0.0-beta.25...v4.0.0-beta.26) (2026-06-04)
+
+
+### Bug Fixes
+
+* **dom:** Reject null and undefined element input in modifyElement and removeElement ([#139](https://github.com/untemps/utils/issues/139)) ([e13bd89](https://github.com/untemps/utils/commit/e13bd892c011cbe2e3c481969d4f236391cc9cf7))
+
+
+### BREAKING CHANGES
+
+* **dom:** modifyElement(null), modifyElement(undefined), removeElement(null) and removeElement(undefined) now throw TypeError instead of returning undefined. Callers must either guard the input before calling or wrap the call in try/catch.
+
 # [4.0.0-beta.25](https://github.com/untemps/utils/compare/v4.0.0-beta.24...v4.0.0-beta.25) (2026-06-04)
 
 
