@@ -1,3 +1,15 @@
+# [4.0.0-beta.22](https://github.com/untemps/utils/compare/v4.0.0-beta.21...v4.0.0-beta.22) (2026-06-04)
+
+
+### Features
+
+* **string:** Harmonize missing-key behaviour between interpolate and interpolateLiteral ([#124](https://github.com/untemps/utils/issues/124)) ([379b551](https://github.com/untemps/utils/commit/379b5516c0fa56f685003d640b936969d42b57cd))
+
+
+### BREAKING CHANGES
+
+* **string:** interpolateLiteral no longer throws ReferenceError when a placeholder key is missing from tokens. The placeholder is preserved in the result. Callers relying on the throw must pre-validate the keys against the placeholders found in the input string.
+
 # [4.0.0-beta.21](https://github.com/untemps/utils/compare/v4.0.0-beta.20...v4.0.0-beta.21) (2026-06-04)
 
 
