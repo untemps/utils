@@ -69,7 +69,7 @@ export const createElement = ({
 	if (content) {
 		el.appendChild(content)
 	}
-	if (textContent && !el.hasChildNodes()) {
+	if (textContent != null && !el.hasChildNodes()) {
 		el.appendChild(document.createTextNode(textContent))
 	}
 	const parentNode = parent || document.querySelector(parentSelector as string)
