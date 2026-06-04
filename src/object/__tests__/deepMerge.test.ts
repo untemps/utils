@@ -220,6 +220,46 @@ describe('deepMerge', () => {
 		})
 	})
 
+	describe('source aliasing', () => {
+		it('preserves aliasing for two source properties sharing the same object reference', () => {
+			const shared = { n: 1 }
+			const result = deepMerge({ a: shared, b: shared }, {}) as { a: object; b: object }
+			expect(result.a).not.toBe(shared)
+			expect(result.a).toBe(result.b)
+		})
+
+		it('preserves aliasing for shared references buried under merged subtrees', () => {
+			const shared = { z: 1 }
+			const source = { a: { sub: shared }, b: { sub: shared } }
+			const target = { a: { keepA: 1 }, b: { keepB: 2 } }
+			const result = deepMerge(source, target) as {
+				a: { sub: object; keepA: number }
+				b: { sub: object; keepB: number }
+			}
+			expect(result.a.sub).not.toBe(shared)
+			expect(result.a.sub).toBe(result.b.sub)
+			expect(result.a.keepA).toBe(1)
+			expect(result.b.keepB).toBe(2)
+		})
+
+		it('preserves aliasing for an object shared between source and target', () => {
+			const shared = { z: 1 }
+			const result = deepMerge({ fromSource: shared }, { fromTarget: shared }) as {
+				fromSource: object
+				fromTarget: object
+			}
+			expect(result.fromSource).not.toBe(shared)
+			expect(result.fromSource).toBe(result.fromTarget)
+		})
+
+		it('preserves aliasing for shared array elements', () => {
+			const shared = { n: 1 }
+			const result = deepMerge({ items: [shared, shared] }, {}) as { items: object[] }
+			expect(result.items[0]).not.toBe(shared)
+			expect(result.items[0]).toBe(result.items[1])
+		})
+	})
+
 	describe('prototype pollution', () => {
 		afterEach(() => {
 			delete (Object.prototype as Record<string, unknown>).polluted

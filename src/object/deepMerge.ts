@@ -5,7 +5,7 @@
 import { isObject } from './isObject'
 
 /** @private */
-const clone = (value: unknown, seen = new WeakMap<object, unknown>()): unknown => {
+const clone = (value: unknown, seen: WeakMap<object, unknown>): unknown => {
 	if (Array.isArray(value)) {
 		if (seen.has(value)) return seen.get(value)
 		const out: unknown[] = new Array(value.length)
@@ -38,11 +38,11 @@ const merge = (
 	source: Record<string, unknown>,
 	target: Record<string, unknown>,
 	mutate: boolean,
-	seen: WeakMap<object, Record<string, unknown>>
+	seen: WeakMap<object, unknown>
 ): Record<string, unknown> => {
-	const existing = seen.get(source)
+	const existing = seen.get(source) as Record<string, unknown> | undefined
 	if (existing) return existing
-	const result = mutate ? target : (clone(target) as Record<string, unknown>)
+	const result = mutate ? target : (clone(target, seen) as Record<string, unknown>)
 	seen.set(source, result)
 	for (const key of Object.keys(source)) {
 		if (key === '__proto__') continue
@@ -54,10 +54,9 @@ const merge = (
 				seen
 			)
 		} else {
-			result[key] = clone(source[key])
+			result[key] = clone(source[key], seen)
 		}
 	}
-	seen.delete(source)
 	return result
 }
 
@@ -70,8 +69,9 @@ const merge = (
  * const target = { foo: 2, zaz: { juv: 1 }, bar: { gag: 'gag' } }
  * deepMerge(source, target) // { foo: 1, zaz: { juv: 1 }, bar: { gag: [1, 2, 3], pol: { mur: 'mur' } } }
  *
- * Plain objects and arrays are deep-cloned, with circular references preserved. Non-cloneable
- * values (functions, DOM nodes, non-serialisable instances) are copied by reference instead of
+ * Plain objects and arrays are deep-cloned, with circular references preserved. Identical
+ * references in the source produce identical references in the output. Non-cloneable values
+ * (functions, DOM nodes, non-serialisable instances) are copied by reference instead of
  * throwing. `__proto__` keys are ignored to prevent prototype pollution.
  *
  * @param source - The object to merge into the target.
