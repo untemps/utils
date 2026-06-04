@@ -1,3 +1,15 @@
+# [4.0.0-beta.19](https://github.com/untemps/utils/compare/v4.0.0-beta.18...v4.0.0-beta.19) (2026-06-04)
+
+
+### Bug Fixes
+
+* **array:** Return extractByIndices values in indices order ([#118](https://github.com/untemps/utils/issues/118)) ([58279e2](https://github.com/untemps/utils/commit/58279e248e69dd2d7bd633e4336a9d7c2120b478))
+
+
+### BREAKING CHANGES
+
+* **array:** extractByIndices result order now follows the indices array. Callers relying on source-order output must sort indices upstream.
+
 # [4.0.0-beta.18](https://github.com/untemps/utils/compare/v4.0.0-beta.17...v4.0.0-beta.18) (2026-06-03)
 
 
