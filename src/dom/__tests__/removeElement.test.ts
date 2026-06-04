@@ -1,4 +1,5 @@
 import { createElement } from '../createElement'
+import { modifyElement } from '../modifyElement'
 import { removeElement } from '../removeElement'
 
 describe('removeElement', () => {
@@ -39,5 +40,16 @@ describe('removeElement', () => {
 	it('throws ReferenceError when string selector does not match any element', () => {
 		expect(() => removeElement('#does-not-exist')).toThrow(ReferenceError)
 		expect(() => removeElement('#does-not-exist')).toThrow("Selector '#does-not-exist' did not match any element")
+	})
+
+	describe('parity with modifyElement', () => {
+		// prettier-ignore
+		it.each([
+			{ name: 'removeElement', fn: () => removeElement('#does-not-exist') },
+			{ name: 'modifyElement', fn: () => modifyElement('#does-not-exist', { class: 'bar' }) },
+		])('$name throws ReferenceError with the same message on a missing selector', ({ fn }) => {
+			expect(fn).toThrow(ReferenceError)
+			expect(fn).toThrow("Selector '#does-not-exist' did not match any element")
+		})
 	})
 })
