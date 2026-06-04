@@ -4,7 +4,7 @@ import { extractByIndices } from '../extractByIndices'
 
 describe('extractByIndices', () => {
 	it(
-		'returns only the values located at the given indices',
+		'returns values in the order specified by indices, skipping out-of-bounds entries',
 		() =>
 			fc.assert(
 				fc.property(
@@ -14,13 +14,16 @@ describe('extractByIndices', () => {
 								minLength: length,
 								maxLength: length,
 							}),
-							fc.array(fc.nat({ max: Math.max(length - 1, 0) }), { minLength: length, maxLength: length })
+							fc.array(fc.integer({ min: -length - 5, max: length + 5 }), {
+								minLength: length,
+								maxLength: length,
+							})
 						)
 					}),
 					([source, indices]) => {
 						const target = extractByIndices(source, indices)
-						const indexSet = new Set(indices)
-						expect(target).toEqual(source.filter((_, index) => indexSet.has(index)))
+						const expected = indices.flatMap((i) => (i >= 0 && i < source.length ? [source[i]] : []))
+						expect(target).toEqual(expected)
 					}
 				)
 			),

@@ -38,6 +38,30 @@ describe('extractByIndices', () => {
       source: ['foo', 'bar', 'gag', 'pol', 'zux'],
       indices: [1, 3],
       expected: ['bar', 'pol'],
+    },
+    {
+      name: 'returns values in the order specified by indices',
+      source: ['foo', 'bar', 'gag', 'pol', 'zux'],
+      indices: [3, 1],
+      expected: ['pol', 'bar'],
+    },
+    {
+      name: 'preserves duplicates in indices',
+      source: ['foo', 'bar', 'gag', 'pol', 'zux'],
+      indices: [1, 1, 0],
+      expected: ['bar', 'bar', 'foo'],
+    },
+    {
+      name: 'skips invalid indices while keeping the requested order',
+      source: ['foo', 'bar', 'gag', 'pol', 'zux'],
+      indices: [3, -1, 1, 99],
+      expected: ['pol', 'bar'],
+    },
+    {
+      name: 'skips non-integer indices',
+      source: ['foo', 'bar', 'gag', 'pol', 'zux'],
+      indices: [0, 1.5, 2],
+      expected: ['foo', 'gag'],
     }
   ])(`$name`, ({source, indices, expected}) => {
     const target = extractByIndices(source, indices)
