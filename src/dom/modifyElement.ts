@@ -17,13 +17,14 @@ import { isString } from '../string/isString'
  * modifyElement('#missing', { className: 'bar' }) // throws ReferenceError
  *
  * @param element    - The DOM element or selector of the DOM element to modify.
- * @param attributes - The new attributes to set to the DOM element.
+ * @param attributes - The new attributes to set to the DOM element. `null` is treated as a no-op,
+ *                     mirroring the lenient behaviour of `createElement`.
  * @throws {ReferenceError} When `element` is a string selector that does not match any element in the document.
  * @returns The modified DOM element.
  */
 export const modifyElement = (
 	element: HTMLElement | string,
-	attributes: Record<string, string | null | undefined> = {}
+	attributes: Record<string, string | null | undefined> | null = {}
 ): HTMLElement | null => {
 	let el: HTMLElement | null
 	if (isString(element)) {
@@ -32,11 +33,13 @@ export const modifyElement = (
 	} else {
 		el = element
 	}
-	for (const [key, value] of Object.entries(attributes)) {
-		if (value === undefined || value === null) {
-			el?.removeAttribute(key)
-		} else {
-			el?.setAttribute(key, value)
+	if (attributes) {
+		for (const [key, value] of Object.entries(attributes)) {
+			if (value === undefined || value === null) {
+				el?.removeAttribute(key)
+			} else {
+				el?.setAttribute(key, value)
+			}
 		}
 	}
 	return el
