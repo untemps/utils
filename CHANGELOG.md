@@ -1,3 +1,10 @@
+# [4.0.0-beta.27](https://github.com/untemps/utils/compare/v4.0.0-beta.26...v4.0.0-beta.27) (2026-06-04)
+
+
+### Bug Fixes
+
+* **dom:** Honor explicit empty-string textContent in createElement ([#140](https://github.com/untemps/utils/issues/140)) ([db50815](https://github.com/untemps/utils/commit/db508152fecb0e40690f54cc762738e2ce4d87a9))
+
 # [4.0.0-beta.26](https://github.com/untemps/utils/compare/v4.0.0-beta.25...v4.0.0-beta.26) (2026-06-04)
 
 
