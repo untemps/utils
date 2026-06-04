@@ -57,6 +57,20 @@ describe('createElement', () => {
 		expect(parent).toContainElement(createElement(values))
 	})
 
+	it('creates an empty text node when textContent is an empty string', () => {
+		const el = createElement({ textContent: '' })
+		expect(el.firstChild).not.toBeNull()
+		expect(el.firstChild?.nodeType).toBe(Node.TEXT_NODE)
+		expect(el.firstChild?.nodeValue).toBe('')
+	})
+
+	it('still prefers content over an empty-string textContent', () => {
+		const child = createElement({ tag: 'span' })
+		const el = createElement({ content: child, textContent: '' })
+		expect(el.firstChild).toBe(child)
+		expect(el.childNodes.length).toBe(1)
+	})
+
 	// prettier-ignore
 	it.each([
 		{
