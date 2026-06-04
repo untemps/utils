@@ -1,3 +1,4 @@
+import { interpolate } from '../interpolate'
 import { interpolateLiteral } from '../interpolateLiteral'
 
 describe('interpolateLiteral', () => {
@@ -65,5 +66,19 @@ describe('interpolateLiteral', () => {
 
 	it('preserves the placeholder for both missing keys and present nil values', () => {
 		expect(interpolateLiteral('${foo} ${bar} ${baz}', { bar: null, baz: undefined })).toBe('${foo} ${bar} ${baz}')
+	})
+
+	describe('parity with interpolate', () => {
+		// prettier-ignore
+		it.each([
+			{ name: 'full tokens',                tokens: { foo: 'bird', bar: 'wings' }, expectLiteral: 'bird wings',     expectPercent: 'bird wings'     },
+			{ name: 'partial tokens (missing)',   tokens: { foo: 'bird' },               expectLiteral: 'bird ${bar}',    expectPercent: 'bird %bar%'     },
+			{ name: 'nil value (null)',           tokens: { foo: 'bird', bar: null },    expectLiteral: 'bird ${bar}',    expectPercent: 'bird %bar%'     },
+			{ name: 'nil value (undefined)',      tokens: { foo: 'bird', bar: undefined }, expectLiteral: 'bird ${bar}',  expectPercent: 'bird %bar%'     },
+			{ name: 'no tokens at all',           tokens: {},                            expectLiteral: '${foo} ${bar}',  expectPercent: '%foo% %bar%'    },
+		])('treats $name identically across both functions', ({ tokens, expectLiteral, expectPercent }) => {
+			expect(interpolateLiteral('${foo} ${bar}', tokens as Record<string, unknown>)).toBe(expectLiteral)
+			expect(interpolate('%foo% %bar%', tokens as Record<string, unknown>)).toBe(expectPercent)
+		})
 	})
 })
