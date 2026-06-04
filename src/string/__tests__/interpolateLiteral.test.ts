@@ -57,4 +57,8 @@ describe('interpolateLiteral', () => {
 	it('preserves the placeholder when tokens is omitted and a token is present', () => {
 		expect(interpolateLiteral('A ${foo}')).toBe('A ${foo}')
 	})
+
+	it('distinguishes missing keys (preserved) from present nil values (coerced)', () => {
+		expect(interpolateLiteral('${foo} ${bar}', { bar: null })).toBe('${foo} null')
+	})
 })
