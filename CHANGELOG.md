@@ -1,3 +1,15 @@
+# [4.0.0-beta.20](https://github.com/untemps/utils/compare/v4.0.0-beta.19...v4.0.0-beta.20) (2026-06-04)
+
+
+### Bug Fixes
+
+* **dom:** Throw ReferenceError when modifyElement selector matches nothing ([#119](https://github.com/untemps/utils/issues/119)) ([941f091](https://github.com/untemps/utils/commit/941f09165f0dbd090b412a06ffb9edd2e85b25cf))
+
+
+### BREAKING CHANGES
+
+* **dom:** modifyElement(selector, attrs) now throws ReferenceError when the selector does not match any element. Callers relying on the null return must catch the error or pre-check with document.querySelector.
+
 # [4.0.0-beta.19](https://github.com/untemps/utils/compare/v4.0.0-beta.18...v4.0.0-beta.19) (2026-06-04)
 
 
