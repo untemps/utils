@@ -75,8 +75,8 @@ Every utility is exported both from the package root and per-module at `@untemps
 - **`normalizeMinMax`** — return `{ min, max }` with `min <= max`, swapping the inputs if needed
 
 ### object
-- **`deepClone`** — structured-clone deep copy (functions and DOM nodes are not supported)
-- **`deepMerge`** — recursively merge a source into a target with circular-reference support
+- **`deepClone`** — structured-clone deep copy. **Throws `DataCloneError`** on functions, DOM nodes, or other non-cloneable values. Use `deepMerge` if you need a lenient clone that keeps such values by reference.
+- **`deepMerge`** — recursively merge `source` into `target` with circular-reference support. Pass `true` as the third argument to merge into `target` in place instead of producing a new object.
 - **`isObject`** — check whether a value is a plain object
 
 ### string
