@@ -78,7 +78,7 @@ describe('deepMerge', () => {
 			const source = { items }
 			const result = deepMerge(source, {})
 			expect(result.items).not.toBe(items)
-			;(result.items as number[]).push(3)
+			result.items.push(3)
 			expect(items).toEqual([1, 2])
 		})
 
@@ -111,7 +111,7 @@ describe('deepMerge', () => {
 			const source = { items }
 			const result = deepMerge(source, { items: 'old' })
 			expect(result.items).not.toBe(items)
-			;(result.items as number[]).push(3)
+			result.items.push(3)
 			expect(items).toEqual([1, 2])
 		})
 
@@ -140,7 +140,7 @@ describe('deepMerge', () => {
 		it('copies a function nested in a source object by reference', () => {
 			const fn = () => 1
 			const result = deepMerge({ a: { fn } }, {})
-			expect((result.a as { fn: () => number }).fn).toBe(fn)
+			expect(result.a.fn).toBe(fn)
 		})
 
 		it('keeps a non-cloneable class instance by reference instead of throwing', () => {
@@ -223,7 +223,7 @@ describe('deepMerge', () => {
 	describe('source aliasing', () => {
 		it('preserves aliasing for two source properties sharing the same object reference', () => {
 			const shared = { n: 1 }
-			const result = deepMerge({ a: shared, b: shared }, {}) as { a: object; b: object }
+			const result = deepMerge({ a: shared, b: shared }, {})
 			expect(result.a).not.toBe(shared)
 			expect(result.a).toBe(result.b)
 		})
@@ -232,10 +232,7 @@ describe('deepMerge', () => {
 			const shared = { z: 1 }
 			const source = { a: { sub: shared }, b: { sub: shared } }
 			const target = { a: { keepA: 1 }, b: { keepB: 2 } }
-			const result = deepMerge(source, target) as {
-				a: { sub: object; keepA: number }
-				b: { sub: object; keepB: number }
-			}
+			const result = deepMerge(source, target)
 			expect(result.a.sub).not.toBe(shared)
 			expect(result.a.sub).toBe(result.b.sub)
 			expect(result.a.keepA).toBe(1)
@@ -244,17 +241,14 @@ describe('deepMerge', () => {
 
 		it('preserves aliasing for an object shared between source and target', () => {
 			const shared = { z: 1 }
-			const result = deepMerge({ fromSource: shared }, { fromTarget: shared }) as {
-				fromSource: object
-				fromTarget: object
-			}
+			const result = deepMerge({ fromSource: shared }, { fromTarget: shared })
 			expect(result.fromSource).not.toBe(shared)
 			expect(result.fromSource).toBe(result.fromTarget)
 		})
 
 		it('preserves aliasing for shared array elements', () => {
 			const shared = { n: 1 }
-			const result = deepMerge({ items: [shared, shared] }, {}) as { items: object[] }
+			const result = deepMerge({ items: [shared, shared] }, {})
 			expect(result.items[0]).not.toBe(shared)
 			expect(result.items[0]).toBe(result.items[1])
 		})
@@ -343,6 +337,51 @@ describe('deepMerge', () => {
 			const target: Record<string, unknown> = {}
 			deepMerge({ fn }, target, true)
 			expect(target.fn).toBe(fn)
+		})
+	})
+
+	describe('typing', () => {
+		it('infers disjoint source and target keys', () => {
+			const result = deepMerge({ foo: 1 }, { bar: 'x' })
+			expectTypeOf(result).toEqualTypeOf<{ foo: number; bar: string }>()
+		})
+
+		it('lets source win on overlapping primitive keys', () => {
+			const result = deepMerge({ foo: 1 }, { foo: 'x' })
+			expectTypeOf(result).toEqualTypeOf<{ foo: number }>()
+		})
+
+		it('recursively merges nested plain objects', () => {
+			const source = { bar: { gag: 1 } }
+			const target = { bar: { pol: 'mur' } }
+			const result = deepMerge(source, target)
+			expectTypeOf(result).toEqualTypeOf<{ bar: { gag: number; pol: string } }>()
+		})
+
+		it('replaces arrays instead of merging them', () => {
+			const result = deepMerge({ items: [1, 2] }, { items: [3, 4, 5] })
+			expectTypeOf(result).toEqualTypeOf<{ items: number[] }>()
+		})
+
+		it('lets a source primitive override a target plain object', () => {
+			const result = deepMerge({ a: 5 }, { a: { b: 1 } })
+			expectTypeOf(result).toEqualTypeOf<{ a: number }>()
+		})
+
+		it('preserves the inferred return type when mutate is true', () => {
+			const result = deepMerge({ foo: 1 }, { bar: 2 }, true)
+			expectTypeOf(result).toEqualTypeOf<{ foo: number; bar: number }>()
+		})
+
+		it('infers a realistic config merge', () => {
+			const defaults = { server: { host: 'localhost', port: 8080 }, debug: false }
+			const userConfig = { server: { port: 9090 }, logLevel: 'info' }
+			const result = deepMerge(userConfig, defaults)
+			expectTypeOf(result).toEqualTypeOf<{
+				server: { host: string; port: number }
+				debug: boolean
+				logLevel: string
+			}>()
 		})
 	})
 })
