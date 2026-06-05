@@ -1,3 +1,115 @@
+# [4.0.0](https://github.com/untemps/utils/compare/v3.2.1...v4.0.0) (2026-06-05)
+
+
+* refactor(dom)!: Use Element.remove() in removeElement ([#120](https://github.com/untemps/utils/issues/120)) ([c15677e](https://github.com/untemps/utils/commit/c15677e23cdee1a769307545792293463a18e8e7))
+
+
+### Bug Fixes
+
+* **array:** Return extractByIndices values in indices order ([#118](https://github.com/untemps/utils/issues/118)) ([b3ad542](https://github.com/untemps/utils/commit/b3ad542a8c8533b8088a7d384d1b4aafbdc760e4))
+* **dom:** Avoid unsafe DOMRect cast in createElement ([#81](https://github.com/untemps/utils/issues/81)) ([6fda5d4](https://github.com/untemps/utils/commit/6fda5d431d8da172388a71e71a69e479d454fb63))
+* **dom:** Harmonize missing-target behaviour between removeElement and modifyElement ([#137](https://github.com/untemps/utils/issues/137)) ([a6be726](https://github.com/untemps/utils/commit/a6be72614a22feb7f5ef1f66f3cb7d18a734515f))
+* **dom:** Harmonize null/undefined attribute handling in createElement ([#154](https://github.com/untemps/utils/issues/154)) ([94a2b57](https://github.com/untemps/utils/commit/94a2b572b97e5f8de07232dd74d5b195f62455e8))
+* **dom:** Honor explicit empty-string textContent in createElement ([#140](https://github.com/untemps/utils/issues/140)) ([a3640bb](https://github.com/untemps/utils/commit/a3640bbeb1b45a1fd938ab5ed61464da8d57e9b0))
+* **dom:** Reject null and undefined element input in modifyElement and removeElement ([#139](https://github.com/untemps/utils/issues/139)) ([ffcca02](https://github.com/untemps/utils/commit/ffcca02617cc8657ad0e87c89ed73b7fb45286c5))
+* **dom:** Replace for...in with Object.entries on attributes in modifyElement ([#61](https://github.com/untemps/utils/issues/61)) ([0e30f71](https://github.com/untemps/utils/commit/0e30f719da2da45e460f7adea9a9705ff49953ae))
+* **dom:** Skip cross-origin stylesheets in getCSSDeclaration ([#101](https://github.com/untemps/utils/issues/101)) ([b5c4094](https://github.com/untemps/utils/commit/b5c4094136a4e3ea23ff922f05a299c66ade7383))
+* **dom:** Snapshot getCSSDeclaration return to prevent live stylesheet mutation ([#155](https://github.com/untemps/utils/issues/155)) ([f0f7f0d](https://github.com/untemps/utils/commit/f0f7f0d598de1b3eaaef6c2c24faf93398720778))
+* **dom:** Throw ReferenceError when modifyElement selector matches nothing ([#119](https://github.com/untemps/utils/issues/119)) ([8ca987b](https://github.com/untemps/utils/commit/8ca987b7833f45d55ec018417903c98797c5e0c0))
+* **dom:** Tolerate null attributes in modifyElement ([#138](https://github.com/untemps/utils/issues/138)) ([fd55f8b](https://github.com/untemps/utils/commit/fd55f8b56cbcb52c4173dbee05e9936ce7617ee9))
+* **number:** Narrow getRandomInteger defaults to safe integer range ([#117](https://github.com/untemps/utils/issues/117)) ([b2e284f](https://github.com/untemps/utils/commit/b2e284fc18e1c8afddb998e748296c612c299f0e))
+* **object:** Copy non-cloneable values by reference in deepMerge ([#99](https://github.com/untemps/utils/issues/99)) ([f44a2d1](https://github.com/untemps/utils/commit/f44a2d10fbe166e80bd9321f959d462c19d926dc))
+* **object:** Deep clone non-plain-object source values in deepMerge ([#79](https://github.com/untemps/utils/issues/79)) ([c357715](https://github.com/untemps/utils/commit/c3577156ad61dda631ba6d5e7743609650d43471))
+* **object:** Make deepMerge immutable by default, add mutate flag ([#60](https://github.com/untemps/utils/issues/60)) ([d56b2d9](https://github.com/untemps/utils/commit/d56b2d9efc688c55c19d341e8d2e17a3df712c60))
+* **object:** Preserve source-side aliasing in deepMerge ([#141](https://github.com/untemps/utils/issues/141)) ([dccdfc6](https://github.com/untemps/utils/commit/dccdfc6dede39203ec849f83f1083bd6d8e1fa9b))
+* **object:** Return false instead of throwing for nullish values in isObject ([#86](https://github.com/untemps/utils/issues/86)) ([10d7ef5](https://github.com/untemps/utils/commit/10d7ef5ef9d5154ddde70f9b3f87ba14d38ea8b6))
+* **string:** Default interpolateLiteral tokens to empty object ([#80](https://github.com/untemps/utils/issues/80)) ([ede8348](https://github.com/untemps/utils/commit/ede834831df04e5deb0b3a2aa9823718780a2a44))
+* **string:** Escape token keys when building the interpolate regex ([#91](https://github.com/untemps/utils/issues/91)) ([9fcb42c](https://github.com/untemps/utils/commit/9fcb42c2262b647c8c06c4fe90c8eb1d3ab2ff5f))
+* **string:** Harmonize nil-value handling between interpolate and interpolateLiteral ([#136](https://github.com/untemps/utils/issues/136)) ([bdf3a13](https://github.com/untemps/utils/commit/bdf3a13b3ab9894650a746126bbf159ec590e2e9))
+* **string:** Preserve delimiters in interpolate when token value is nil ([#105](https://github.com/untemps/utils/issues/105)) ([3013b20](https://github.com/untemps/utils/commit/3013b20f7f597330348cdfdf48ce1b4085ef81b4))
+* **string:** Replace incomplete escapeDivider regex with full metacharacter set ([#63](https://github.com/untemps/utils/issues/63)) ([264905f](https://github.com/untemps/utils/commit/264905f89b01e31144e60745fc756049a7071459))
+* **string:** Return value unchanged when interpolate has no tokens ([#100](https://github.com/untemps/utils/issues/100)) ([fe2346a](https://github.com/untemps/utils/commit/fe2346ae1564e41773b11725e6500d80b53f0ba8))
+* **string:** Throw RangeError in generateText when dictionary is empty ([#62](https://github.com/untemps/utils/issues/62)) ([e904575](https://github.com/untemps/utils/commit/e90457527052bff1581fb3d1a7ad1a57c9752be5))
+
+
+### Code Refactoring
+
+* **object:** Infer DeepMerge return type from source and target ([#157](https://github.com/untemps/utils/issues/157)) ([8b38c1c](https://github.com/untemps/utils/commit/8b38c1c4da49c17b51114c0aba23c1990eaf70bf))
+* **string:** Replace new Function with regex in interpolateLiteral ([#59](https://github.com/untemps/utils/issues/59)) ([2012626](https://github.com/untemps/utils/commit/2012626c41bd2c59639f6625cbb7d9802b39bf38))
+
+
+### Features
+
+* Add debounce and throttle functions to async/ ([#64](https://github.com/untemps/utils/issues/64)) ([467b924](https://github.com/untemps/utils/commit/467b924d2de391cc940e4abdfc40ba359e89b6ac))
+* Add deepClone function to object/ ([#65](https://github.com/untemps/utils/issues/65)) ([9172bb5](https://github.com/untemps/utils/commit/9172bb5071ae20a515c27c3d346af432d9b21fc7))
+* **dom:** Match grouped selectors in getCSSDeclaration ([#145](https://github.com/untemps/utils/issues/145)) ([db66049](https://github.com/untemps/utils/commit/db6604961aa05abd43f9a2983a373f8c558b19f4))
+* **string:** Harmonize missing-key behaviour between interpolate and interpolateLiteral ([#124](https://github.com/untemps/utils/issues/124)) ([119f97e](https://github.com/untemps/utils/commit/119f97e69d3ec344357a1d99854c6e48974ebb6a))
+
+
+### Performance Improvements
+
+* **dom:** Avoid array spread in resolveClassName reduce ([#90](https://github.com/untemps/utils/issues/90)) ([d8fcb43](https://github.com/untemps/utils/commit/d8fcb438946eba762456f75499a0cea45c29676d))
+
+
+### BREAKING CHANGES
+
+* **object:** deepMerge no longer returns `Record<string, unknown>`. Callers that explicitly annotated the result with that type, or that assigned it to a `Record<string, unknown>`-typed variable, now get a narrower inferred type and must drop the annotation (or widen with `as Record<string, unknown>` if needed).
+
+(cherry picked from commit 9fd4a40987ed65692c1cefb8724ae03ad22c5823)
+* **dom:** getCSSDeclaration with returnText = false (the default) now returns a Record<string, string> snapshot instead of the live CSSStyleDeclaration. Callers relying on CSSStyleDeclaration methods (getPropertyValue, setProperty, ...) must either pass returnText = true and parse the string, switch to getComputedStyle, or update the stylesheet through document.styleSheets directly. Mutations on the returned object no longer propagate to the matched rule.
+
+(cherry picked from commit 16c45fc6a33b2f63b18a26412737187e0561833c)
+* **dom:** modifyElement(null), modifyElement(undefined), removeElement(null) and removeElement(undefined) now throw TypeError instead of returning undefined. Callers must either guard the input before calling or wrap the call in try/catch.
+
+(cherry picked from commit e13bd892c011cbe2e3c481969d4f236391cc9cf7)
+* **dom:** removeElement no longer silently returns undefined when the string selector matches no element. It now throws a ReferenceError with the same message format as modifyElement. The null/undefined input path and the detached-element path are unchanged.
+
+(cherry picked from commit b0a590c2790c3c4ffa40682316146cc0efaa658b)
+* **string:** interpolateLiteral no longer coerces null and undefined token values to the literal strings "null" and "undefined". The placeholder is preserved instead. Non-nil values, including symbols, are still coerced via String(value).
+
+(cherry picked from commit e0aeb05a14b474436aeffea013396e6ebd957c7d)
+* **string:** interpolateLiteral no longer throws ReferenceError when a placeholder key is missing from tokens. The placeholder is preserved in the result. Callers relying on the throw must pre-validate the keys against the placeholders found in the input string.
+
+(cherry picked from commit 379b5516c0fa56f685003d640b936969d42b57cd)
+* removeElement now returns a detached element unchanged instead of undefined. Callers that distinguished 'nothing to remove' from 'element removed' via the undefined return must check the element's parent in advance.
+
+(cherry picked from commit 7588ea0aab11428045572fffcc25018d6d21ea9a)
+* **dom:** modifyElement(selector, attrs) now throws ReferenceError when the selector does not match any element. Callers relying on the null return must catch the error or pre-check with document.querySelector.
+
+(cherry picked from commit 941f09165f0dbd090b412a06ffb9edd2e85b25cf)
+* **array:** extractByIndices result order now follows the indices array. Callers relying on source-order output must sort indices upstream.
+
+(cherry picked from commit 58279e248e69dd2d7bd633e4336a9d7c2120b478)
+* **number:** getRandomInteger() called without arguments now draws from a narrower default range — Math.ceil(Number.MIN_SAFE_INTEGER / 2) to Math.floor(Number.MAX_SAFE_INTEGER / 2) — instead of the previous ±Number.MAX_SAFE_INTEGER. The old full-safe-integer defaults overflowed the (max - min + 1) span and biased the distribution. Callers relying on the previous range must pass the bounds explicitly.
+
+(cherry picked from commit 4c95cf125b0ee0dc0fee4ed5aaf8143512cc58c1)
+* **string:** interpolate now preserves `%key%` when the token value is null or undefined, instead of returning the bare key.
+
+(cherry picked from commit e55a131374d552e730b94094ed52626a01157882)
+* **string:** generateText now throws a RangeError when dictionary is null or empty instead of producing corrupt output or an implicit TypeError.
+Previously, passing dictionary: null caused an unspecified TypeError deep inside the function (null.length). Passing dictionary: [] silently returned a string composed entirely of the literal word "undefined".
+Both cases now throw RangeError('dictionary must not be empty') at the function entry point via a single !dictionary?.length guard.
+Migration:
+    - Replace any reliance on the silent "undefined" output from an empty
+      dictionary with explicit error handling.
+    - Code catching TypeError for the null dictionary case must now catch
+      RangeError instead.
+
+(cherry picked from commit 3453c59ac58f095bbdffed0150da73217721e5cc)
+* **object:** deepMerge now returns a new object and no longer mutates its inputs.
+Previously, deepMerge merged source into target in place and returned the same target reference. Both source and target could be silently modified as a side effect.
+The new default behaviour (mutate = false) clones target as the result base via structuredClone — neither source nor target is touched, and the return value is always a distinct object. Source-only object values are also deep-cloned, so the result shares no references with source.
+Migration:
+    - Replace any reliance on `deepMerge(s, t) === t` with the return value.
+    - Replace any post-call inspection of t with the return value.
+    - Pass `mutate = true` as the third argument to restore in-place merging.
+
+(cherry picked from commit 0348da8d4c25bea0560c5c0fbb44a14d31df4f36)
+* **string:** Symbol token values no longer throw — they are stringified via String() (e.g. Symbol('x') → "Symbol(x)"). Previously this was a side-effect of the template literal inside new Function; the new behaviour is explicit and consistent.
+Expression placeholders such as ${foo + bar} or ${obj.prop} are no longer evaluated. The \w+ regex only matches simple identifiers. These were never documented or supported, but silently worked via eval. They now pass through unsubstituted.
+
+(cherry picked from commit a900eb10a461280def1afaa5cf26d470fded53b2)
+
 ## [3.2.1](https://github.com/untemps/utils/compare/v3.2.0...v3.2.1) (2026-05-13)
 
 
