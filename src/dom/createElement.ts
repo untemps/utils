@@ -22,8 +22,8 @@ export interface BoundingClientRectInit {
 export interface CreateElementConfig {
 	/** The tag name of the new DOM element to create. All valid HTML tags are accepted. */
 	tag?: string
-	/** The attributes to pass to the new DOM element. */
-	attributes?: Record<string, string> | null
+	/** The attributes to pass to the new DOM element. Keys whose value is `null` or `undefined` are ignored. */
+	attributes?: Record<string, string | null | undefined> | null
 	/** A DOM element to append as child. Has precedence over textContent. */
 	content?: HTMLElement | null
 	/** A text to append as child of the new DOM element. */
@@ -48,6 +48,10 @@ export interface CreateElementConfig {
  *  parentSelector: 'body'
  * }) // <p id="foo" style="font-weight: bold">Foo</p>
  *
+ * @remarks
+ * Attribute keys whose value is `null` or `undefined` are ignored, matching `modifyElement`'s
+ * lenient behaviour. This makes it safe to reuse the same configuration object across both APIs.
+ *
  * @param config - The configuration object for the new DOM element.
  * @returns The new DOM element.
  */
@@ -63,6 +67,7 @@ export const createElement = ({
 	const el = document.createElement(tag)
 	if (attributes) {
 		for (const [key, value] of Object.entries(attributes)) {
+			if (value === undefined || value === null) continue
 			el.setAttribute(key, value)
 		}
 	}
