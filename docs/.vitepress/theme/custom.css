@@ -1,0 +1,10 @@
+/**
+ * Widen the home hero so the headline ("Zero-dependency TypeScript utilities")
+ * keeps on a single line on wider viewports instead of wrapping early.
+ * The default theme caps `.main` at 592px when the hero has no image.
+ */
+@media (min-width: 960px) {
+	.VPHero .main {
+		max-width: 760px;
+	}
+}

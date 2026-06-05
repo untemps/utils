@@ -4,7 +4,6 @@ layout: home
 hero:
   name: "@untemps/utils"
   text: "Zero-dependency TypeScript utilities"
-  tagline: A focused toolbox of 25 tree-shakeable helpers across 8 categories.
   actions:
     - theme: brand
       text: API Reference
