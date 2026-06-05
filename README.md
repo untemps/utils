@@ -20,6 +20,8 @@ yarn add @untemps/utils
 
 This package ships with full TypeScript declarations. No additional `@types/*` package needed.
 
+**Requirements:** Node.js `>= 20`.
+
 ## Usage
 
 ### ESM / TypeScript
@@ -85,3 +87,13 @@ Every utility is exported both from the package root and per-module at `@untemps
 - **`interpolate`** — replace `%key%`-style tokens in a string
 - **`interpolateLiteral`** — replace `${key}`-style tokens in a literal-like string
 - **`isString`** — check whether a value is a string
+
+## Development
+
+The development toolchain targets Node 24, pinned via [`.nvmrc`](./.nvmrc):
+
+```bash
+nvm use
+```
+
+Consumers only need Node `>= 20` (see [Installation](#installation)); the higher floor is for working on the project itself.
