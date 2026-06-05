@@ -20,13 +20,12 @@ jobs:
       - run: yarn typecheck
       - run: yarn test:ci
       - run: yarn build
+      - uses: codecov/codecov-action@v6.0.0
+        with:
+          files: coverage/lcov.info
       - uses: actions/upload-artifact@v4
+        if: github.event_name == 'push'
         with:
           name: dist
           path: dist
-          retention-days: 1
-      - uses: actions/upload-artifact@v4
-        with:
-          name: coverage
-          path: coverage
           retention-days: 1

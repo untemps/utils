@@ -28,13 +28,6 @@ jobs:
         with:
           name: dist
           path: dist
-      - uses: actions/download-artifact@v4
-        with:
-          name: coverage
-          path: coverage
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      - uses: codecov/codecov-action@v6.0.0
-        with:
-          files: coverage/lcov.info
