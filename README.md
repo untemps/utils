@@ -72,7 +72,7 @@ Every utility is exported both from the package root and per-module at `@untemps
 ### number
 - **`clamp`** — clamp a number between two bounds
 - **`getRandomInteger`** — return a pseudo-random integer in `[min, max]`
-- **`normalizeMinMax`** — return `[min, max]` ensuring `min <= max`
+- **`normalizeMinMax`** — return `{ min, max }` with `min <= max`, swapping the inputs if needed
 
 ### object
 - **`deepClone`** — structured-clone deep copy (functions and DOM nodes are not supported)
