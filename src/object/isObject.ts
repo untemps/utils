@@ -3,6 +3,8 @@
  */
 
 /**
+ * Checks whether a value is a plain object.
+ *
  * @function
  * @example
  * import { isObject } from '@untemps/utils/object/isObject'

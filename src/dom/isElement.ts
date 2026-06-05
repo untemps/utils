@@ -3,6 +3,8 @@
  */
 
 /**
+ * Checks whether a value is a DOM element.
+ *
  * @function
  * @example
  * import { isElement } from '@untemps/utils/dom/isElement'

@@ -100,6 +100,8 @@ export type DeepMerge<S, T> = {
 }
 
 /**
+ * Recursively merges `source` into `target`, handling nested objects, arrays, and circular references. Returns a new object by default, or mutates `target` in place when `mutate` is `true`.
+ *
  * @function
  * @example
  * import { deepMerge } from '@untemps/utils/object/deepMerge'

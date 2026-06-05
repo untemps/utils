@@ -37,6 +37,8 @@ export interface CreateElementConfig {
 }
 
 /**
+ * Creates a DOM element from a configuration object, optionally setting attributes and content and appending it to a parent. Attributes whose value is `null` or `undefined` are ignored.
+ *
  * @function
  * @example
  * import { createElement } from '@untemps/utils/dom/createElement'

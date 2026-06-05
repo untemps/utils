@@ -8,6 +8,8 @@ export interface DebouncedFunction<T extends (...args: never[]) => void> {
 }
 
 /**
+ * Wraps a function so its execution is delayed until `delay` milliseconds have elapsed without a new call; the returned function exposes a `cancel` method to abort a pending invocation.
+ *
  * @function
  * @example
  * import { debounce } from '@untemps/utils/async/debounce'

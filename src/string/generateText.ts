@@ -80,6 +80,8 @@ export interface GenerateTextConfig {
 }
 
 /**
+ * Generates a string made of a random number of words picked from a dictionary, bounded by the given minimum and maximum word counts.
+ *
  * @function
  * @example
  * import { generateText } from '@untemps/utils/string/generateText'

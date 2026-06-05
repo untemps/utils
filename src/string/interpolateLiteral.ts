@@ -5,6 +5,8 @@
 import { isNil } from '../lang/isNil'
 
 /**
+ * Replaces `${key}`-style tokens in a literal-like string with the matching values from a dictionary.
+ *
  * @function
  * @example
  * import { interpolateLiteral } from '@untemps/utils/string/interpolateLiteral'

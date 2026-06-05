@@ -5,6 +5,8 @@
 import { isString } from '../string/isString'
 
 /**
+ * Sets attributes on a DOM element referenced directly or by selector. An attribute whose value is `null` or `undefined` is removed instead of being set.
+ *
  * @function
  * @example
  * import { modifyElement } from '@untemps/utils/dom/modifyElement'
