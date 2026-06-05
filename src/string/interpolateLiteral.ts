@@ -19,6 +19,7 @@ import { isNil } from '../lang/isNil'
  * }
  * interpolateLiteral(value, tokens) // A bird with 3 "wings" and a lot of dignity
  *
+ * @remarks
  * Placeholders are preserved when the corresponding key is missing from `tokens` or when its
  * value is `null` / `undefined`, mirroring the behaviour of `interpolate`. Other values
  * (including symbols) are coerced via `String(value)`.

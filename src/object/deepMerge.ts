@@ -112,6 +112,7 @@ export type DeepMerge<S, T> = {
  * // returns { foo: 1, zaz: { juv: 1 }, bar: { gag: [1, 2, 3], pol: { mur: 'mur' } } }
  * // inferred as { foo: number; bar: { gag: number[]; pol: { mur: string } }; zaz: { juv: number } }
  *
+ * @remarks
  * Plain objects and arrays are deep-cloned, with circular references preserved. Identical
  * references in the source produce identical references in the output. Non-cloneable values
  * (functions, DOM nodes, non-serialisable instances) are copied by reference instead of
