@@ -3,6 +3,8 @@
  */
 
 /**
+ * Returns a promise that resolves after the given timeout, useful to pause an asynchronous flow.
+ *
  * @function
  * @example
  * import { standby } from '@untemps/utils/async/standby'

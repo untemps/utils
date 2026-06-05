@@ -5,6 +5,8 @@
 import { normalizeMinMax } from './normalizeMinMax'
 
 /**
+ * Restricts a number to the inclusive range defined by a minimum and a maximum bound.
+ *
  * @function
  * @example
  * import { clamp } from '@untemps/utils/number/clamp'

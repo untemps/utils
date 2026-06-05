@@ -5,6 +5,8 @@
 import { isNil } from '../lang/isNil'
 
 /**
+ * Replaces `${key}`-style tokens in a literal-like string with the matching values from a dictionary.
+ *
  * @function
  * @example
  * import { interpolateLiteral } from '@untemps/utils/string/interpolateLiteral'
@@ -17,6 +19,7 @@ import { isNil } from '../lang/isNil'
  * }
  * interpolateLiteral(value, tokens) // A bird with 3 "wings" and a lot of dignity
  *
+ * @remarks
  * Placeholders are preserved when the corresponding key is missing from `tokens` or when its
  * value is `null` / `undefined`, mirroring the behaviour of `interpolate`. Other values
  * (including symbols) are coerced via `String(value)`.

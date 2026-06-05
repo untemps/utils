@@ -3,6 +3,8 @@
  */
 
 /**
+ * Checks whether a value is a string.
+ *
  * @function
  * @example
  * import { isString } from '@untemps/utils/string/isString'

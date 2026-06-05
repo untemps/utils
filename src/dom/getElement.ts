@@ -3,6 +3,8 @@
  */
 
 /**
+ * Returns the first DOM element in the document matching the given CSS selector, or `null` when none matches.
+ *
  * @function
  * @example
  * import { getElement } from '@untemps/utils/dom/getElement'

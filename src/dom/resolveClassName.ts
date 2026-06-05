@@ -6,6 +6,8 @@ export type ClassConditionTuple = [condition: unknown, truthyValue: string, fals
 export type ClassEntry = string | ClassConditionTuple
 
 /**
+ * Aggregates class names from a list of strings or `[condition, ifTrue, ifFalse]` tuples into a single space-separated string.
+ *
  * @function
  * @example
  * import { resolveClassName } from '@untemps/utils/dom/resolveClassName'

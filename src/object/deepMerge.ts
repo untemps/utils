@@ -100,6 +100,8 @@ export type DeepMerge<S, T> = {
 }
 
 /**
+ * Recursively merges `source` into `target`, handling nested objects, arrays, and circular references. Returns a new object by default, or mutates `target` in place when `mutate` is `true`.
+ *
  * @function
  * @example
  * import { deepMerge } from '@untemps/utils/object/deepMerge'
@@ -110,6 +112,7 @@ export type DeepMerge<S, T> = {
  * // returns { foo: 1, zaz: { juv: 1 }, bar: { gag: [1, 2, 3], pol: { mur: 'mur' } } }
  * // inferred as { foo: number; bar: { gag: number[]; pol: { mur: string } }; zaz: { juv: number } }
  *
+ * @remarks
  * Plain objects and arrays are deep-cloned, with circular references preserved. Identical
  * references in the source produce identical references in the output. Non-cloneable values
  * (functions, DOM nodes, non-serialisable instances) are copied by reference instead of

@@ -21,6 +21,8 @@ export interface GenerateTokenizedTextConfig {
 }
 
 /**
+ * Generates a string like `generateText` with tokens inserted at random positions, returning both the generated text and the indices where the tokens were placed.
+ *
  * @function
  * @example
  * import { generateTokenizedText } from '@untemps/utils/string/generateTokenizedText'

@@ -3,6 +3,8 @@
  */
 
 /**
+ * Checks whether a value is a function.
+ *
  * @function
  * @example
  * import { isFunction } from '@untemps/utils/function/isFunction'

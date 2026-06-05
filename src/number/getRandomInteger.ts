@@ -8,6 +8,8 @@ const DEFAULT_MIN = Math.ceil(Number.MIN_SAFE_INTEGER / 2)
 const DEFAULT_MAX = Math.floor(Number.MAX_SAFE_INTEGER / 2)
 
 /**
+ * Returns a pseudo-random integer within the inclusive range `[min, max]`.
+ *
  * @function
  * @example
  * import { getRandomInteger } from '@untemps/utils/number/getRandomInteger'

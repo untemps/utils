@@ -6,6 +6,8 @@ export default defineConfig({
 	title: '@untemps/utils',
 	description: 'Zero-dependency utilities for @untemps packages',
 	cleanUrls: true,
+	// api-intro.md is consumed by TypeDoc as the API index (docs/api/index.md); exclude it as a standalone page.
+	srcExclude: ['api-intro.md'],
 	themeConfig: {
 		nav: [
 			{ text: 'API', link: '/api/' },
