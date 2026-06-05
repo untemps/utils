@@ -39,6 +39,34 @@ describe('getCSSDeclaration', () => {
 		})
 	})
 
+	describe('Grouped and composed selectors', () => {
+		const setSheet = (cssText: string): void => {
+			const accessibleSheet = {
+				cssRules: [{ selectorText: cssText.match(/^([^{]+)/)?.[1].trim(), style: { cssText: 'color: red;' } }],
+			} as unknown as CSSStyleSheet
+			vi.spyOn(document, 'styleSheets', 'get').mockReturnValue([accessibleSheet] as unknown as StyleSheetList)
+		}
+
+		afterEach(() => {
+			vi.restoreAllMocks()
+		})
+
+		it.each(['drag', '.drag', 'drop', '.drop'])('matches each name in a grouped selector (%s)', (className) => {
+			setSheet('.drag, .drop { color: red; }')
+			expect(getCSSDeclaration(className, true)).toBe('color: red;')
+		})
+
+		it('tolerates extra whitespace around the commas in a grouped selector', () => {
+			setSheet('.drag  ,   .drop { color: red; }')
+			expect(getCSSDeclaration('drop', true)).toBe('color: red;')
+		})
+
+		it('does not match a composed selector that merely contains the class', () => {
+			setSheet('.drag.active { color: red; }')
+			expect(getCSSDeclaration('drag')).toBeNull()
+		})
+	})
+
 	describe('With cross-origin stylesheets', () => {
 		const makeCrossOriginSheet = (): CSSStyleSheet =>
 			({
