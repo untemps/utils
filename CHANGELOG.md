@@ -1,3 +1,15 @@
+# [4.0.0-beta.30](https://github.com/untemps/utils/compare/v4.0.0-beta.29...v4.0.0-beta.30) (2026-06-05)
+
+
+### Bug Fixes
+
+* **dom:** Snapshot getCSSDeclaration return to prevent live stylesheet mutation ([#155](https://github.com/untemps/utils/issues/155)) ([16c45fc](https://github.com/untemps/utils/commit/16c45fc6a33b2f63b18a26412737187e0561833c))
+
+
+### BREAKING CHANGES
+
+* **dom:** getCSSDeclaration with returnText = false (the default) now returns a Record<string, string> snapshot instead of the live CSSStyleDeclaration. Callers relying on CSSStyleDeclaration methods (getPropertyValue, setProperty, ...) must either pass returnText = true and parse the string, switch to getComputedStyle, or update the stylesheet through document.styleSheets directly. Mutations on the returned object no longer propagate to the matched rule.
+
 # [4.0.0-beta.29](https://github.com/untemps/utils/compare/v4.0.0-beta.28...v4.0.0-beta.29) (2026-06-05)
 
 
