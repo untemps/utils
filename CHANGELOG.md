@@ -1,3 +1,10 @@
+# [4.0.0-beta.28](https://github.com/untemps/utils/compare/v4.0.0-beta.27...v4.0.0-beta.28) (2026-06-05)
+
+
+### Bug Fixes
+
+* **object:** Preserve source-side aliasing in deepMerge ([#141](https://github.com/untemps/utils/issues/141)) ([009aae5](https://github.com/untemps/utils/commit/009aae55b3b2812cd04a3deeae13fd7b5aef6648))
+
 # [4.0.0-beta.27](https://github.com/untemps/utils/compare/v4.0.0-beta.26...v4.0.0-beta.27) (2026-06-04)
 
 
