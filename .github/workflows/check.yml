@@ -8,14 +8,14 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: check-${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
-      - uses: actions/setup-node@v6.4.0
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'yarn'
@@ -29,7 +29,7 @@ jobs:
           name: dist
           path: dist
           retention-days: 1
-      - uses: codecov/codecov-action@v6.0.0
+      - uses: codecov/codecov-action@v6
         if: ${{ !cancelled() }}
         with:
           files: coverage/lcov.info
