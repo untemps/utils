@@ -24,6 +24,11 @@ describe('createElement', () => {
 			expected: '<div></div>',
 		},
 		{
+			name: 'ignores attributes with null or undefined values',
+			values: { attributes: { id: 'foo', 'aria-label': null, 'data-foo': undefined } },
+			expected: '<div id="foo"></div>',
+		},
+		{
 			name: 'creates element with content',
 			values: { content: createElement({ tag: 'span' }) },
 			expected: '<div><span></span></div>',
