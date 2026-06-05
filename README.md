@@ -56,7 +56,7 @@ Every utility is exported both from the package root and per-module at `@untemps
 ### dom
 - **`createElement`** — create a DOM element from a configuration object. **Attributes whose value is `null` or `undefined` are ignored** (no-op for those keys), mirroring `modifyElement`
 - **`doElementsOverlap`** — check whether two DOM elements overlap on screen
-- **`getCSSDeclaration`** — find a CSS rule by class name across `document.styleSheets`
+- **`getCSSDeclaration`** — find a CSS rule by class name across `document.styleSheets`. Returns a **snapshot `Record<string, string>`** of the declared properties (kebab-case keys, mirroring the CSS Object Model); mutating it has no effect on the live stylesheet. Pass `returnText = true` to get the raw `cssText` string instead.
 - **`getElement`** — query a DOM element by selector
 - **`isElement`** — check whether a value is a DOM element
 - **`modifyElement`** — set attributes on a DOM element (by reference or selector). **An attribute whose value is `null` or `undefined` is removed instead of being set**, allowing the same call to add and remove attributes in one pass. Throws `ReferenceError` when a selector matches nothing.
