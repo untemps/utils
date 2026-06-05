@@ -3,6 +3,8 @@
  */
 
 /**
+ * Extracts the values located at the given indices from a source array, preserving the order of `indices` and any duplicates.
+ *
  * @function
  * @example
  * import { extractByIndices } from '@untemps/utils/array/extractByIndices'

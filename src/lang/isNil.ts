@@ -3,6 +3,8 @@
  */
 
 /**
+ * Checks whether a value is `null` or `undefined`.
+ *
  * @function
  * @example
  * import { isNil } from '@untemps/utils/lang/isNil'

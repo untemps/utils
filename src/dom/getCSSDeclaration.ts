@@ -12,6 +12,8 @@ const snapshot = (style: CSSStyleDeclaration): Record<string, string> => {
 }
 
 /**
+ * Looks up a CSS rule by class name across `document.styleSheets` and returns a snapshot of its declared properties (or its raw `cssText` when `returnText` is `true`), or `null` when no rule matches.
+ *
  * @function
  * @example
  * import { getCSSDeclaration } from '@untemps/utils/dom/getCSSDeclaration'

@@ -5,6 +5,8 @@
 import { isString } from '../string/isString'
 
 /**
+ * Removes a DOM element from the document, referenced directly or by selector, and returns it.
+ *
  * @function
  * @example
  * import { removeElement } from '@untemps/utils/dom/removeElement'

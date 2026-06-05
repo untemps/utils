@@ -3,6 +3,8 @@
  */
 
 /**
+ * Creates a deep copy of a value using the structured clone algorithm. Throws `DataCloneError` for non-cloneable values such as functions or DOM nodes.
+ *
  * @function
  * @example
  * import { deepClone } from '@untemps/utils/object/deepClone'

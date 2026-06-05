@@ -3,6 +3,8 @@
  */
 
 /**
+ * Returns an object `{ min, max }` ordered so that `min` is never greater than `max`, swapping the inputs when needed.
+ *
  * @function
  * @example
  * import { normalizeMinMax } from '@untemps/utils/number/normalizeMinMax'

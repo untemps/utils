@@ -8,6 +8,8 @@ export interface ThrottledFunction<T extends (...args: never[]) => void> {
 }
 
 /**
+ * Wraps a function so it runs at most once per `interval` milliseconds (leading and trailing edges); the returned function exposes a `cancel` method to abort a pending invocation.
+ *
  * @function
  * @example
  * import { throttle } from '@untemps/utils/async/throttle'

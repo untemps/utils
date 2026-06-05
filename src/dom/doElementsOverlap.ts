@@ -3,6 +3,8 @@
  */
 
 /**
+ * Determines whether two DOM elements overlap on screen by comparing their bounding rectangles.
+ *
  * @function
  * @example
  * import { doElementsOverlap } from '@untemps/utils/dom/doElementsOverlap'

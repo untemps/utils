@@ -11,6 +11,8 @@ const escapeDivider = (divider: string): string => divider.replace(/[.*+?^${}()|
 const pipeTokens = (tokens: Record<string, unknown>): string => Object.keys(tokens).map(escapeDivider).join('|')
 
 /**
+ * Replaces `%key%`-style tokens in a string with the matching values from a dictionary.
+ *
  * @function
  * @example
  * import { interpolate } from '@untemps/utils/string/interpolate'
