@@ -1,3 +1,10 @@
+# [4.0.0-beta.29](https://github.com/untemps/utils/compare/v4.0.0-beta.28...v4.0.0-beta.29) (2026-06-05)
+
+
+### Bug Fixes
+
+* **dom:** Harmonize null/undefined attribute handling in createElement ([#154](https://github.com/untemps/utils/issues/154)) ([14c83a8](https://github.com/untemps/utils/commit/14c83a812354b464655fa3ae4358284e2070c5ed))
+
 # [4.0.0-beta.28](https://github.com/untemps/utils/compare/v4.0.0-beta.27...v4.0.0-beta.28) (2026-06-05)
 
 
