@@ -1,3 +1,15 @@
+# [4.0.0-beta.31](https://github.com/untemps/utils/compare/v4.0.0-beta.30...v4.0.0-beta.31) (2026-06-05)
+
+
+### Code Refactoring
+
+* **object:** Infer DeepMerge return type from source and target ([#157](https://github.com/untemps/utils/issues/157)) ([9fd4a40](https://github.com/untemps/utils/commit/9fd4a40987ed65692c1cefb8724ae03ad22c5823))
+
+
+### BREAKING CHANGES
+
+* **object:** deepMerge no longer returns `Record<string, unknown>`. Callers that explicitly annotated the result with that type, or that assigned it to a `Record<string, unknown>`-typed variable, now get a narrower inferred type and must drop the annotation (or widen with `as Record<string, unknown>` if needed).
+
 # [4.0.0-beta.30](https://github.com/untemps/utils/compare/v4.0.0-beta.29...v4.0.0-beta.30) (2026-06-05)
 
 
