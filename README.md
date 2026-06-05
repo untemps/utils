@@ -90,7 +90,7 @@ Every utility is exported both from the package root and per-module at `@untemps
 
 ## Development
 
-The development toolchain targets Node 24, pinned via [`.nvmrc`](./.nvmrc):
+The development toolchain targets Node 24, pinned via [`.nvmrc`](https://github.com/untemps/utils/blob/main/.nvmrc):
 
 ```bash
 nvm use
