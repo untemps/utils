@@ -31,11 +31,17 @@ describe('getCSSDeclaration', () => {
 		})
 
 		it.each(['drag', '.drag'])('Returns declaration', (className) => {
-			expect(getCSSDeclaration(className)).toHaveLength(1)
+			expect(getCSSDeclaration(className)).toEqual({ 'background-color': 'black' })
 		})
 
 		it('Returns declaration', () => {
 			expect(getCSSDeclaration('drag', true)).toBe('background-color: black;')
+		})
+
+		it('Returns a snapshot that does not mutate the source rule', () => {
+			const decl = getCSSDeclaration('drag') as Record<string, string>
+			decl['background-color'] = 'red'
+			expect(getCSSDeclaration('drag')).toEqual({ 'background-color': 'black' })
 		})
 	})
 

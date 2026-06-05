@@ -2,6 +2,15 @@
  * @module dom/getCSSDeclaration
  */
 
+const snapshot = (style: CSSStyleDeclaration): Record<string, string> => {
+	const result: Record<string, string> = {}
+	for (let i = 0; i < style.length; i++) {
+		const property = style[i]
+		result[property] = style.getPropertyValue(property)
+	}
+	return result
+}
+
 /**
  * @function
  * @example
@@ -12,18 +21,22 @@
  * document.head.appendChild(styleElement)
  *
  * const className = '.drag'
- * const returnText = true
- * getCSSDeclaration(className, returnText) // background-color: black;
+ * getCSSDeclaration(className) // { 'background-color': 'black' }
+ * getCSSDeclaration(className, true) // 'background-color: black;'
  *
  * Matches `className` exactly against any of the comma-separated selectors of a rule (e.g.
  * `.drag, .other` resolves both `drag` and `other`). Composed selectors such as `.foo.bar`,
  * `.foo:hover`, or `body .foo` are not unwrapped — use `getComputedStyle` for those.
  *
- * @param className            - The name of the CSS declaration to return. You may ignore the starting dot.
- * @param returnText  - `true` to get a string representation of the CSS declaration.
- * @returns The CSS declaration or null if the CSS declaration is not found.
+ * The returned object is a snapshot of the matched rule's declared properties (kebab-case
+ * keys, as produced by the CSS Object Model). Mutating it has no effect on the live
+ * stylesheet; to update the rule itself, reach for `document.styleSheets` directly.
+ *
+ * @param className   - The name of the CSS declaration to return. You may ignore the starting dot.
+ * @param returnText  - `true` to get the rule's `cssText` string instead of the snapshot object.
+ * @returns The snapshot, the `cssText` string, or `null` if no rule matches.
  */
-export const getCSSDeclaration = (className: string, returnText = false): CSSStyleDeclaration | string | null => {
+export const getCSSDeclaration = (className: string, returnText = false): Record<string, string> | string | null => {
 	if (className) {
 		className = className.startsWith('.') ? className : `.${className}`
 		if (document.styleSheets?.length) {
@@ -39,7 +52,7 @@ export const getCSSDeclaration = (className: string, returnText = false): CSSSty
 					const styleRule = rule as CSSStyleRule
 					const selectors = styleRule.selectorText?.split(',').map((s) => s.trim())
 					if (selectors?.includes(className) && styleRule.style) {
-						return returnText ? styleRule.style.cssText : styleRule.style
+						return returnText ? styleRule.style.cssText : snapshot(styleRule.style)
 					}
 				}
 			}
