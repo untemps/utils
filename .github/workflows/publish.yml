@@ -10,23 +10,24 @@ permissions:
     pull-requests: write
     issues: write
 jobs:
+  check:
+    uses: ./.github/workflows/check.yml
   publish:
+    needs: check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v6.4.0
+      - uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
-      - run: yarn typecheck
-      - run: yarn test:ci
-      - run: yarn build
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      - uses: codecov/codecov-action@v6.0.0
-        with:
-          files: coverage/lcov.info
