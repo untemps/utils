@@ -54,7 +54,7 @@ Every utility is exported both from the package root and per-module at `@untemps
 - **`throttle`** — invoke at most once per interval (leading + trailing); returns a function with `.cancel()`
 
 ### dom
-- **`createElement`** — create a DOM element from a configuration object
+- **`createElement`** — create a DOM element from a configuration object. **Attributes whose value is `null` or `undefined` are ignored** (no-op for those keys), mirroring `modifyElement`
 - **`doElementsOverlap`** — check whether two DOM elements overlap on screen
 - **`getCSSDeclaration`** — find a CSS rule by class name across `document.styleSheets`
 - **`getElement`** — query a DOM element by selector

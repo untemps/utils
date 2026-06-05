@@ -48,6 +48,10 @@ export interface CreateElementConfig {
  *  parentSelector: 'body'
  * }) // <p id="foo" style="font-weight: bold">Foo</p>
  *
+ * @remarks
+ * Attribute keys whose value is `null` or `undefined` are ignored, matching `modifyElement`'s
+ * lenient behaviour. This makes it safe to reuse the same configuration object across both APIs.
+ *
  * @param config - The configuration object for the new DOM element.
  * @returns The new DOM element.
  */
