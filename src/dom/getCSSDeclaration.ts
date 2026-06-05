@@ -15,6 +15,10 @@
  * const returnText = true
  * getCSSDeclaration(className, returnText) // background-color: black;
  *
+ * Matches `className` exactly against any of the comma-separated selectors of a rule (e.g.
+ * `.drag, .other` resolves both `drag` and `other`). Composed selectors such as `.foo.bar`,
+ * `.foo:hover`, or `body .foo` are not unwrapped — use `getComputedStyle` for those.
+ *
  * @param className            - The name of the CSS declaration to return. You may ignore the starting dot.
  * @param returnText  - `true` to get a string representation of the CSS declaration.
  * @returns The CSS declaration or null if the CSS declaration is not found.
@@ -33,7 +37,8 @@ export const getCSSDeclaration = (className: string, returnText = false): CSSSty
 				}
 				for (const rule of rules) {
 					const styleRule = rule as CSSStyleRule
-					if (styleRule.selectorText === className && !!styleRule.style) {
+					const selectors = styleRule.selectorText?.split(',').map((s) => s.trim())
+					if (selectors?.includes(className) && styleRule.style) {
 						return returnText ? styleRule.style.cssText : styleRule.style
 					}
 				}
