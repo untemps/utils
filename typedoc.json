@@ -4,6 +4,7 @@
 	"exclude": ["**/__tests__/**", "src/index.ts"],
 	"out": "docs/api",
 	"plugin": ["typedoc-plugin-markdown", "typedoc-vitepress-theme"],
+	"outputFileStrategy": "modules",
 	"excludePrivate": true,
 	"excludeInternal": true,
 	"docsRoot": "./docs",
