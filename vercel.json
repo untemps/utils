@@ -1,0 +1,4 @@
+{
+	"buildCommand": "yarn docs",
+	"outputDirectory": "docs/.vitepress/dist"
+}
