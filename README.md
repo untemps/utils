@@ -59,7 +59,7 @@ Every utility is exported both from the package root and per-module at `@untemps
 - **`getCSSDeclaration`** — find a CSS rule by class name across `document.styleSheets`
 - **`getElement`** — query a DOM element by selector
 - **`isElement`** — check whether a value is a DOM element
-- **`modifyElement`** — set attributes on a DOM element (by reference or selector)
+- **`modifyElement`** — set attributes on a DOM element (by reference or selector). **An attribute whose value is `null` or `undefined` is removed instead of being set**, allowing the same call to add and remove attributes in one pass. Throws `ReferenceError` when a selector matches nothing.
 - **`removeElement`** — remove a DOM element (by reference or selector)
 - **`resolveClassName`** — aggregate class names from strings or `[condition, ifTrue, ifFalse]` tuples
 
