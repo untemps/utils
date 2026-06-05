@@ -10,7 +10,10 @@ permissions:
     pull-requests: write
     issues: write
 jobs:
+  check:
+    uses: ./.github/workflows/check.yml
   publish:
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6.0.2
@@ -21,9 +24,14 @@ jobs:
           node-version: '24'
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
-      - run: yarn typecheck
-      - run: yarn test:ci
-      - run: yarn build
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: coverage
       - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
