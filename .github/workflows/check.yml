@@ -7,6 +7,9 @@ on:
   workflow_call:
 permissions:
   contents: read
+concurrency:
+  group: check-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -19,12 +22,12 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn typecheck
       - run: yarn test:ci
-      - run: yarn build
       - uses: codecov/codecov-action@v6.0.0
         with:
           files: coverage/lcov.info
+      - run: yarn build
       - uses: actions/upload-artifact@v4
-        if: github.event_name == 'push'
+        if: success() && github.event_name == 'push'
         with:
           name: dist
           path: dist
